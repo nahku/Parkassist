@@ -1,0 +1,91 @@
+%%**************************************************************
+%% Vorlage fuer Bachelorarbeiten (o.ä.) der DHBW
+%%
+%% Autor: Tobias Dreher, Yves Fischer
+%% Datum: 06.07.2011
+%%
+%% Autor: Michael Gruben
+%% Datum: 15.05.2013
+%%
+%% Autor: Markus Barthel
+%% Datum: 22.08.2014
+%%**************************************************************
+
+\input{ads/header}
+
+\newglossary[slg]{symbolslist}{sym}{sbl}{Symbolverzeichnis}
+
+\makeglossaries
+
+\input{ads/glossary}
+
+\begin{document}
+
+	% Deckblatt
+	\begin{spacing}{1}
+		\input{ads/deckblatt}
+	\end{spacing}
+	\newpage
+
+
+	\pagestyle{plain}		% nur Seitenzahlen im Fuß
+	
+	\RedeclareSectionCommand[beforeskip=\kapitelabstand]{chapter} % stellt Abstand 	vor Kapitelüberschriften ein
+	%\setcounter{page}{1} %Damit Literaturverzeichnis richtige Referenzen macht
+	% Inhaltsverzeichnis
+	\begin{spacing}{1.09}
+		\begingroup
+		
+			% auskommentieren für Seitenzahlen unter Inhaltsverzeichnis
+			\renewcommand*{\chapterpagestyle}{empty}
+			\pagestyle{empty}		
+			\setcounter{tocdepth}{1}
+			\tableofcontents
+			\clearpage
+		\endgroup
+	\end{spacing}
+	\newpage
+	
+	\pagenumbering{Roman}
+	 
+	% Symbolverzeichnis
+	%\printglossary[type=symbolslist, style =modsuper ]
+	
+	% Abkürzungsverzeichnis
+	\cleardoublepage
+	\input{ads/acronyms}
+	
+	
+
+
+%	\newpage\null\thispagestyle{plain}\newpage
+
+	% Abbildungsverzeichnis
+	\cleardoublepage
+	\listoffigures
+	
+%	\newpage\null\thispagestyle{plain}\newpage
+
+	%Tabellenverzeichnis
+	\cleardoublepage
+	\listoftables
+	
+%	\newpage\null\thispagestyle{plain}\newpage
+
+	% Quellcodeverzeichnis
+	\cleardoublepage
+	\lstlistoflistings
+	\cleardoublepage
+
+	\pagenumbering{arabic}
+	
+	\pagestyle{headings}		% Kolumnentitel im Kopf, Seitenzahlen im Fuß
+
+	% Inhalt
+	\input{content/Content.tex}
+
+	\clearpage
+		
+	\pagenumbering{roman}
+	
+\end{document}
