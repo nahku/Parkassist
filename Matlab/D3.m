@@ -1,3 +1,5 @@
+clear all
+
 %import velocity data
 velocity_data = importdata('MeasuredVelocities.txt');
 
@@ -35,10 +37,10 @@ for i=0:max-1
 end
 
 %plot mean velocity and acceleration
-%subplot(2,1,1);
-%plot(velocity_data(:,1),mean_velocity)
-%subplot(2,1,2);
-%plot(velocity_data(2:length(velocity_data),1),acceleration)
+subplot(2,1,1);
+plot(velocity_data(:,1),mean_velocity)
+subplot(2,1,2);
+plot(velocity_data(2:length(velocity_data),1),acceleration)
 
 %plot mean velocity and acceleration
 subplot(2,1,1);
@@ -46,3 +48,7 @@ plot(velocity_data(:,1),decreasing_velocity)
 subplot(2,1,2);
 plot(velocity_data(2:length(velocity_data),1),neg_acceleration)
 ylim([min(neg_acceleration) min(neg_acceleration)*-1])
+
+
+
+%plot(M, 'o')
