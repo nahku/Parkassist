@@ -7,4 +7,8 @@ velocity_data = importdata('../MeasuredVelocities.txt');
 mean_velocity = mean(velocity_data(:,2:5),2);
 
 %plot mean velocity
-plot(velocity_data(:,1),mean_velocity)
+plot(velocity_data(:,1),mean_velocity, 'LineWidth', 1.5)
+set(gca,'FontSize',22)
+title('Mean car velocity');
+xlabel('Time in [s]');
+ylabel('Velocity in [m/s]');

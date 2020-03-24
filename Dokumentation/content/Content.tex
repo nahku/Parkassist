@@ -1,5 +1,7 @@
 %!TEX root = ../dokumentation.tex
 
+\chapter{Aufgabenstellung}\label{cha:Aufgabenstellung}
+??
 \chapter{D1: Aufwandsabschätzung nach der Dreipunktmethode}\label{cha:D1}
 \begin{table}[H]
 \centering
@@ -15,6 +17,16 @@ D1 & .& .& .& .& .&\\
 \label{tbl:ConceptTPTPProductionSymbols}
 \end{table}
 \chapter{D2: Machbarkeitsdemonstration}\label{cha:D2}
+Das Ziel der Machbarkeitsdemonstration ist es, zu zeigen, dass mit dem Modell, bestehend aus den Formeln
+
+\begin{equation}
+	\frac{\partial v}{\partial t} = -c-b*p
+\end{equation}
+\begin{equation}
+	\frac{\partial x}{\partial t} = v
+\end{equation}
+
+die gegebene Aufgabenstellung erfüllt werden kann.
 
 - Minimale Geschwindigkeit 0,29km/h beachten -> in m/s umrechnen \\
 - Switch -> wenn Geschwindigkeit kleiner 0,29 folgt daraus Geschwindigkeit = 0 \\
@@ -28,7 +40,27 @@ D1 & .& .& .& .& .&\\
 \label{fig:ConceptArchitectureOverview}
 \end{figure}
 
-\chapter{D3: Anlyse des menschlichen Geschwindigkeitsprofils}\label{cha:D3}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D2_sim.png}
+\caption{Simulink Modell der Differenzialgleichungen}
+\label{fig:ConceptArchitectureOverview}
+\end{figure}
+
+\chapter{D3: Analyse des menschlichen Geschwindigkeitsprofils}\label{cha:D3}
+
+1. Import in Matlab
+
+2. entschieden Durchschnitt der vier Radgeschwindigkeiten zu nehmen (vllt. vor nachteile)
+und so auf die Geschwindigkeit des Autos näherungsweise zu bestimmen
+
+todo hier plot von gesamtgeschwindigkeit
+
+idee: verzögerungsphasen extrahieren um so auf "menschliche" negative beschleunigung zu schließen
+problem: verrauschte messdaten -> dadurch ständiger wehcsel positive negative beschleunigung
+
+lösung: moving average filter zum glätten der messwerte
+dann extrahieren der negativen beschleunigungen
 
 \chapter{D4*: Betrachtung von Unebenheiten des Parkplatzes}\label{cha:D4}
 

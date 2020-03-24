@@ -9,14 +9,14 @@ s = res.yout{2}.Values.Data;
 v = v*3.6;
 subplot(2,1,1);
 plot(t,v, 'LineWidth', 1.5);
-set(gca,'FontSize',18)
+set(gca,'FontSize',22)
 title('Velocity of car in full brake');
 xlabel('Time in [s]');
 ylabel('Velocity in [km/h]');
 
 subplot(2,1,2);
 plot(t,s, 'LineWidth', 1.5)
-set(gca,'FontSize',18)
+set(gca,'FontSize',22)
 title('Covered distance');
 xlabel('Time in [s]');
 ylabel('Distance in [m]');
