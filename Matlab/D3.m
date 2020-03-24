@@ -9,6 +9,13 @@ mean_velocity = mean(a,2);
 mean_velocity = movmean(mean_velocity, 200); %apply moving average filter to smoothen the data
 acceleration = diff(mean_velocity);
 
+%plot mean velocity
+plot(velocity_data(:,1),mean_velocity, 'LineWidth', 1.5)
+set(gca,'FontSize',22)
+title('Mean car velocity');
+xlabel('Time in [s]');
+ylabel('Velocity in [m/s]');
+
 neg_acceleration = acceleration;
 decreasing_velocity = mean_velocity;
 
