@@ -47,16 +47,16 @@ The aim of the feasibility study is to analyse whether the introduced model in s
 
 \chapter{D3: Analysis of human velocity profile}\label{cha:D3}
 
-In this section the provided human velocity profile is analysed in order to find a pattern that shows how a human is breaking a car. This pattern will be used in the following sections and will be adapted to the braking function of the ParkAssist. The analysis is divided into several steps.
+In this section the provided human velocity profile is analysed in order to find a pattern that shows how a human is breaking a car. This pattern will be used in the following sections and will be adapted to the braking function of the ParkAssist. The analysis is divided into four steps.
 
-1. Import the measurement data in Matlab.
+\textbf{1. Import the measurement data} \\ The measurement data is imported in Matlab.
 
 \begin{lstlisting}[basicstyle=\scriptsize	,caption= Import measurement data in Matlab,label= lst:D3Import]
 %import velocity data
 velocity_data = importdata('MeasuredVelocities.txt');
 \end{lstlisting}
 
-2. Data preparation: Before analysing the data it is necessary to preprocess it. First the four velocities of each wheel are extracted from the measurement data and a mean velocity is calculated (see line). The mean velocity is converted to [m/s] for further calculations. For analysing the braking behaviour the acceleration is calculated. This can be done by differentiating the velocity (see line). As can be seen in Figure REF in the upper plot the calculated acceleration is ?? as cause of minor variations in the velocity. Due to the ?? it would be hard to analyse the braking behaviour. Therefore, we used a moving average filter to smoothen the data (line). A moving average filter is calculating a mean value of neighbourhood elements within a sliding window of a predefined size. Applying a moving average filter results in a smoother graph as can bee seen in the lower plot in figure REF.
+\textbf{2. Data preparation} \\ Before analysing the data it is necessary to preprocess it. First the four velocities of each wheel are extracted from the measurement data and a mean velocity is calculated (see line 1,2). The mean velocity is converted to [m/s] for further calculations. For analysing the braking behaviour the acceleration is calculated. This can be done by differentiating the velocity (see line 11). As can be seen in Figure REF in the upper plot the calculated acceleration is ?? as cause of minor variations in the velocity. Due to the ?? it would be hard to analyse the braking behaviour. Therefore, we used a moving average filter to smoothen the data (line 8). A moving average filter is calculating a mean value of neighbourhood elements within a sliding window of a predefined size. Applying a moving average filter results in a smoother graph as can bee seen in the lower plot in Figure REF.
 
 \begin{lstlisting}[basicstyle=\scriptsize	,caption= Preprocessing measurement data,label= lst:D3Preprocess]
 %compute mean velocity of all 4 wheels
@@ -73,7 +73,7 @@ acceleration = diff(mean_velocity);
 raw_acceleration = diff(raw_mean_velocity);     %for demonstration purposes
 \end{lstlisting}
 
-3. Extracting negative acceleration: As the goal is to analyse the braking behaviour only the negative acceleration is relevant and is thus being extracted from the overall acceleration (line). Also, all velocities that are based on a positive acceleration are not considered anymore. We decided to set those values to NaN because this way we are still able to plot the velocity and the acceleration over time without cut-outs. The result can be seen in plot REF.
+\textbf{3. Extracting negative acceleration} \\ As the goal is to analyse the braking behaviour only the negative acceleration is relevant and is thus being extracted from the overall acceleration (line 5). Also, all velocities that are based on a positive acceleration are not considered anymore (line 6). We decided to set those values to \ac{NaN} because this way we are still able to plot the velocity and the acceleration over time without cut-outs. The result can be seen in plot REF.
 
 \begin{lstlisting}[basicstyle=\scriptsize	,caption= Extracting negative acceleration,label= lst:D3Extract]
 %search for negative acceleration and set positive acceleration to NaN
@@ -84,14 +84,12 @@ neg_acceleration(neg_acceleration>0) = nan;
 decreasing_velocity(isnan(neg_acceleration)) = nan;
 \end{lstlisting}
 
-4. Separating breaking sequences: For improved visualisation the individual breaking sequences that can be seen in plot REF are stored separately. One breaking sequence consists of multiple consequent velocities. This means that the breaking sequences can be separated by searching for a gap in the velocities. Therefore, the indices of all velocities that are set not NaN are extracted (line ) and differentiated (line ). Considered the differentiation, every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are consequent (differentiation equals 1). Furthermore, small breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line ). Two individual breaking sequences can be seen in plot REF and plot REF.
+\textbf{4. Separating breaking sequences} \\ For improved visualisation the individual breaking sequences that can be seen in plot REF are stored separately. One breaking sequence consists of multiple consequent velocities. This means that the breaking sequences can be separated by searching for a gap in the velocities. Therefore, the indices of all velocities that are set not \ac{NaN} are extracted (line 2) and differentiated (line 3). Considered the differentiation, every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are consequent (differentiation equals 1). Furthermore, small breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line 13). Two individual breaking sequences can be seen in plot REF and plot REF.
 
 \begin{lstlisting}[basicstyle=\scriptsize	,caption= Separating breaking sequences,label= lst:D3Seperat]
 %find individual breaking sequences
-notNaN_velocity = find(~isnan(decreasing_velocity));   % find index of every velocity that is not NaN -> one breaking sequence has
-                                                       % consequent time steps -> one breaking sequence has consequent indices
-diff_notNaN_velocity = diff(notNaN_velocity);          % differentiate indices -> if indices are not consequent (unequal 1), a new
-                                                       % breaking sequence has begun
+notNaN_velocity = find(~isnan(decreasing_velocity));   % find index of every velocity that is not NaN -> one breaking sequence has consequent time steps -> one breaking sequence has consequent indices
+diff_notNaN_velocity = diff(notNaN_velocity);          % differentiate indices -> if indices are not consequent (unequal 1), a new breaking sequence has begun
 n = 1;                                                 % set start values
 start = 1;
 
