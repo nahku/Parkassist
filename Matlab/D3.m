@@ -7,7 +7,7 @@ velocity_data = importdata('MeasuredVelocities.txt');
 %compute mean velocity of all 4 wheels
 velocity_per_wheel = velocity_data(:,2:5);
 mean_velocity = mean(velocity_per_wheel,2);
-mean_velocity = mean_velocity/3.6;
+mean_velocity = mean_velocity/3.6;      %convert velocity from km/h to m/s
 raw_mean_velocity = mean_velocity;      %for demonstration purposes
 
 %apply moving average filter to smoothen the data
@@ -16,16 +16,6 @@ mean_velocity = movmean(mean_velocity, 200);
 %differentiate velocity to get acceleration
 acceleration = diff(mean_velocity);
 raw_acceleration = diff(raw_mean_velocity);     %for demonstration purposes
-
-%plot mean velocity
-% plot(velocity_data(:,1),mean_velocity, 'LineWidth', 1.5)
-% set(gca,'FontSize',22)
-% title('Mean car velocity');
-% xlabel('Time in [s]');
-% ylabel('Velocity in [m/s]');
-%convert acceleration from [km/h�] to [m/s�]
-%acceleration = acceleration*(1/(3.6*3.6));
-%raw_acceleration = raw_acceleration*(1/(3.6*3.6)); %for demonstration purposes
 
 %search for negative acceleration and set positive acceleration to NaN
 %set all velocities that have a positive acceleration to NaN
@@ -67,22 +57,39 @@ end
 
 %Plots
 
-%Plot 1 - Demonstration of the advantages of applying a moving average
+%Plot 1 - Overview of velocity and acceleration of the car from the
+%measurement
+figure;
+subplot(2,1,1);
+plot(velocity_data(:,1), mean_velocity*3.6,'LineWidth', 1.5)
+set(gca,'FontSize',22)
+title('Velocity of car');
+xlabel('Time in [s]');
+ylabel('Velocity in [km/h]');
+subplot(2,1,2);
+plot(velocity_data(2:length(velocity_data),1),acceleration,'LineWidth', 1.5)
+set(gca,'FontSize',22)
+title('Acceleration of car');
+xlabel('Time in [s]');
+ylabel('Acceleration in [m/s^2]');
+
+%Plot 2 - Demonstration of the advantages of applying a moving average
 %filter to the cars velocity
+figure;
 subplot(2,1,1);
 plot(velocity_data(2:length(velocity_data),1),raw_acceleration,'LineWidth', 1.5)
 set(gca,'FontSize',22)
 title('Acceleration of car');
 xlabel('Time in [s]');
-ylabel('Velocity in [m/s^2]');
+ylabel('Acceleration in [m/s^2]');
 subplot(2,1,2);
 plot(velocity_data(2:length(velocity_data),1),acceleration,'LineWidth', 1.5)
 set(gca,'FontSize',22)
 title('Acceleration of car with applied moving average filter');
 xlabel('Time in [s]');
-ylabel('Velocity in [m/s^2]');
+ylabel('Acceleration in [m/s^2]');
 
-%Plot 2 - Overview of velocity and acceleration while braking
+%Plot 3 - Overview of velocity and acceleration while braking
 figure
 %Plot velocity of all braking sequences in one plot
 subplot(2,1,1);
@@ -105,9 +112,8 @@ set(gca,'FontSize',22)
 title('Acceleration of car while braking');
 xlabel('Time in [s]');
 ylabel('Acceleration in [m/s^2]');
-subtitle('Human velocity profile');
 
-%Plot 3 - Extracted braking sequence
+%Plot 4 - Extracted braking sequence
 figure
 %Plot only one braking sequence for a more detailled view
 subplot(2,1,1);
@@ -123,9 +129,8 @@ set(gca,'FontSize',22)
 title('Acceleration of car while braking');
 xlabel('Time in [s]');
 ylabel('Acceleration in [m/s^2]');
-suptitle('Section of human velocity profile');
 
-%Plot 4 - Extracted braking sequence
+%Plot 5 - Extracted braking sequence
 figure
 %Plot another braking sequence for a more detailled view
 subplot(2,1,1);
@@ -141,5 +146,5 @@ set(gca,'FontSize',22)
 title('Acceleration of car while braking');
 xlabel('Time in [s]');
 ylabel('Acceleration in [m/s^2]');
-suptitle('Section of human velocity profile');
+
 

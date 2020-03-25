@@ -46,18 +46,91 @@ The aim of the feasibility study is to analyse whether the introduced model in s
 \end{figure}
 
 \chapter{D3: Analysis of human velocity profile}\label{cha:D3}
-1. Import in Matlab
 
-2. entschieden Durchschnitt der vier Radgeschwindigkeiten zu nehmen (vllt. vor nachteile)
-und so auf die Geschwindigkeit des Autos näherungsweise zu bestimmen
+In this section the provided human velocity profile is analysed in order to find a pattern that shows how a human is breaking a car. This pattern will be used in the following sections and will be adapted to the braking function of the ParkAssist. The analysis is divided into several steps.
 
-todo hier plot von gesamtgeschwindigkeit
+1. Import the measurement data in Matlab.
 
-idee: verzögerungsphasen extrahieren um so auf "menschliche" negative beschleunigung zu schließen
-problem: verrauschte messdaten -> dadurch ständiger wehcsel positive negative beschleunigung
+\begin{lstlisting}[basicstyle=\scriptsize	,caption= Import measurement data in Matlab,label= lst:D3Import]
+%import velocity data
+velocity_data = importdata('MeasuredVelocities.txt');
+\end{lstlisting}
 
-lösung: moving average filter zum glätten der messwerte
-dann extrahieren der negativen beschleunigungen
+2. Data preparation: Before analysing the data it is necessary to preprocess it. First the four velocities of each wheel are extracted from the measurement data and a mean velocity is calculated (see line). The mean velocity is converted to [m/s] for further calculations. For analysing the braking behaviour the acceleration is calculated. This can be done by differentiating the velocity (see line). As can be seen in Figure REF in the upper plot the calculated acceleration is ?? as cause of minor variations in the velocity. Due to the ?? it would be hard to analyse the braking behaviour. Therefore, we used a moving average filter to smoothen the data (line). A moving average filter is calculating a mean value of neighbourhood elements within a sliding window of a predefined size. Applying a moving average filter results in a smoother graph as can bee seen in the lower plot in figure REF.
+
+\begin{lstlisting}[basicstyle=\scriptsize	,caption= Preprocessing measurement data,label= lst:D3Preprocess]
+%compute mean velocity of all 4 wheels
+velocity_per_wheel = velocity_data(:,2:5);
+mean_velocity = mean(velocity_per_wheel,2);
+mean_velocity = mean_velocity/3.6;      %convert velocity from km/h to m/s
+raw_mean_velocity = mean_velocity;      %for demonstration purposes
+
+%apply moving average filter to smoothen the data
+mean_velocity = movmean(mean_velocity, 200); 
+
+%differentiate velocity to get acceleration
+acceleration = diff(mean_velocity);
+raw_acceleration = diff(raw_mean_velocity);     %for demonstration purposes
+\end{lstlisting}
+
+3. Extracting negative acceleration: As the goal is to analyse the braking behaviour only the negative acceleration is relevant and is thus being extracted from the overall acceleration (line). Also, all velocities that are based on a positive acceleration are not considered anymore. We decided to set those values to NaN because this way we are still able to plot the velocity and the acceleration over time without cut-outs. The result can be seen in plot REF.
+
+\begin{lstlisting}[basicstyle=\scriptsize	,caption= Extracting negative acceleration,label= lst:D3Extract]
+%search for negative acceleration and set positive acceleration to NaN
+%set all velocities that have a positive acceleration to NaN
+neg_acceleration = acceleration;
+decreasing_velocity = mean_velocity;
+neg_acceleration(neg_acceleration>0) = nan;
+decreasing_velocity(isnan(neg_acceleration)) = nan;
+\end{lstlisting}
+
+4. Separating breaking sequences: For improved visualisation the individual breaking sequences that can be seen in plot REF are stored separately. One breaking sequence consists of multiple consequent velocities. This means that the breaking sequences can be separated by searching for a gap in the velocities. Therefore, the indices of all velocities that are set not NaN are extracted (line ) and differentiated (line ). Considered the differentiation, every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are consequent (differentiation equals 1). Furthermore, small breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line ). Two individual breaking sequences can be seen in plot REF and plot REF.
+
+\begin{lstlisting}[basicstyle=\scriptsize	,caption= Separating breaking sequences,label= lst:D3Seperat]
+%find individual breaking sequences
+notNaN_velocity = find(~isnan(decreasing_velocity));   % find index of every velocity that is not NaN -> one breaking sequence has
+                                                       % consequent time steps -> one breaking sequence has consequent indices
+diff_notNaN_velocity = diff(notNaN_velocity);          % differentiate indices -> if indices are not consequent (unequal 1), a new
+                                                       % breaking sequence has begun
+n = 1;                                                 % set start values
+start = 1;
+
+%seperate breaking sequences with previous findings
+for i=1:length(diff_notNaN_velocity)
+    %for every index check if indices are consequent -> equals 1
+    if diff_notNaN_velocity(i) > 1
+        %if not check if a breaking sequence consists of min 500 time
+        %steps, this way small breaking sequences are sorted out
+        if (i-start) > 500
+            %add breaking sequence to section
+            %i is end of sequence
+            section{n} = notNaN_velocity(start:i);
+            %start for new sequence is end of old sequence + 1
+            start = i+1;
+            %increment n
+            n = n+1;
+        else
+            %if breaking sequence is to small, set start for new sequence
+            %to end of old sequence + 1 anyway
+            start = i+1;
+        end
+    end
+end
+\end{lstlisting}
+
+\subsubsection{Result}
+Considering Figures REF, REF and REF, it can be seen that the acceleration is approximately in the shape of a parable with the minimal turning point at XX. For further implementation of the ParkAssist, we will start the breaking process with an acceleration and increase it until we reach approximately REF and will then decrease it.
+
+%entschieden Durchschnitt der vier Radgeschwindigkeiten zu nehmen (vllt. vor nachteile)
+%und so auf die Geschwindigkeit des Autos näherungsweise zu bestimmen
+%
+%todo hier plot von gesamtgeschwindigkeit
+%
+%idee: verzögerungsphasen extrahieren um so auf "menschliche" negative beschleunigung zu schließen
+%problem: verrauschte messdaten -> dadurch ständiger wehcsel positive negative beschleunigung
+%
+%lösung: moving average filter zum glätten der messwerte
+%dann extrahieren der negativen beschleunigungen
 
 \chapter{D4*: Consideration of uneven parking spaces}\label{cha:D4}
 
