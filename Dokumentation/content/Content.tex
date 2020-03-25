@@ -1,23 +1,23 @@
 %!TEX root = ../dokumentation.tex
 
-\chapter{Aufgabenstellung}\label{cha:Aufgabenstellung}
+\chapter{Introduction}\label{cha:Introduction}
 ??
-\chapter{D1: Aufwandsabschätzung nach der Dreipunktmethode}\label{cha:D1}
+\chapter{D1: Time estimate based on three point estimation}\label{cha:D1}
 \begin{table}[H]
 \centering
-\caption{Dreipunktabschätzung des Aufwands der Anforderungen}
+\caption{Three point estimation of effort for meeting requirements}
 \begin{adjustbox}{width=1\textwidth, center=\textwidth}
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{lllllll}
-\textbf{Anforderung} \textbf{Optimistisch} & \textbf{Wahrscheinlich} & \textbf{Pessimistisch} & \textbf{<T>} & \textbf{sigmahoch2} & \textbf{wirklich}\\\hline
+\textbf{Requirement} \textbf{Optimistic} & \textbf{Likely} & \textbf{Pessimistic} & \textbf{<T>} & \textbf{sigmahoch2} & \textbf{Actual}\\\hline
 D1 & .& .& .& .& .&\\
 \end{tabular}
 
 \end{adjustbox}
 \label{tbl:ConceptTPTPProductionSymbols}
 \end{table}
-\chapter{D2: Machbarkeitsdemonstration}\label{cha:D2}
-Das Ziel der Machbarkeitsdemonstration ist es, zu zeigen, dass mit dem Modell, bestehend aus den Formeln
+\chapter{D2: Feasibility study}\label{cha:D2}
+The aim of the feasibility study is to analyse whether the introduced model in section \ref{cha:Introduction} can be implemented based on the given formulas. 
 
 \begin{equation}
 	\frac{\partial v}{\partial t} = -c-b*p
@@ -25,8 +25,6 @@ Das Ziel der Machbarkeitsdemonstration ist es, zu zeigen, dass mit dem Modell, b
 \begin{equation}
 	\frac{\partial x}{\partial t} = v
 \end{equation}
-
-die gegebene Aufgabenstellung erfüllt werden kann.
 
 - Minimale Geschwindigkeit 0,29km/h beachten -> in m/s umrechnen \\
 - Switch -> wenn Geschwindigkeit kleiner 0,29 folgt daraus Geschwindigkeit = 0 \\
@@ -47,8 +45,7 @@ die gegebene Aufgabenstellung erfüllt werden kann.
 \label{fig:ConceptArchitectureOverview}
 \end{figure}
 
-\chapter{D3: Analyse des menschlichen Geschwindigkeitsprofils}\label{cha:D3}
-
+\chapter{D3: Analysis of human velocity profile}\label{cha:D3}
 1. Import in Matlab
 
 2. entschieden Durchschnitt der vier Radgeschwindigkeiten zu nehmen (vllt. vor nachteile)
@@ -62,23 +59,23 @@ problem: verrauschte messdaten -> dadurch ständiger wehcsel positive negative b
 lösung: moving average filter zum glätten der messwerte
 dann extrahieren der negativen beschleunigungen
 
-\chapter{D4*: Betrachtung von Unebenheiten des Parkplatzes}\label{cha:D4}
+\chapter{D4*: Consideration of uneven parking spaces}\label{cha:D4}
 
-\chapter{D5: Betrachtung von Unsicherheiten in der Geschwindigkeitsmessung}\label{cha:D5}
+\chapter{D5: Discussion of inaccuracies in velocity measurement}\label{cha:D5}
 validate findings by numbers from simulation
 
-\chapter{D6: Implementierung des Pulssignals in Simulink}\label{cha:D6}
+\chapter{D6: Implementation of pulse signal in Simulink}\label{cha:D6}
 
-\chapter{D7: Übernahme des Simulinkmodells nach ASCET}\label{cha:D7}
+\chapter{D7: Transfer of Simulink model to ASCET}\label{cha:D7}
 
-\chapter{D8: Implementierung des Pulssignals in ASCET}\label{cha:D8}
+\chapter{D8: Implementation of pule signal in ASCET}\label{cha:D8}
 
-\chapter{D9: Unit-Tests für das Pulssignal in ASCET}\label{cha:D9}
+\chapter{D9: Implementation of unit tests for ASCET model parts}\label{cha:D9}
 
-\chapter{D10: Entwicklung und Druchführung von Systemtests für die ASCET Simulation}\label{cha:D10}
+\chapter{D10: Development and implementation of a system test environment for ASCET simulation}\label{cha:D10}
 
-\chapter{D11*: Plausibilitätsprüfung gemessener Geschwindigkeiten und  Strecken gegeneinander}\label{cha:D11}
+\chapter{D11*: Plausibility check comparing measured velocities and distances}\label{cha:D11}
 
-\chapter{D13*: Einfluss von Ungenauigkeiten}\label{cha:D13}
+\chapter{D13*: Impact of inaccuracies}\label{cha:D13}
 
-\chapter{D14*: Reflexion}\label{cha:D14}
+\chapter{D14*: Reflection}\label{cha:D14}
