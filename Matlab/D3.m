@@ -17,7 +17,13 @@ mean_velocity = movmean(mean_velocity, 50);
 acceleration = diff(mean_velocity);
 raw_acceleration = diff(raw_mean_velocity);     %for demonstration purposes
 
-%convert acceleration from [km/h²] to [m/s²]
+%plot mean velocity
+% plot(velocity_data(:,1),mean_velocity, 'LineWidth', 1.5)
+% set(gca,'FontSize',22)
+% title('Mean car velocity');
+% xlabel('Time in [s]');
+% ylabel('Velocity in [m/s]');
+%convert acceleration from [km/hï¿½] to [m/sï¿½]
 %acceleration = acceleration*(1/(3.6*3.6));
 %raw_acceleration = raw_acceleration*(1/(3.6*3.6)); %for demonstration purposes
 
@@ -68,13 +74,13 @@ plot(velocity_data(2:length(velocity_data),1),raw_acceleration,'LineWidth', 1.5)
 set(gca,'FontSize',22)
 title('Acceleration of car');
 xlabel('Time in [s]');
-ylabel('Velocity in [m/s²]');
+ylabel('Velocity in [m/sï¿½]');
 subplot(2,1,2);
 plot(velocity_data(2:length(velocity_data),1),acceleration,'LineWidth', 1.5)
 set(gca,'FontSize',22)
 title('Acceleration of car with applied moving average filter');
 xlabel('Time in [s]');
-ylabel('Velocity in [m/s²]');
+ylabel('Velocity in [m/sï¿½]');
 
 %Plot 2 - Overview of velocity and acceleration while braking
 figure
@@ -98,7 +104,7 @@ end
 set(gca,'FontSize',22)
 title('Acceleration of car while braking');
 xlabel('Time in [s]');
-ylabel('Acceleration in [m/s²]');
+ylabel('Acceleration in [m/sï¿½]');
 suptitle('Human velocity profile');
 
 %Plot 3 - Extracted braking sequence
@@ -116,7 +122,7 @@ plot(velocity_data(section{1,6},1),neg_acceleration(section{1,6}), 'LineWidth', 
 set(gca,'FontSize',22)
 title('Acceleration of car while braking');
 xlabel('Time in [s]');
-ylabel('Acceleration in [m/s²]');
+ylabel('Acceleration in [m/sï¿½]');
 suptitle('Section of human velocity profile');
 
 %Plot 4 - Extracted braking sequence
@@ -134,6 +140,6 @@ plot(velocity_data(section{1,7},1),neg_acceleration(section{1,7}), 'LineWidth', 
 set(gca,'FontSize',22)
 title('Acceleration of car while braking');
 xlabel('Time in [s]');
-ylabel('Acceleration in [m/s²]');
+ylabel('Acceleration in [m/sï¿½]');
 suptitle('Section of human velocity profile');
 
