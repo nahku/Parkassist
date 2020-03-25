@@ -11,7 +11,7 @@ mean_velocity = mean_velocity/3.6;
 raw_mean_velocity = mean_velocity;      %for demonstration purposes
 
 %apply moving average filter to smoothen the data
-mean_velocity = movmean(mean_velocity, 50); 
+mean_velocity = movmean(mean_velocity, 200); 
 
 %differentiate velocity to get acceleration
 acceleration = diff(mean_velocity);
@@ -74,20 +74,20 @@ plot(velocity_data(2:length(velocity_data),1),raw_acceleration,'LineWidth', 1.5)
 set(gca,'FontSize',22)
 title('Acceleration of car');
 xlabel('Time in [s]');
-ylabel('Velocity in [m/s�]');
+ylabel('Velocity in [m/s^2]');
 subplot(2,1,2);
 plot(velocity_data(2:length(velocity_data),1),acceleration,'LineWidth', 1.5)
 set(gca,'FontSize',22)
 title('Acceleration of car with applied moving average filter');
 xlabel('Time in [s]');
-ylabel('Velocity in [m/s�]');
+ylabel('Velocity in [m/s^2]');
 
 %Plot 2 - Overview of velocity and acceleration while braking
 figure
 %Plot velocity of all braking sequences in one plot
 subplot(2,1,1);
 for i=1:length(section)
-    plot(velocity_data(section{1,i},1),decreasing_velocity(section{1,i}),'LineWidth', 1.5)
+    plot(velocity_data(section{1,i},1),decreasing_velocity(section{1,i})*3.6,'LineWidth', 1.5)
     hold on
 end 
 set(gca,'FontSize',22)
@@ -104,14 +104,14 @@ end
 set(gca,'FontSize',22)
 title('Acceleration of car while braking');
 xlabel('Time in [s]');
-ylabel('Acceleration in [m/s�]');
-suptitle('Human velocity profile');
+ylabel('Acceleration in [m/s^2]');
+subtitle('Human velocity profile');
 
 %Plot 3 - Extracted braking sequence
 figure
 %Plot only one braking sequence for a more detailled view
 subplot(2,1,1);
-plot(velocity_data(section{1,6},1),decreasing_velocity(section{1,6}), 'LineWidth', 1.5)
+plot(velocity_data(section{1,6},1),decreasing_velocity(section{1,6})*3.6, 'LineWidth', 1.5)
 set(gca,'FontSize',22)
 title('Velocity of car while braking');
 xlabel('Time in [s]');
@@ -122,14 +122,14 @@ plot(velocity_data(section{1,6},1),neg_acceleration(section{1,6}), 'LineWidth', 
 set(gca,'FontSize',22)
 title('Acceleration of car while braking');
 xlabel('Time in [s]');
-ylabel('Acceleration in [m/s�]');
+ylabel('Acceleration in [m/s^2]');
 suptitle('Section of human velocity profile');
 
 %Plot 4 - Extracted braking sequence
 figure
 %Plot another braking sequence for a more detailled view
 subplot(2,1,1);
-plot(velocity_data(section{1,7},1),decreasing_velocity(section{1,7}), 'LineWidth', 1.5)
+plot(velocity_data(section{1,7},1),decreasing_velocity(section{1,7})*3.6, 'LineWidth', 1.5)
 set(gca,'FontSize',22)
 title('Velocity of car while braking');
 xlabel('Time in [s]');
@@ -140,6 +140,6 @@ plot(velocity_data(section{1,7},1),neg_acceleration(section{1,7}), 'LineWidth', 
 set(gca,'FontSize',22)
 title('Acceleration of car while braking');
 xlabel('Time in [s]');
-ylabel('Acceleration in [m/s�]');
+ylabel('Acceleration in [m/s^2]');
 suptitle('Section of human velocity profile');
 
