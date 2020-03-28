@@ -1,0 +1,84 @@
+classType car.car
+blockdiagramSpecification Main {
+	methodBody calc {
+		outPin active {
+			connection_33, connection_34, connection_36, connection_38, connection_40
+		}
+	}
+	simpleIdentifier resources.DriverMessages.brake at (211, 175) {
+		label at (0, -1)
+		outPin {
+			connection_41
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.CarMessages.v at (991, 195) {
+		label at (0, -1)
+		inPin connection_39 {
+			bendpoints (160, 0), (160, -10)
+		}
+		sequenceCall {
+			inPin connection_38
+		}
+	}
+	simpleIdentifier resources.CarMessages.position at (1001, 295) {
+		label at (0, -1)
+		inPin connection_37 {
+			bendpoints (170, 0), (170, 10)
+		}
+		sequenceCall at (-10, -34) {
+			inPin connection_36
+		}
+	}
+	complexIdentifier driveModel_instance_8 at (441, 201) size (21, 29) {
+		label at (0, 1)
+		methodCall car.driveModel.calc {
+			methodVoidPin at (top, 7) sequenceCall at (-14, -68) {
+				inPin connection_33
+			}
+		}
+		elementCall (car.driveModel.v) {
+			returnPin at (right, 0) {
+				connection_39
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+		elementCall (car.driveModel.p) {
+			argumentPin at (left, 0) connection_41 {
+				bendpoints (90, 0), (90, 30)
+			}
+			sequenceCall {
+				inPin connection_40
+			}
+		}
+		elementCall (car.driveModel.s) {
+			returnPin at (right, 8) {
+				connection_37
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+		elementCall (car.driveModel.acc) {
+			returnPin at (right, 18) {
+				connection_35
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	simpleIdentifier resources.CarMessages.acceleration at (1001, 425) {
+		label at (0, -1)
+		inPin connection_35 {
+			bendpoints (170, 0), (170, 40)
+		}
+		sequenceCall {
+			inPin connection_34
+		}
+	}
+}
