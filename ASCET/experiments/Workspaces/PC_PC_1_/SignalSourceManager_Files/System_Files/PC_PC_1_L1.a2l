@@ -56,7 +56,7 @@
 		        QP_BLOB 1
 		    /end SOURCE
 		    /begin TP_BLOB
-		         /* programm id */ 3003146635
+		         /* programm id */ 3128974491
 		         /* target id   */ 7
 		         /*             */ 0 2 0
 		    /end TP_BLOB
@@ -85,7 +85,73 @@
 		    ALIGNMENT_FLOAT64_IEEE 8 
 		/end MOD_COMMON
 
-		/begin MEASUREMENT car.car.driveModel_instance.v
+		/begin CHARACTERISTIC car.FrequencyComputation.FrequencyComputationClass_instance_3.frequency_lookup
+			/* long identifier    */ ""
+			/* type               */ CURVE
+			/* ecu address        */ 0x4341C4
+			/* record layout      */ STANDARD_CURVE_R32R32
+			/* max diff value     */ 0.0
+			/* conversion         */ esdl_ident
+			/* lower limit        */ -3.4028234663852886E+38
+			/* upper limit        */ 3.4028234663852886E+38
+			/begin AXIS_DESCR
+				/* axis type          */ STD_AXIS
+				/* input quantity     */ NO_INPUT_QUANTITY
+				/* conversion         */ esdl_ident
+				/* max axis point     */ 2
+				/* lower limit        */ -3.4028234663852886E+38
+				/* upper limit        */ 3.4028234663852886E+38
+			/end AXIS_DESCR
+			/begin IF_DATA E_TARGET
+			    DP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 4 1000 1 1000 0
+			/end IF_DATA
+		/end CHARACTERISTIC
+
+		/begin CHARACTERISTIC car.ParkAssistController.ParkAssistControllerClass_instance_3.curve_cont_table
+			/* long identifier    */ ""
+			/* type               */ CURVE
+			/* ecu address        */ 0x4341E0
+			/* record layout      */ STANDARD_CURVE_R32R32
+			/* max diff value     */ 0.0
+			/* conversion         */ esdl_ident
+			/* lower limit        */ -3.4028234663852886E+38
+			/* upper limit        */ 3.4028234663852886E+38
+			/begin AXIS_DESCR
+				/* axis type          */ STD_AXIS
+				/* input quantity     */ NO_INPUT_QUANTITY
+				/* conversion         */ esdl_ident
+				/* max axis point     */ 6
+				/* lower limit        */ -3.4028234663852886E+38
+				/* upper limit        */ 3.4028234663852886E+38
+			/end AXIS_DESCR
+			/begin IF_DATA E_TARGET
+			    DP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 5 1000 1 1000 0
+			/end IF_DATA
+		/end CHARACTERISTIC
+
+		/begin CHARACTERISTIC car.ParkAssistController.ParkAssistControllerClass_instance_4.curve_cont_table
+			/* long identifier    */ ""
+			/* type               */ CURVE
+			/* ecu address        */ 0x434214
+			/* record layout      */ STANDARD_CURVE_R32R32
+			/* max diff value     */ 0.0
+			/* conversion         */ esdl_ident
+			/* lower limit        */ -3.4028234663852886E+38
+			/* upper limit        */ 3.4028234663852886E+38
+			/begin AXIS_DESCR
+				/* axis type          */ STD_AXIS
+				/* input quantity     */ NO_INPUT_QUANTITY
+				/* conversion         */ esdl_ident
+				/* max axis point     */ 6
+				/* lower limit        */ -3.4028234663852886E+38
+				/* upper limit        */ 3.4028234663852886E+38
+			/end AXIS_DESCR
+			/begin IF_DATA E_TARGET
+			    DP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 5 1000 2 1000 0
+			/end IF_DATA
+		/end CHARACTERISTIC
+
+		/begin MEASUREMENT car.car.driveModel_instance_3.v
 			/* long identifier    */ ""
 			/* datatype           */ FLOAT32_IEEE
 			/* conversion         */ esdl_ident
@@ -93,13 +159,13 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x4340E4
+			ECU_ADDRESS 0x4520E0
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 1 1000 0 1000 0
 			/end IF_DATA
 		/end MEASUREMENT
 
-		/begin MEASUREMENT car.car.driveModel_instance.p
+		/begin MEASUREMENT car.car.driveModel_instance_3.s
 			/* long identifier    */ ""
 			/* datatype           */ FLOAT32_IEEE
 			/* conversion         */ esdl_ident
@@ -107,13 +173,13 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x4340D8
+			ECU_ADDRESS 0x4520D8
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 1 1000 0 1000 1
 			/end IF_DATA
 		/end MEASUREMENT
 
-		/begin MEASUREMENT car.car.driveModel_instance.s
+		/begin MEASUREMENT car.car.driveModel_instance_3.acc
 			/* long identifier    */ ""
 			/* datatype           */ FLOAT32_IEEE
 			/* conversion         */ esdl_ident
@@ -121,13 +187,13 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x4340DC
+			ECU_ADDRESS 0x4520D4
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 1 1000 0 1000 2
 			/end IF_DATA
 		/end MEASUREMENT
 
-		/begin MEASUREMENT car.car.driveModel_instance.acc
+		/begin MEASUREMENT car.car.driveModel_instance_3.ultrasonic_distance
 			/* long identifier    */ ""
 			/* datatype           */ FLOAT32_IEEE
 			/* conversion         */ esdl_ident
@@ -135,23 +201,9 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x4340D4
+			ECU_ADDRESS 0x4520DC
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 1 1000 0 1000 3
-			/end IF_DATA
-		/end MEASUREMENT
-
-		/begin MEASUREMENT car.car.driveModel_instance.ultrasonic_distance
-			/* long identifier    */ ""
-			/* datatype           */ FLOAT32_IEEE
-			/* conversion         */ esdl_ident
-			/* resolution         */ 1
-			/* accuracy           */ 100.0
-			/* lower limit        */ -3.4028234663852886E+38
-			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x4340E0
-			/begin IF_DATA E_TARGET
-			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 1 1000 0 1000 4
 			/end IF_DATA
 		/end MEASUREMENT
 
@@ -163,7 +215,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x4340F0
+			ECU_ADDRESS 0x45210C
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 2 1001 0
 			/end IF_DATA
@@ -177,7 +229,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x4340E8
+			ECU_ADDRESS 0x4520F8
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 3 1001 0
 			/end IF_DATA
@@ -191,7 +243,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x451080
+			ECU_ADDRESS 0x452108
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 3 1001 1
 			/end IF_DATA
@@ -205,7 +257,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x45107C
+			ECU_ADDRESS 0x452104
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 3 1001 2
 			/end IF_DATA
@@ -219,9 +271,79 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x4340EC
+			ECU_ADDRESS 0x4520FC
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 3 1001 3
+			/end IF_DATA
+		/end MEASUREMENT
+
+		/begin MEASUREMENT resources.CarMessages.pulse_signal
+			/* long identifier    */ ""
+			/* datatype           */ FLOAT32_IEEE
+			/* conversion         */ esdl_ident
+			/* resolution         */ 1
+			/* accuracy           */ 100.0
+			/* lower limit        */ -3.4028234663852886E+38
+			/* upper limit        */ 3.4028234663852886E+38
+			ECU_ADDRESS 0x452100
+			/begin IF_DATA E_TARGET
+			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 3 1001 4
+			/end IF_DATA
+		/end MEASUREMENT
+
+		/begin MEASUREMENT car.FrequencyComputation.PulseSignalClass_instance_2.integrated_frequency
+			/* long identifier    */ ""
+			/* datatype           */ FLOAT32_IEEE
+			/* conversion         */ esdl_ident
+			/* resolution         */ 1
+			/* accuracy           */ 100.0
+			/* lower limit        */ -3.4028234663852886E+38
+			/* upper limit        */ 3.4028234663852886E+38
+			ECU_ADDRESS 0x4520E4
+			/begin IF_DATA E_TARGET
+			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 4 1000 0 1000 0
+			/end IF_DATA
+		/end MEASUREMENT
+
+		/begin MEASUREMENT car.FrequencyComputation.PulseSignalClass_instance_3.integrated_frequency
+			/* long identifier    */ ""
+			/* datatype           */ FLOAT32_IEEE
+			/* conversion         */ esdl_ident
+			/* resolution         */ 1
+			/* accuracy           */ 100.0
+			/* lower limit        */ -3.4028234663852886E+38
+			/* upper limit        */ 3.4028234663852886E+38
+			ECU_ADDRESS 0x4520E8
+			/begin IF_DATA E_TARGET
+			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 4 1000 2 1000 0
+			/end IF_DATA
+		/end MEASUREMENT
+
+		/begin MEASUREMENT car.ParkAssistController.settingsExperimentEnvironment_instance.time
+			/* long identifier    */ ""
+			/* datatype           */ FLOAT32_IEEE
+			/* conversion         */ esdl_ident
+			/* resolution         */ 1
+			/* accuracy           */ 100.0
+			/* lower limit        */ -3.4028234663852886E+38
+			/* upper limit        */ 3.4028234663852886E+38
+			ECU_ADDRESS 0x4520EC
+			/begin IF_DATA E_TARGET
+			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 5 1000 0 1000 1
+			/end IF_DATA
+		/end MEASUREMENT
+
+		/begin MEASUREMENT car.ParkAssistController.settingsExperimentEnvironment_instance.StopWatch_instance.time
+			/* long identifier    */ ""
+			/* datatype           */ FLOAT32_IEEE
+			/* conversion         */ esdl_ident
+			/* resolution         */ 1
+			/* accuracy           */ 100.0
+			/* lower limit        */ -3.4028234663852886E+38
+			/* upper limit        */ 3.4028234663852886E+38
+			ECU_ADDRESS 0x4520F0
+			/begin IF_DATA E_TARGET
+			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 6 1001 0 1001 0 1001 5 1000 0 1000 0 1000 0
 			/end IF_DATA
 		/end MEASUREMENT
 
@@ -238,7 +360,8 @@
 			/begin SUB_FUNCTION
 				resources.TimeTick
 				car.car
-				car.ParkAssist
+				car.FrequencyComputation
+				car.ParkAssistController
 			/end SUB_FUNCTION
 		/end FUNCTION
 		
@@ -258,31 +381,108 @@
 				resources.CarMessages.v
 			/end OUT_MEASUREMENT
 			/begin SUB_FUNCTION
-				car.car.driveModel_instance
+				car.car.driveModel_instance_3
 			/end SUB_FUNCTION
 		/end FUNCTION
 		
-		/begin FUNCTION car.car.driveModel_instance
+		/begin FUNCTION car.car.driveModel_instance_3
 			""
 			/begin LOC_MEASUREMENT
-				car.car.driveModel_instance.acc
-				car.car.driveModel_instance.p
-				car.car.driveModel_instance.s
-				car.car.driveModel_instance.ultrasonic_distance
-				car.car.driveModel_instance.v
+				car.car.driveModel_instance_3.acc
+				car.car.driveModel_instance_3.s
+				car.car.driveModel_instance_3.ultrasonic_distance
+				car.car.driveModel_instance_3.v
 			/end LOC_MEASUREMENT
 		/end FUNCTION
 		
-		/begin FUNCTION car.ParkAssist
+		/begin FUNCTION car.FrequencyComputation
 			""
 			/begin IN_MEASUREMENT
-				resources.CarMessages.acceleration
+				resources.CarMessages.position
+				resources.CarMessages.v
+			/end IN_MEASUREMENT
+			/begin OUT_MEASUREMENT
+				resources.CarMessages.pulse_signal
+			/end OUT_MEASUREMENT
+			/begin SUB_FUNCTION
+				car.FrequencyComputation.PulseSignalClass_instance_2
+				car.FrequencyComputation.FrequencyComputationClass_instance_3
+				car.FrequencyComputation.PulseSignalClass_instance_3
+			/end SUB_FUNCTION
+		/end FUNCTION
+		
+		/begin FUNCTION car.FrequencyComputation.PulseSignalClass_instance_2
+			""
+			/begin LOC_MEASUREMENT
+				car.FrequencyComputation.PulseSignalClass_instance_2.integrated_frequency
+			/end LOC_MEASUREMENT
+		/end FUNCTION
+		
+		/begin FUNCTION car.FrequencyComputation.FrequencyComputationClass_instance_3
+			""
+			/begin DEF_CHARACTERISTIC
+				car.FrequencyComputation.FrequencyComputationClass_instance_3.frequency_lookup
+			/end DEF_CHARACTERISTIC
+		/end FUNCTION
+		
+		/begin FUNCTION car.FrequencyComputation.PulseSignalClass_instance_3
+			""
+			/begin LOC_MEASUREMENT
+				car.FrequencyComputation.PulseSignalClass_instance_3.integrated_frequency
+			/end LOC_MEASUREMENT
+		/end FUNCTION
+		
+		/begin FUNCTION car.ParkAssistController
+			""
+			/begin IN_MEASUREMENT
 				resources.CarMessages.ultrasonic_distance
 			/end IN_MEASUREMENT
 			/begin OUT_MEASUREMENT
 				resources.DriverMessages.brake
 			/end OUT_MEASUREMENT
+			/begin SUB_FUNCTION
+				car.ParkAssistController.settingsExperimentEnvironment_instance
+				car.ParkAssistController.ParkAssistControllerClass_instance_3
+				car.ParkAssistController.ParkAssistControllerClass_instance_4
+			/end SUB_FUNCTION
 		/end FUNCTION
+		
+		/begin FUNCTION car.ParkAssistController.settingsExperimentEnvironment_instance
+			""
+			/begin LOC_MEASUREMENT
+				car.ParkAssistController.settingsExperimentEnvironment_instance.time
+			/end LOC_MEASUREMENT
+			/begin SUB_FUNCTION
+				car.ParkAssistController.settingsExperimentEnvironment_instance.StopWatch_instance
+			/end SUB_FUNCTION
+		/end FUNCTION
+		
+		/begin FUNCTION car.ParkAssistController.settingsExperimentEnvironment_instance.StopWatch_instance
+			""
+			/begin LOC_MEASUREMENT
+				car.ParkAssistController.settingsExperimentEnvironment_instance.StopWatch_instance.time
+			/end LOC_MEASUREMENT
+		/end FUNCTION
+		
+		/begin FUNCTION car.ParkAssistController.ParkAssistControllerClass_instance_3
+			""
+			/begin DEF_CHARACTERISTIC
+				car.ParkAssistController.ParkAssistControllerClass_instance_3.curve_cont_table
+			/end DEF_CHARACTERISTIC
+		/end FUNCTION
+		
+		/begin FUNCTION car.ParkAssistController.ParkAssistControllerClass_instance_4
+			""
+			/begin DEF_CHARACTERISTIC
+				car.ParkAssistController.ParkAssistControllerClass_instance_4.curve_cont_table
+			/end DEF_CHARACTERISTIC
+		/end FUNCTION
+		
+		/begin RECORD_LAYOUT STANDARD_CURVE_R32R32
+		/* axis size          */ NO_AXIS_PTS_X 1 UWORD
+		/* axis               */ AXIS_PTS_X 2 FLOAT32_IEEE INDEX_INCR DIRECT
+		/* value              */ FNC_VALUES 3 FLOAT32_IEEE COLUMN_DIR DIRECT
+		/end RECORD_LAYOUT
 		
 		/begin GROUP PC_PC_1_
 			""
@@ -292,7 +492,8 @@
 				car.car
 				resources.DriverMessages
 				resources.CarMessages
-				car.ParkAssist
+				car.FrequencyComputation
+				car.ParkAssistController
 			/end SUB_GROUP
 		/end GROUP
 		
@@ -303,18 +504,17 @@
 		/begin GROUP car.car
 			""
 			/begin SUB_GROUP
-				car.car.driveModel_instance
+				car.car.driveModel_instance_3
 			/end SUB_GROUP
 		/end GROUP
 		
-		/begin GROUP car.car.driveModel_instance
+		/begin GROUP car.car.driveModel_instance_3
 			""
 			/begin REF_MEASUREMENT
-				car.car.driveModel_instance.acc
-				car.car.driveModel_instance.p
-				car.car.driveModel_instance.s
-				car.car.driveModel_instance.ultrasonic_distance
-				car.car.driveModel_instance.v
+				car.car.driveModel_instance_3.acc
+				car.car.driveModel_instance_3.s
+				car.car.driveModel_instance_3.ultrasonic_distance
+				car.car.driveModel_instance_3.v
 			/end REF_MEASUREMENT
 		/end GROUP
 		
@@ -330,13 +530,80 @@
 			/begin REF_MEASUREMENT
 				resources.CarMessages.acceleration
 				resources.CarMessages.position
+				resources.CarMessages.pulse_signal
 				resources.CarMessages.ultrasonic_distance
 				resources.CarMessages.v
 			/end REF_MEASUREMENT
 		/end GROUP
 		
-		/begin GROUP car.ParkAssist
+		/begin GROUP car.FrequencyComputation
 			""
+			/begin SUB_GROUP
+				car.FrequencyComputation.PulseSignalClass_instance_2
+				car.FrequencyComputation.FrequencyComputationClass_instance_3
+				car.FrequencyComputation.PulseSignalClass_instance_3
+			/end SUB_GROUP
+		/end GROUP
+		
+		/begin GROUP car.FrequencyComputation.PulseSignalClass_instance_2
+			""
+			/begin REF_MEASUREMENT
+				car.FrequencyComputation.PulseSignalClass_instance_2.integrated_frequency
+			/end REF_MEASUREMENT
+		/end GROUP
+		
+		/begin GROUP car.FrequencyComputation.FrequencyComputationClass_instance_3
+			""
+			/begin REF_CHARACTERISTIC
+				car.FrequencyComputation.FrequencyComputationClass_instance_3.frequency_lookup
+			/end REF_CHARACTERISTIC
+		/end GROUP
+		
+		/begin GROUP car.FrequencyComputation.PulseSignalClass_instance_3
+			""
+			/begin REF_MEASUREMENT
+				car.FrequencyComputation.PulseSignalClass_instance_3.integrated_frequency
+			/end REF_MEASUREMENT
+		/end GROUP
+		
+		/begin GROUP car.ParkAssistController
+			""
+			/begin SUB_GROUP
+				car.ParkAssistController.settingsExperimentEnvironment_instance
+				car.ParkAssistController.ParkAssistControllerClass_instance_3
+				car.ParkAssistController.ParkAssistControllerClass_instance_4
+			/end SUB_GROUP
+		/end GROUP
+		
+		/begin GROUP car.ParkAssistController.settingsExperimentEnvironment_instance
+			""
+			/begin REF_MEASUREMENT
+				car.ParkAssistController.settingsExperimentEnvironment_instance.time
+			/end REF_MEASUREMENT
+			/begin SUB_GROUP
+				car.ParkAssistController.settingsExperimentEnvironment_instance.StopWatch_instance
+			/end SUB_GROUP
+		/end GROUP
+		
+		/begin GROUP car.ParkAssistController.settingsExperimentEnvironment_instance.StopWatch_instance
+			""
+			/begin REF_MEASUREMENT
+				car.ParkAssistController.settingsExperimentEnvironment_instance.StopWatch_instance.time
+			/end REF_MEASUREMENT
+		/end GROUP
+		
+		/begin GROUP car.ParkAssistController.ParkAssistControllerClass_instance_3
+			""
+			/begin REF_CHARACTERISTIC
+				car.ParkAssistController.ParkAssistControllerClass_instance_3.curve_cont_table
+			/end REF_CHARACTERISTIC
+		/end GROUP
+		
+		/begin GROUP car.ParkAssistController.ParkAssistControllerClass_instance_4
+			""
+			/begin REF_CHARACTERISTIC
+				car.ParkAssistController.ParkAssistControllerClass_instance_4.curve_cont_table
+			/end REF_CHARACTERISTIC
 		/end GROUP
 		
 	/end MODULE

@@ -1,0 +1,34 @@
+classType car.ParkAssistControllerClass
+blockdiagramSpecification Main {
+	methodBody calc {
+		outPin active {
+			connection_8
+		}
+	}
+	simpleIdentifier curve_cont_table at (471, 161) {
+		label at (0, 1)
+		inPin connection_11
+		outPin {
+			connection_9
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	return at (801, 175) {
+		label at (0, 0)
+		inPin connection_9
+		sequenceCall at (0, -34) {
+			inPin connection_8
+		}
+	}
+	methodArgumentIdentifier calc.ultrasonic_distance at (191, 175) {
+		label at (0, -1)
+		outPin {
+			connection_11
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+}

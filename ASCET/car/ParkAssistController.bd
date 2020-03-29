@@ -1,0 +1,79 @@
+classType car.ParkAssistController
+blockdiagramSpecification Main {
+	methodBody calc {
+		outPin active {
+			connection_20
+		}
+	}
+	literal Numeric "-0.15" at (801, 43) size (69, 0) {
+		outPin {
+			connection_30
+		}
+	}
+	ifElse at (751, 11) {
+		inPin connection_28
+		ifControlFlowOutPin {
+			connection_29
+		}
+		elseControlFlowOutPin {
+			connection_38
+		}
+		sequenceCall {
+			inPin connection_20
+		}
+	}
+	complexIdentifier settingsExperimentEnvironment_instance at (471, 11) size (14, 8) {
+		label at (0, 1)
+		methodCall car.settingsExperimentEnvironment.calc {
+			returnPin at (right, 0) {
+				connection_28
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	simpleIdentifier resources.CarMessages.ultrasonic_distance at (61, 255) {
+		label at (0, -1)
+		outPin {
+			connection_40
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.DriverMessages.brake at (911, 45) {
+		label at (0, -1)
+		inPin connection_30
+		sequenceCall {
+			inPin connection_29 {
+				bendpoints (50, 0), (50, 10)
+			}
+		}
+	}
+	simpleIdentifier resources.DriverMessages.brake at (841, 255) {
+		label at (0, -1)
+		inPin connection_39 {
+			bendpoints (30, 0), (30, 10)
+		}
+		sequenceCall {
+			inPin connection_38 {
+				bendpoints (30, 0), (30, 190)
+			}
+		}
+	}
+	complexIdentifier ParkAssistControllerClass_instance_4 at (381, 241) size (39, 16) {
+		label at (0, 1)
+		methodCall car.ParkAssistControllerClass.calc {
+			argumentPin ultrasonic_distance at (left, 0) connection_40 {
+				bendpoints (130, 0), (130, -10)
+			}
+			returnPin at (right, 0) {
+				connection_39
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+}

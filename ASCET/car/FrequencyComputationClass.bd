@@ -1,0 +1,165 @@
+classType car.FrequencyComputationClass
+blockdiagramSpecification Main {
+	methodBody calc {
+		outPin active {
+			connection_11
+		}
+	}
+	literal Numeric "1.0" at (121, 173) size (49, 0) {
+		outPin {
+			connection_2
+		}
+	}
+	literal Numeric "1.9" at (121, 263) size (49, 0) {
+		outPin {
+			connection_4
+		}
+	}
+	lessOrEqual at (261, 116) {
+		inPin connection_24
+		inPin connection_2 {
+			bendpoints (40, 0), (40, -40)
+		}
+		outPin {
+			connection_10, connection_5
+		}
+	}
+	and at (381, 166) {
+		inPin connection_5 {
+			bendpoints (50, 0), (50, 40)
+		}
+		inPin connection_6 {
+			bendpoints (50, 0), (50, -40)
+		}
+		outPin {
+			connection_12
+		}
+	}
+	greaterOrEqual at (261, 216) {
+		inPin connection_25
+		inPin connection_4 {
+			bendpoints (40, 0), (40, -30)
+		}
+		outPin {
+			connection_6
+		}
+	}
+	literal Numeric "1.0" at (121, 313) size (49, 0) {
+		outPin {
+			connection_7
+		}
+	}
+	greaterOrEqual at (261, 296) {
+		inPin connection_26 {
+			bendpoints (90, 0), (90, 80)
+		}
+		inPin connection_7
+		outPin {
+			connection_9
+		}
+	}
+	and at (381, 286) {
+		inPin connection_10 {
+			bendpoints (50, 0), (50, 40), (70, 40), (70, 160)
+		}
+		inPin connection_9
+		outPin {
+			connection_14
+		}
+	}
+	ifElse at (441, 171) {
+		inPin connection_12
+		ifControlFlowOutPin {
+			connection_29
+		}
+		elseControlFlowOutPin {
+			connection_13
+		}
+		sequenceCall {
+			inPin connection_11
+		}
+	}
+	ifElse at (451, 291) {
+		inPin connection_14
+		ifControlFlowOutPin {
+			connection_31
+		}
+		elseControlFlowOutPin {
+			connection_34
+		}
+		sequenceCall at (0, -20) {
+			inPin connection_13 {
+				bendpoints (0, 70)
+			}
+		}
+	}
+	literal Numeric "10.0" at (651, 173) size (69, 0) {
+		outPin {
+			connection_30
+		}
+	}
+	literal Numeric "0.0" at (611, 463) size (49, 0) {
+		outPin {
+			connection_35
+		}
+	}
+	simpleIdentifier frequency_lookup at (591, 341) {
+		label at (0, 1)
+		inPin connection_33 {
+			bendpoints (90, 0), (90, 130), (440, 130)
+		}
+		outPin {
+			connection_32
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier calc.v at (111, 115) {
+		label at (0, -1)
+		outPin {
+			connection_24
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier calc.x at (111, 215) {
+		label at (0, -1)
+		outPin {
+			connection_26, connection_33, connection_25
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	return at (751, 175) {
+		label at (0, 0)
+		inPin connection_30
+		sequenceCall {
+			inPin connection_29 {
+				bendpoints (120, 0), (120, -20)
+			}
+		}
+	}
+	return at (761, 345) {
+		label at (0, 0)
+		inPin connection_32 {
+			bendpoints (60, 0), (60, -10)
+		}
+		sequenceCall {
+			inPin connection_31 {
+				bendpoints (120, 0), (120, 30)
+			}
+		}
+	}
+	return at (711, 465) {
+		label at (0, 0)
+		inPin connection_35
+		sequenceCall {
+			inPin connection_34 {
+				bendpoints (0, 120)
+			}
+		}
+	}
+}

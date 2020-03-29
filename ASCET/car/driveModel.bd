@@ -2,7 +2,7 @@ classType car.driveModel
 blockdiagramSpecification Main {
 	methodBody calc {
 		outPin active {
-			connection_49, connection_13, connection_66, connection_25, connection_80
+			connection_87, connection_49, connection_13, connection_66, connection_25, connection_80
 		}
 	}
 	multiplication at (561, 106) {
@@ -37,7 +37,7 @@ blockdiagramSpecification Main {
 		inPin connection_9 {
 			bendpoints (120, 0)
 		}
-		inPin connection_16
+		inPin connection_82
 		outPin {
 			connection_2
 		}
@@ -85,15 +85,6 @@ blockdiagramSpecification Main {
 		}
 		outPin {
 			connection_14
-		}
-	}
-	simpleIdentifier p at (131, 235) {
-		label at (0, -1)
-		inPin outPin {
-			connection_16
-		}
-		sequenceCall {
-			inPin
 		}
 	}
 	multiplication at (941, 436) {
@@ -220,6 +211,56 @@ blockdiagramSpecification Main {
 	literal Numeric "3.6" at (501, 113) size (49, 0) {
 		outPin {
 			connection_81
+		}
+	}
+	methodArgumentIdentifier calc.p at (41, 235) {
+		label at (0, -1)
+		outPin {
+			connection_84, connection_82
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	literal Numeric "-0.14" at (41, 303) size (69, 0) {
+		outPin {
+			connection_83
+		}
+	}
+	equal at (191, 266) {
+		inPin connection_84 {
+			bendpoints (100, 0), (100, 30)
+		}
+		inPin connection_83 {
+			bendpoints (40, 0), (40, -20)
+		}
+		outPin {
+			connection_88
+		}
+	}
+	simpleIdentifier v at (231, 425) {
+		label at (-40, 9)
+		inPin connection_86 {
+			bendpoints (20, 0), (20, 10)
+		}
+		outPin sequenceCall at (-10, -44) {
+			inPin connection_85
+		}
+	}
+	literal Numeric "10.0" at (141, 413) size (69, 0) {
+		outPin {
+			connection_86
+		}
+	}
+	if at (171, 361) {
+		inPin connection_88 {
+			bendpoints (0, 30), (-60, 30)
+		}
+		ifControlFlowOutPin {
+			connection_85
+		}
+		sequenceCall at (0, -40) {
+			inPin connection_87
 		}
 	}
 }

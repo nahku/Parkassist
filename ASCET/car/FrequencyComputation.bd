@@ -1,0 +1,60 @@
+classType car.FrequencyComputation
+blockdiagramSpecification Main {
+	methodBody calc {
+		outPin active {
+			connection_18
+		}
+	}
+	simpleIdentifier resources.CarMessages.v at (201, 175) {
+		label at (0, -1)
+		outPin {
+			connection_14
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.CarMessages.position at (201, 245) {
+		label at (0, -1)
+		outPin {
+			connection_13
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.CarMessages.pulse_signal at (1231, 185) {
+		label at (0, -1)
+		inPin connection_19 {
+			bendpoints (100, 0), (100, 10)
+		}
+		sequenceCall {
+			inPin connection_18
+		}
+	}
+	complexIdentifier FrequencyComputationClass_instance_3 at (351, 171) size (33, 25) {
+		label at (0, 1)
+		methodCall car.FrequencyComputationClass.calc {
+			argumentPin v at (left, 0) connection_14
+			argumentPin x at (left, 7) connection_13
+			returnPin at (right, 0) {
+				connection_20
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	complexIdentifier PulseSignalClass_instance_3 at (771, 171) size (25, 20) {
+		label at (0, 1)
+		methodCall car.PulseSignalClass.calc {
+			argumentPin frequency at (left, 0) connection_20
+			returnPin at (right, 0) {
+				connection_19
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+}
