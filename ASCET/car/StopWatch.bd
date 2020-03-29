@@ -1,0 +1,6 @@
+classType car.StopWatch
+blockdiagramSpecification Main {
+	methodBody calc {
+		outPin active
+	}
+}

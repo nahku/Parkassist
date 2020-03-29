@@ -1,0 +1,191 @@
+classType car.PulseSignalClass
+blockdiagramSpecification Main {
+	methodBody calc {
+		outPin active {
+			connection_3
+		}
+	}
+	literal Numeric "10.0" at (81, 123) size (69, 0) {
+		outPin {
+			connection_8
+		}
+	}
+	equal at (311, 126) {
+		inPin connection_8
+		inPin connection_30 {
+			bendpoints (130, 0), (130, -30)
+		}
+		outPin {
+			connection_4
+		}
+	}
+	ifElse at (381, 131) {
+		inPin connection_4
+		ifControlFlowOutPin {
+			connection_32
+		}
+		elseControlFlowOutPin {
+			connection_14, connection_18, connection_28
+		}
+		sequenceCall at (-10, -20) {
+			inPin connection_3
+		}
+	}
+	literal Numeric "1.0" at (611, 133) size (49, 0) {
+		outPin {
+			connection_33
+		}
+	}
+	greater at (421, 446) {
+		inPin connection_17 {
+			bendpoints (40, 0), (40, 70), (-90, 70), (-90, 120)
+		}
+		inPin connection_12
+		outPin {
+			connection_19
+		}
+	}
+	simpleIdentifier resources.TimeTick.dTs at (91, 325) {
+		label at (0, -1)
+		inPin outPin {
+			connection_7
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	multiplication at (291, 306) {
+		inPin connection_31 {
+			bendpoints (130, 0), (130, -30), (200, -30)
+		}
+		inPin connection_7
+		outPin {
+			connection_13
+		}
+	}
+	literal Numeric "1.0" at (341, 463) size (49, 0) {
+		outPin {
+			connection_12
+		}
+	}
+	simpleIdentifier integrated_frequency at (451, 325) {
+		label at (20, -71)
+		inPin connection_15
+		outPin {
+			connection_17, connection_23, connection_16
+		}
+		sequenceCall {
+			inPin connection_14 {
+				bendpoints (20, 0), (20, 140)
+			}
+		}
+	}
+	addition at (371, 316) {
+		inPin connection_13
+		inPin connection_16 {
+			bendpoints (40, 0), (40, 70), (-160, 70), (-160, 10)
+		}
+		outPin {
+			connection_15
+		}
+	}
+	if at (501, 451) {
+		inPin connection_19
+		ifControlFlowOutPin {
+			connection_20
+		}
+		sequenceCall {
+			inPin connection_18 {
+				bendpoints (20, 0), (20, 180), (40, 180), (40, 270)
+			}
+		}
+	}
+	simpleIdentifier integrated_frequency at (661, 485) {
+		label at (0, -1)
+		inPin connection_21
+		outPin sequenceCall at (-10, -34) {
+			inPin connection_20
+		}
+	}
+	literal Numeric "0.0" at (561, 483) size (49, 0) {
+		outPin {
+			connection_21
+		}
+	}
+	greaterOrEqual at (661, 336) {
+		inPin connection_23 {
+			bendpoints (40, 0), (40, 10)
+		}
+		inPin connection_22 {
+			bendpoints (20, 0), (20, -20)
+		}
+		outPin {
+			connection_29
+		}
+	}
+	literal Numeric "0.5" at (581, 373) size (49, 0) {
+		outPin {
+			connection_22
+		}
+	}
+	literal Numeric "1.0" at (921, 343) size (49, 0) {
+		outPin {
+			connection_37
+		}
+	}
+	literal Numeric "0.0" at (931, 433) size (49, 0) {
+		outPin {
+			connection_35
+		}
+	}
+	ifElse at (741, 341) {
+		inPin connection_29
+		ifControlFlowOutPin {
+			connection_36
+		}
+		elseControlFlowOutPin {
+			connection_34
+		}
+		sequenceCall at (-10, -20) {
+			inPin connection_28 {
+				bendpoints (20, 0), (20, 130), (330, 130)
+			}
+		}
+	}
+	methodArgumentIdentifier calc.frequency at (51, 175) {
+		label at (0, -1)
+		outPin {
+			connection_31, connection_30
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	return at (701, 135) {
+		label at (0, 0)
+		inPin connection_33
+		sequenceCall at (-10, -24) {
+			inPin connection_32 {
+				bendpoints (130, 0), (130, -20)
+			}
+		}
+	}
+	return at (1011, 435) {
+		label at (0, 0)
+		inPin connection_35
+		sequenceCall at (-20, -34) {
+			inPin connection_34 {
+				bendpoints (110, 0), (110, 30)
+			}
+		}
+	}
+	return at (991, 345) {
+		label at (0, 0)
+		inPin connection_37
+		sequenceCall {
+			inPin connection_36 {
+				bendpoints (90, 0), (90, -20)
+			}
+		}
+	}
+}

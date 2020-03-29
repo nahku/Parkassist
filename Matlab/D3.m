@@ -16,6 +16,7 @@ mean_velocity = movmean(mean_velocity, 200);
 %differentiate velocity to get acceleration
 acceleration = diff(mean_velocity);
 raw_acceleration = diff(raw_mean_velocity);     %for demonstration purposes
+min(raw_acceleration)
 
 %search for negative acceleration and set positive acceleration to NaN
 %set all velocities that have a positive acceleration to NaN

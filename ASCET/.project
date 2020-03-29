@@ -3,6 +3,7 @@
 	<name>ParkAssist</name>
 	<comment></comment>
 	<projects>
+		<project>AssertionLibrary</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
