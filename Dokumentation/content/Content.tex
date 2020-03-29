@@ -4,6 +4,8 @@
 ??
 matlab version
 ascet version
+
+todo describe block diagram vs script for every necessary requirement
 \chapter{D1: Time estimate based on three point estimation}\label{cha:D1}
 \begin{table}[H]
 \centering
@@ -36,14 +38,14 @@ The aim of the feasibility study is to analyse whether the introduced model in s
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D2_plot.jpg}
-\caption{UML diagram of the architecture of the software tool}
+\caption{Todo}
 \label{fig:ConceptArchitectureOverview}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D2_sim.png}
-\caption{Simulink Modell der Differenzialgleichungen}
+\caption{Simulink model of the differential equations}
 \label{fig:ConceptArchitectureOverview}
 \end{figure}
 
@@ -51,14 +53,16 @@ The aim of the feasibility study is to analyse whether the introduced model in s
 
 In this section the provided human velocity profile is analysed in order to find a pattern that shows how a human is breaking a car. This pattern will be used in the following sections and will be adapted to the braking function of the ParkAssist. The analysis is divided into four steps.
 
-\textbf{1. Import the measurement data} \\ The measurement data is imported in Matlab.
+\section{Import the measurement data}
+The measurement data is imported in Matlab.
 
 \begin{lstlisting}[basicstyle=\scriptsize	,caption= Import measurement data in Matlab,label= lst:D3Import]
 %import velocity data
 velocity_data = importdata('MeasuredVelocities.txt');
 \end{lstlisting}
 
-\textbf{2. Data preparation} \\ Before analysing the data it is necessary to preprocess it. First the four velocities of each wheel are extracted from the measurement data and a mean velocity is calculated (see line 1,2). 
+\section{2. Data preparation}
+Before analysing the data it is necessary to preprocess it. First the four velocities of each wheel are extracted from the measurement data and a mean velocity is calculated (see line 1,2). 
 
 \begin{equation}
 	v_{car} = (v_{w1} +v_{w2} + v_{w3} +v_{w4})*4
@@ -82,7 +86,8 @@ acceleration = diff(mean_velocity);
 raw_acceleration = diff(raw_mean_velocity);     %for demonstration purposes
 \end{lstlisting}
 
-\textbf{3. Extracting negative acceleration} \\ As the goal is to analyse the braking behaviour only the negative acceleration is relevant and is thus being extracted from the overall acceleration (line 5). Also, all velocities that are based on a positive acceleration are not considered anymore (line 6). We decided to set those values to \ac{NaN} because this way we are still able to plot the velocity and the acceleration over time without cut-outs. The result can be seen in plot REF.
+\section{Extracting negative acceleration}
+As the goal is to analyse the braking behaviour only the negative acceleration is relevant and is thus being extracted from the overall acceleration (line 5). Also, all velocities that are based on a positive acceleration are not considered anymore (line 6). We decided to set those values to \ac{NaN} because this way we are still able to plot the velocity and the acceleration over time without cut-outs. The result can be seen in plot REF.
 
 \begin{lstlisting}[basicstyle=\scriptsize	,caption= Extracting negative acceleration,label= lst:D3Extract]
 %search for negative acceleration and set positive acceleration to NaN
@@ -93,7 +98,8 @@ neg_acceleration(neg_acceleration>0) = nan;
 decreasing_velocity(isnan(neg_acceleration)) = nan;
 \end{lstlisting}
 
-\textbf{4. Separating breaking sequences} \\ For improved visualisation the individual breaking sequences that can be seen in plot REF are stored separately. One breaking sequence consists of multiple consequent velocities. This means that the breaking sequences can be separated by searching for a gap in the velocities. Therefore, the indices of all velocities that are set not \ac{NaN} are extracted (line 2) and differentiated (line 3). Considered the differentiation, every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are consequent (differentiation equals 1). Furthermore, small breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line 13). Two individual breaking sequences can be seen in plot REF and plot REF.
+\section{Separating breaking sequences}
+For improved visualisation the individual breaking sequences that can be seen in plot REF are stored separately. One breaking sequence consists of multiple consequent velocities. This means that the breaking sequences can be separated by searching for a gap in the velocities. Therefore, the indices of all velocities that are set not \ac{NaN} are extracted (line 2) and differentiated (line 3). Considered the differentiation, every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are consequent (differentiation equals 1). Furthermore, small breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line 13). Two individual breaking sequences can be seen in plot REF and plot REF.
 
 \begin{lstlisting}[basicstyle=\scriptsize	,caption= Separating breaking sequences,label= lst:D3Seperat]
 %find individual breaking sequences
@@ -125,7 +131,7 @@ for i=1:length(diff_notNaN_velocity)
 end
 \end{lstlisting}
 
-\subsubsection{Result}
+\section{Result}
 Considering Figures REF, REF and REF, it can be seen that the acceleration is approximately in the shape of a parable with the minimal turning point at XX. For further implementation of the ParkAssist, we will start the breaking process with an acceleration and increase it until we reach approximately REF and will then decrease it.
 
 %entschieden Durchschnitt der vier Radgeschwindigkeiten zu nehmen (vllt. vor nachteile)
@@ -170,6 +176,57 @@ In the model without a minimum velocity, the velocity would become negative on b
 validate findings by numbers from simulation
 
 \chapter{D6: Implementation of pulse signal in Simulink}\label{cha:D6}
+
+In D6 a pulsing information signal is described. This chapter documents the implementation of that signal.
+Both signals are needed for the frequency computation.
+The pulsing signal should only be present if the velocity of the car is $\leq$ 1 m/s and the position of the car is between 1 and 2 meters. From a frequency of 1 Hz at 1 meter it should rise up to 9 Hz at 1.9 meters. If the traveled distance is greater than 1.9 meters, the signal should become continuous.\\
+This requirement can be divided into two separate compontents with separate responsibilities.\\
+In the first component it is determined in which state the signal is (off, pulsing, continuous) and in the case of a pulsing signal the frequency of that pulse is computed.\\
+The second component is responsible for outputting the pulse signal corresponing to the output of the first component.\\
+The components are implemented using simulink subsystems which enables re-usability, encapsulation and also creates a better overview when looking at the main simulink model.\\
+\section{Computation of pulse signal frequency}\label{sec:D6Frequency}
+Figure \ref{fig:D6_Frequency_Computation} shows the simulink subsystem for the computation of the frequency of the pulse signal.
+The inputs are the velocity and position of the car.
+The if-condition determines in which state the signal is.\\
+In the first case the car velocity is $\leq$ 1 m/s and the position of the car is $>$ 1.9 meters.
+In this case, the pulsing signal should provide a continuous output as demanded by requirement D6.
+The subsystem outputs a value of 10 in that case.
+This value is the indication for a continuous signal.\\
+In the second case of the if condition the car velocity is also $\leq$ 1 m/s but the position of the car is between 1 and 1.9 meters.
+In this case the frequency of the pulsing signal should be between 1 and 9 Hz depending on the location.
+For that a lookup table is used, that provides an output frequency that linearly increases from 1 to 9 Hz depending on the position from 1 to 1.9 meters. A linear increase is used, because then the driver could estimate the position linearly by the signal.\\
+When none of the above mentioned conditions are the case, the subsystem outputs 0, which indicates that the pulsing signal is not present.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D6_Frequency_Computation.png}
+\caption{Simulink model of the frequency computation subsystem}
+\label{fig:D6_Frequency_Computation}
+\end{figure}
+
+todo output plot
+\section{Pulse signal generation}\label{sec:D6Signal}
+Figure \ref{fig:D6_Pulse_Signal} shows the simulink model of the pulse signal generator.
+This component provides a pulse signal with a variable frequency input.
+The input is the output of the before described component.
+Therefore if the input is 10, a continuous signal should be output.
+This is realised by the if-condition, which, if the input signal is 10 provides a continuous high output.\\
+If that is not the case ... todo
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D6_provide_signal.png}
+\caption{Simulink model of the pulse generation subsystem}
+\label{fig:D6_Pulse_Signal}
+\end{figure}
+
+\section{Integration into car model}\label{sec:D6Frequency}
+Using subsystems for the developed components makes it easy to include into and extend the existing model, which can be seen in figure \ref{fig:D6_Integation}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D6_integration.png}
+\caption{Simulink model of the car including the pulse signal}
+\label{fig:D6_Integation}
+\end{figure}
 
 \chapter{D7: Transfer of Simulink model to ASCET}\label{cha:D7}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.8)  28 MAR 2020 14:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.8)  29 MAR 2020 15:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1884,6 +1884,9 @@ File: german.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
 
 LaTeX Warning: Label `fig:ConceptArchitectureOverview' multiply defined.
 
+
+LaTeX Warning: Label `sec:D6Frequency' multiply defined.
+
 )
 \openout1 = `dokumentation.aux'.
 
@@ -2081,13 +2084,56 @@ Package microtype Info: Loading generic protrusion settings for font family
 Package tocbasic Info: character protrusion at toc deactivated on input line 43
 .
 
-(./dokumentation.toc)
+(./dokumentation.toc
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 20.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 20.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 20.
+
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 20.
+
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 20.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 20.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 20.
+LaTeX Font Info:    Try loading font information for U+msa on input line 20.
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 20.
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+))
 \tf@toc=\write8
 \openout8 = `dokumentation.toc'.
 
  [2
 
-] (./ads/acronyms.tex
+]
+[3] (./ads/acronyms.tex
 chapter without number
 
 Class scrreprt Warning: \float@addtolists detected!
@@ -2112,51 +2158,7 @@ Class scrreprt Warning: \float@addtolists detected!
 ]
 Package tocbasic Info: character protrusion at lof deactivated on input line 65
 .
- (./dokumentation.lof
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 14.
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 14.
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 14.
-
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 14.
-
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 14.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 14.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 14.
-LaTeX Font Info:    Try loading font information for U+msa on input line 14.
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msa.cfg
-File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 14.
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
-File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-))
+ (./dokumentation.lof)
 \tf@lof=\write9
 \openout9 = `dokumentation.lof'.
 
@@ -2167,8 +2169,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ]
 Package tocbasic Info: character protrusion at lot deactivated on input line 71
 .
-
-(./dokumentation.lot)
+ (./dokumentation.lot)
 \tf@lot=\write10
 \openout10 = `dokumentation.lot'.
 
@@ -2206,7 +2207,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5 \chapter
+l.9 \chapter
             {D1: Time estimate based on three point estimation}\label{cha:D1}
 [1
 
@@ -2218,27 +2219,32 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.19 \chapter
+l.23 \chapter
              {D2: Feasibility study}\label{cha:D2} [2
 
 ]
 chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--33
+Underfull \hbox (badness 10000) in paragraph at lines 33--37
 
  []
 
-<images/D2_plot.jpg, id=101, 2890.8pt x 1704.3675pt>
+<images/D2_plot.jpg, id=127, 2890.8pt x 1704.3675pt>
 File: images/D2_plot.jpg Graphic file (type jpg)
 <use images/D2_plot.jpg>
-Package pdftex.def Info: images/D2_plot.jpg  used on input line 36.
+Package pdftex.def Info: images/D2_plot.jpg  used on input line 40.
 (pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
-<images/D2_sim.png, id=102, 1327.96124pt x 356.33125pt>
+<images/D2_sim.png, id=128, 1327.96124pt x 356.33125pt>
 File: images/D2_sim.png Graphic file (type png)
 <use images/D2_sim.png>
-Package pdftex.def Info: images/D2_sim.png  used on input line 43.
+Package pdftex.def Info: images/D2_sim.png  used on input line 47.
 (pdftex.def)             Requested size: 455.24417pt x 122.15689pt.
-[3
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.51 
+      [3
 
  <./images/D2_plot.jpg>]
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
@@ -2250,9 +2256,9 @@ chapter 4.
 
 ]
 Package acronym Info: Label `acro:NaN' newly defined as it shall be overridden
-although it is yet undefined on input line 83.
+although it is yet undefined on input line 90.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 98.
+(Font)              <5> on input line 106.
 
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
@@ -2271,35 +2277,65 @@ chapter 6.
 
 ]
 chapter 7.
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--187
+
+ []
+
 [10
 
 ]
+<images/D6_Frequency_Computation.png, id=227, 1620.0525pt x 724.7075pt>
+File: images/D6_Frequency_Computation.png Graphic file (type png)
+<use images/D6_Frequency_Computation.png>
+Package pdftex.def Info: images/D6_Frequency_Computation.png  used on input lin
+e 202.
+(pdftex.def)             Requested size: 455.24417pt x 203.64655pt.
+<images/D6_provide_signal.png, id=229, 1745.52126pt x 591.20876pt>
+File: images/D6_provide_signal.png Graphic file (type png)
+<use images/D6_provide_signal.png>
+Package pdftex.def Info: images/D6_provide_signal.png  used on input line 217.
+(pdftex.def)             Requested size: 455.24417pt x 154.18877pt.
+<images/D6_integration.png, id=231, 1744.5175pt x 429.605pt>
+File: images/D6_integration.png Graphic file (type png)
+<use images/D6_integration.png>
+Package pdftex.def Info: images/D6_integration.png  used on input line 226.
+(pdftex.def)             Requested size: 455.24417pt x 112.10764pt.
+
+Overfull \vbox (7.89444pt too high) has occurred while \output is active []
+
+
+[11 <./images/D6_Frequency_Computation.png> <./images/D6_provide_signal.png>]
+Overfull \vbox (7.89444pt too high) has occurred while \output is active []
+
+
+[12 <./images/D6_integration.png>]
 chapter 8.
-[11
-
-]
-chapter 9.
-[12
-
-]
-chapter 10.
 [13
 
 ]
-chapter 11.
+chapter 9.
 [14
 
 ]
-chapter 12.
+chapter 10.
 [15
 
 ]
-chapter 13.
+chapter 11.
 [16
 
 ]
+chapter 12.
+[17
+
+]
+chapter 13.
+[18
+
+]
 chapter 14.
-) [17
+) [19
 
 ]
 
@@ -2322,11 +2358,11 @@ Package logreq Info: Writing requests to 'dokumentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 51414 strings out of 492616
- 957327 string characters out of 6129481
- 1758263 words of memory out of 5000000
- 54348 multiletter control sequences out of 15000+600000
- 593253 words of font info for 85 fonts, out of 8000000 for 9000
+ 51476 strings out of 492616
+ 958380 string characters out of 6129481
+ 1753635 words of memory out of 5000000
+ 54377 multiletter control sequences out of 15000+600000
+ 596840 words of font info for 95 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  67i,12n,106p,9111b,3341s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/lo
@@ -2343,10 +2379,10 @@ ype1/public/lm/lmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
 lm/lmro12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmssbx1
 0.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></us
 r/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on dokumentation.pdf (23 pages, 646136 bytes).
+Output written on dokumentation.pdf (26 pages, 801109 bytes).
 PDF statistics:
- 355 PDF objects out of 1000 (max. 8388607)
- 308 compressed objects within 4 object streams
- 102 named destinations out of 1000 (max. 500000)
- 18609 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 424 PDF objects out of 1000 (max. 8388607)
+ 368 compressed objects within 4 object streams
+ 114 named destinations out of 1000 (max. 500000)
+ 19200 words of extra memory for PDF output out of 20736 (max. 10000000)
 
