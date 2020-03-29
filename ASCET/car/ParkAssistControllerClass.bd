@@ -22,7 +22,7 @@ blockdiagramSpecification Main {
 			inPin connection_8
 		}
 	}
-	methodArgumentIdentifier calc.ultrasonic_distance at (191, 175) {
+	methodArgumentIdentifier calc.ultrasonic_distance at (81, 175) {
 		label at (0, -1)
 		outPin {
 			connection_11

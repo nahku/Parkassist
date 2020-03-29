@@ -2,7 +2,6 @@ package car;
 import resources.TimeTick;
 
 class PulseSignalClass {
-
 	real integrated_frequency;
 
 	@generated("blockdiagram")

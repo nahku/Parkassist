@@ -14,20 +14,16 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	simpleIdentifier resources.CarMessages.v at (991, 195) {
+	simpleIdentifier resources.CarMessages.v at (991, 205) {
 		label at (0, -1)
-		inPin connection_2 {
-			bendpoints (50, 0), (50, -10)
-		}
+		inPin connection_2
 		sequenceCall {
 			inPin connection_1
 		}
 	}
-	simpleIdentifier resources.CarMessages.position at (1001, 295) {
+	simpleIdentifier resources.CarMessages.position at (1001, 305) {
 		label at (0, -1)
-		inPin connection_4 {
-			bendpoints (50, 0), (50, -10)
-		}
+		inPin connection_4
 		sequenceCall at (-10, -34) {
 			inPin connection_3
 		}

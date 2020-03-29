@@ -229,12 +229,19 @@ Using subsystems for the developed components makes it easy to include into and 
 \end{figure}
 
 \chapter{D7: Transfer of Simulink model to ASCET}\label{cha:D7}
+- integration block as combination of multiplication and addition
 
-\chapter{D8: Implementation of pule signal in ASCET}\label{cha:D8}
+\chapter{D8: Implementation of pulse signal in ASCET}\label{cha:D8}
 
 \chapter{D9: Implementation of unit tests for ASCET model parts}\label{cha:D9}
--modular design for unit tests
+- modular design for unit tests \\
+- pulse signal, drive model not possible to unit test because of time component
+
 \chapter{D10: Development and implementation of a system test environment for ASCET simulation}\label{cha:D10}
+
+- wait 5 seconds until starting because ascet experiment environment does not display the first seconds \\
+- in first 5 seconds brake = -0.15 to counter c and b, v = 0 \\
+- after five seconds set v to 10 km/h and start experiment
 
 \chapter{D11*: Plausibility check comparing measured velocities and distances}\label{cha:D11}
 -statistically independent ultrasonic distance and velocity

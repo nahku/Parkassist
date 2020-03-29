@@ -20,11 +20,11 @@ class driveModel {
 			v = 10.0; // Main/calc 1/if-then 1
 		} // Main/calc 1
 		acc = ((-c) - (b * p)); // Main/calc 2
-		v = ((((-c) - (b * p)) * 3.6 * TimeTick.dTs) + v); // Main/calc 3
+		v = ((TimeTick.dTs * 3.6 * ((-c) - (b * p))) + v); // Main/calc 3
 		if (v < 0.29) {
 			v = 0.0; // Main/calc 4/if-then 1
 		} // Main/calc 4
-		s = (((v * TimeTick.dTs) / 3.6) + s); // Main/calc 5
+		s = (((TimeTick.dTs * v) / 3.6) + s); // Main/calc 5
 		ultrasonic_distance = (target_position - s); // Main/calc 6
 	}
 }

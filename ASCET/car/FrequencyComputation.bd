@@ -23,11 +23,9 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	simpleIdentifier resources.CarMessages.pulse_signal at (1231, 185) {
+	simpleIdentifier resources.CarMessages.pulse_signal at (1221, 175) {
 		label at (0, -1)
-		inPin connection_19 {
-			bendpoints (100, 0), (100, 10)
-		}
+		inPin connection_19
 		sequenceCall {
 			inPin connection_18
 		}
