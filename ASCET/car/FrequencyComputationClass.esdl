@@ -6,10 +6,10 @@ class FrequencyComputationClass {
 
 	@generated("blockdiagram")
 	public real calc(real in v, real in x) {
-		if ((v <= 1.0) && (x >= 1.9)) {
+		if (((v > 0.0) && (v <= 1.0)) && (x >= 1.9)) {
 			return 10.0; // Main/calc 1/if-then 1
 		} else {
-			if ((x >= 1.0) && (v <= 1.0)) {
+			if ((x >= 1.0) && ((v > 0.0) && (v <= 1.0))) {
 				return frequency_lookup.getAt(x); // Main/calc 1/if-else 1/if-then 1
 			} else {
 				return 0.0; // Main/calc 1/if-else 1/if-else 1

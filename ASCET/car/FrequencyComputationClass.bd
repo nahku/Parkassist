@@ -5,7 +5,7 @@ blockdiagramSpecification Main {
 			connection_11
 		}
 	}
-	literal Numeric "1.0" at (101, 273) size (49, 0) {
+	literal Numeric "1.0" at (71, 273) size (49, 0) {
 		outPin {
 			connection_2
 		}
@@ -15,19 +15,21 @@ blockdiagramSpecification Main {
 			connection_4
 		}
 	}
-	lessOrEqual at (291, 216) {
+	lessOrEqual at (221, 216) {
 		inPin connection_24
 		inPin connection_2 {
 			bendpoints (90, 0), (90, -40)
 		}
 		outPin {
-			connection_37, connection_5
+			connection_45
 		}
 	}
-	and at (381, 226) {
-		inPin connection_5
+	and at (411, 226) {
+		inPin connection_49 {
+			bendpoints (20, 0), (20, 10)
+		}
 		inPin connection_6 {
-			bendpoints (20, 0), (20, -140)
+			bendpoints (60, 0), (60, -140)
 		}
 		outPin {
 			connection_12
@@ -49,7 +51,7 @@ blockdiagramSpecification Main {
 	}
 	greaterOrEqual at (291, 26) {
 		inPin connection_26 {
-			bendpoints (120, 0), (120, -350)
+			bendpoints (140, 0), (140, -350)
 		}
 		inPin connection_7
 		outPin {
@@ -58,8 +60,8 @@ blockdiagramSpecification Main {
 	}
 	and at (381, 36) {
 		inPin connection_36
-		inPin connection_37 {
-			bendpoints (20, 0), (20, -170)
+		inPin connection_50 {
+			bendpoints (10, 0)
 		}
 		outPin {
 			connection_14
@@ -106,7 +108,7 @@ blockdiagramSpecification Main {
 	simpleIdentifier frequency_lookup at (471, -29) {
 		label at (0, 1)
 		inPin connection_33 {
-			bendpoints (120, 0), (120, -390)
+			bendpoints (140, 0), (140, -390)
 		}
 		outPin {
 			connection_32
@@ -115,10 +117,10 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	methodArgumentIdentifier calc.v at (101, 215) {
+	methodArgumentIdentifier calc.v at (71, 215) {
 		label at (0, -1)
 		outPin {
-			connection_24
+			connection_46, connection_24
 		}
 		sequenceCall {
 			inPin
@@ -154,6 +156,29 @@ blockdiagramSpecification Main {
 		inPin connection_35
 		sequenceCall at (-20, -34) {
 			inPin connection_34
+		}
+	}
+	and at (331, 206) {
+		inPin connection_48 {
+			bendpoints (10, 0)
+		}
+		inPin connection_45
+		outPin {
+			connection_50, connection_49
+		}
+	}
+	greater at (281, 156) {
+		inPin connection_46 {
+			bendpoints (30, 0), (30, -60)
+		}
+		inPin connection_47
+		outPin {
+			connection_48
+		}
+	}
+	literal Numeric "0.0" at (171, 173) size (49, 0) {
+		outPin {
+			connection_47
 		}
 	}
 }

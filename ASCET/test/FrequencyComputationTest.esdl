@@ -10,7 +10,7 @@ static class FrequencyComputationTest{
 	@Test
 	public void continuousPulse(){
 		real res;
-		real v = 0.0;
+		real v = 0.5;
 		real x = 1.91;
 		
 		res = frequencyComputation.calc(v,x);
@@ -21,6 +21,16 @@ static class FrequencyComputationTest{
 	public void noFrequencyBecauseVelocity(){
 		real res;
 		real v = 1.5;
+		real x = 1.8;
+		
+		res = frequencyComputation.calc(v,x);
+		Assert.assertEqual(res, 0.0);
+	}
+	
+	@Test
+	public void noFrequencyBecauseVelocityZero(){
+		real res;
+		real v = 0.0;
 		real x = 1.8;
 		
 		res = frequencyComputation.calc(v,x);
