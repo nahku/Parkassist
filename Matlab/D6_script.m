@@ -1,4 +1,5 @@
 set_param('D6','StopTime','3');
+set_param('D6','Solver',['ode',sprintf('%d',8)]);
 set_param('D6','FixedStep',sprintf('%f',0.001));
 set_param('D6/p','value',sprintf('%f',0.04));
 res = sim('D6','SaveOutput','on','SaveState','on');
@@ -37,6 +38,3 @@ set(gca,'FontSize',20)
 title('Pulse signal');
 xlabel('Time in [s]');
 ylabel('Pulse Signal');
-
-
-

@@ -21,7 +21,7 @@ D1 & .& .& .& .& .&\\
 \label{tbl:ConceptTPTPProductionSymbols}
 \end{table}
 \chapter{D2: Feasibility study}\label{cha:D2}
-The aim of the feasibility study is to analyse whether the introduced model in section \ref{cha:Introduction} can be implemented based on the given formulas. 
+The aim of the feasibility study is to analyse whether the introduced model in section \ref{cha:Introduction} based on the given formulas todo. 
 
 \begin{equation}
 	\frac{\partial v}{\partial t} = -c-b*p
@@ -35,17 +35,23 @@ The aim of the feasibility study is to analyse whether the introduced model in s
 - Screenshot Simulink Modell und Ergebnis\\
 - R5 auch beachtet \\
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{images/D2_plot.jpg}
-\caption{Todo}
-\label{fig:ConceptArchitectureOverview}
-\end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D2_sim.png}
 \caption{Simulink model of the differential equations}
+\label{fig:ConceptArchitectureOverview}
+\end{figure}
+
+-result with constant 5\% brake pressure
+-stops before 2m
+-constant brake pressure not human like but shows that it is possible to stop before 2 m
+-brake function can be changed to human like behaviour
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D2_plot.jpg}
+\caption{Todo}
 \label{fig:ConceptArchitectureOverview}
 \end{figure}
 
@@ -61,7 +67,7 @@ The measurement data is imported in Matlab.
 velocity_data = importdata('MeasuredVelocities.txt');
 \end{lstlisting}
 
-\section{2. Data preparation}
+\section{Data preparation}
 Before analysing the data it is necessary to preprocess it. First the four velocities of each wheel are extracted from the measurement data and a mean velocity is calculated (see line 1,2). 
 
 \begin{equation}
