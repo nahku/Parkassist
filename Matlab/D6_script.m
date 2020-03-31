@@ -1,7 +1,7 @@
 set_param('D6','StopTime','3');
 set_param('D6','Solver',['ode',sprintf('%d',8)]);
 set_param('D6','FixedStep',sprintf('%f',0.001));
-set_param('D6/p','value',sprintf('%f',0.04));
+set_param('D6/p','value',sprintf('%f',0.05));
 res = sim('D6','SaveOutput','on','SaveState','on');
 
 t = res.tout;
@@ -14,7 +14,7 @@ pulse = res.yout{4}.Values.Data;
 subplot(4,1,1);
 plot(t,v*3.6, 'LineWidth', 1.5);
 set(gca,'FontSize',20)
-title('Velocity of car in full brake');
+title('Velocity of car');
 xlabel('Time in [s]');
 ylabel('Velocity in [km/h]');
 

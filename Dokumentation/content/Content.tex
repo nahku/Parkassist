@@ -31,7 +31,8 @@ The aim of the feasibility study is to analyse whether the introduced model in s
 \end{equation}
 
 - Minimale Geschwindigkeit 0,29km/h beachten -> in m/s umrechnen \\
-- Switch -> wenn Geschwindigkeit kleiner 0,29 folgt daraus Geschwindigkeit = 0 \\
+- included Switch -> wenn Geschwindigkeit kleiner 0,29 folgt daraus Geschwindigkeit = 0 \\
+-otherwise car would reverse
 - Screenshot Simulink Modell und Ergebnis\\
 - R5 auch beachtet \\
 
@@ -51,7 +52,7 @@ The aim of the feasibility study is to analyse whether the introduced model in s
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D2_plot.jpg}
-\caption{Todo}
+\caption{Simulation results of feasibility study}
 \label{fig:ConceptArchitectureOverview}
 \end{figure}
 
@@ -59,6 +60,7 @@ The aim of the feasibility study is to analyse whether the introduced model in s
 
 In this section the provided human velocity profile is analysed in order to find a pattern that shows how a human is breaking a car. This pattern will be used in the following sections and will be adapted to the braking function of the ParkAssist. The analysis is divided into four steps.
 
+-um auf bremse rückzuschließen, beschleunigung berechnen, weil bremse geht in beschleunigung ein
 \section{Import the measurement data}
 The measurement data is imported in Matlab.
 
@@ -75,9 +77,17 @@ Before analysing the data it is necessary to preprocess it. First the four veloc
 \end{equation}
 
 
-The mean velocity is converted to [m/s] for further calculations. For analysing the braking behaviour the acceleration is calculated. This can be done by differentiating the velocity (see line 11). As can be seen in Figure REF in the upper plot the calculated acceleration is ?? as cause of minor variations in the velocity. Due to the ?? it would be hard to analyse the braking behaviour. Therefore, we used a moving average filter to smoothen the data (line 8). A moving average filter is calculating a mean value of neighbourhood elements within a sliding window of a predefined size. Applying a moving average filter results in a smoother graph as can bee seen in the lower plot in Figure REF.
+The mean velocity is converted to [m/s] for further calculations.
+For analysing the braking behaviour the acceleration is calculated.
+This can be done by differentiating the velocity (see line 11).
+As can be seen in figure \ref{fig:D3_MovingAverage} in the upper plot the calculated acceleration is ?? as cause of minor variations in the velocity.
+Due to the ?? it would be hard to analyse the braking behaviour. Therefore, we used a moving average filter to smoothen the data (line 8).
+A moving average filter is calculating a mean value of neighbourhood elements within a sliding window of a predefined size.
+Applying a moving average filter results in a smoother graph as can bee seen in the lower plot in figure \ref{fig:D3_MovingAverage}.
 
-\begin{lstlisting}[basicstyle=\scriptsize	,caption= Preprocessing measurement data,label= lst:D3Preprocess]
+
+-linear dependance between acceleration and brake pedal
+\begin{lstlisting}[language=Matlab,basicstyle=\scriptsize	,caption= Preprocessing measurement data,label= lst:D3Preprocess]
 %compute mean velocity of all 4 wheels
 velocity_per_wheel = velocity_data(:,2:5);
 mean_velocity = mean(velocity_per_wheel,2);
@@ -92,10 +102,25 @@ acceleration = diff(mean_velocity);
 raw_acceleration = diff(raw_mean_velocity);     %for demonstration purposes
 \end{lstlisting}
 
-\section{Extracting negative acceleration}
-As the goal is to analyse the braking behaviour only the negative acceleration is relevant and is thus being extracted from the overall acceleration (line 5). Also, all velocities that are based on a positive acceleration are not considered anymore (line 6). We decided to set those values to \ac{NaN} because this way we are still able to plot the velocity and the acceleration over time without cut-outs. The result can be seen in plot REF.
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D3_moving_average.jpg}
+\caption{Human velocity profile car acceleration}
+\label{fig:D3_MovingAverage}
+\end{figure}
 
-\begin{lstlisting}[basicstyle=\scriptsize	,caption= Extracting negative acceleration,label= lst:D3Extract]
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D3_Fig_Overview.jpg}
+\caption{Smoothend data from human velocity profile}
+\label{fig:D3_Fig_Overview}
+\end{figure}
+
+
+\section{Extracting negative acceleration}
+As the goal is to analyse the braking behaviour only the negative acceleration is relevant and is thus being extracted from the overall acceleration (line 5). Also, all velocities that are based on a positive acceleration are not considered anymore (line 6). We decided to set those values to \ac{NaN} because this way we are still able to plot the velocity and the acceleration over time without cut-outs. The result can be seen in plot REF. todo create plot
+
+\begin{lstlisting}[language=Matlab,basicstyle=\scriptsize	,caption= Extracting negative acceleration,label= lst:D3Extract]
 %search for negative acceleration and set positive acceleration to NaN
 %set all velocities that have a positive acceleration to NaN
 neg_acceleration = acceleration;
@@ -104,10 +129,17 @@ neg_acceleration(neg_acceleration>0) = nan;
 decreasing_velocity(isnan(neg_acceleration)) = nan;
 \end{lstlisting}
 
-\section{Separating breaking sequences}
-For improved visualisation the individual breaking sequences that can be seen in plot REF are stored separately. One breaking sequence consists of multiple consequent velocities. This means that the breaking sequences can be separated by searching for a gap in the velocities. Therefore, the indices of all velocities that are set not \ac{NaN} are extracted (line 2) and differentiated (line 3). Considered the differentiation, every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are consequent (differentiation equals 1). Furthermore, small breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line 13). Two individual breaking sequences can be seen in plot REF and plot REF.
 
-\begin{lstlisting}[basicstyle=\scriptsize	,caption= Separating breaking sequences,label= lst:D3Seperat]
+\section{Separating breaking sequences}
+For improved visualisation the individual breaking sequences that can be seen in plot \ref{fig:D3_IndividualBraking} are stored separately.
+One breaking sequence consists of multiple consequent velocities.
+This means that the breaking sequences can be separated by searching for a gap in the velocities.
+Therefore, the indices of all velocities that are set not \ac{NaN} are extracted (line 2) and differentiated (line 3).
+Considered the differentiation, every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are consequent (differentiation equals 1).
+Furthermore, small breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line 13).
+Two individual breaking sequences can be seen in plot \ref{fig:D3_IndividualBraking1} and plot \ref{fig:D3_IndividualBraking2}.
+
+\begin{lstlisting}[language=Matlab,basicstyle=\scriptsize	,caption= Separating breaking sequences,label= lst:D3Seperat]
 %find individual breaking sequences
 notNaN_velocity = find(~isnan(decreasing_velocity));   % find index of every velocity that is not NaN -> one breaking sequence has consequent time steps -> one breaking sequence has consequent indices
 diff_notNaN_velocity = diff(notNaN_velocity);          % differentiate indices -> if indices are not consequent (unequal 1), a new breaking sequence has begun
@@ -136,6 +168,27 @@ for i=1:length(diff_notNaN_velocity)
     end
 end
 \end{lstlisting}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D3_individual_braking.jpg}
+\caption{Human velocity profile extracted individual braking manoeuvres}
+\label{fig:D3_IndividualBraking}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D3_example1.jpg}
+\caption{Human velocity profile extracted braking manoeuvre 1}
+\label{fig:D3_IndividualBraking1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D3_example2.jpg}
+\caption{Human velocity profile extracted braking manoeuvre 2}
+\label{fig:D3_IndividualBraking2}
+\end{figure}
 
 \section{Result}
 Considering Figures REF, REF and REF, it can be seen that the acceleration is approximately in the shape of a parable with the minimal turning point at XX. For further implementation of the ParkAssist, we will start the breaking process with an acceleration and increase it until we reach approximately REF and will then decrease it.
@@ -185,7 +238,7 @@ validate findings by numbers from simulation
 
 In D6 a pulsing information signal is described. This chapter documents the implementation of that signal.
 Both signals are needed for the frequency computation.
-The pulsing signal should only be present if the velocity of the car is $\leq$ 1 m/s and the position of the car is between 1 and 2 meters. From a frequency of 1 Hz at 1 meter it should rise up to 9 Hz at 1.9 meters. If the traveled distance is greater than 1.9 meters, the signal should become continuous.\\
+The pulsing signal should only be present if the nonzero velocity of the car is $\leq$ 1 m/s and the position of the car is between 1 and 2 meters. From a frequency of 1 Hz at 1 meter it should rise up to 9 Hz at 1.9 meters. If the traveled distance is greater than 1.9 meters, the signal should become continuous.\\
 This requirement can be divided into two separate compontents with separate responsibilities.\\
 In the first component it is determined in which state the signal is (off, pulsing, continuous) and in the case of a pulsing signal the frequency of that pulse is computed.\\
 The second component is responsible for outputting the pulse signal corresponing to the output of the first component.\\
@@ -194,11 +247,11 @@ The components are implemented using simulink subsystems which enables re-usabil
 Figure \ref{fig:D6_Frequency_Computation} shows the simulink subsystem for the computation of the frequency of the pulse signal.
 The inputs are the velocity and position of the car.
 The if-condition determines in which state the signal is.\\
-In the first case the car velocity is $\leq$ 1 m/s and the position of the car is $>$ 1.9 meters.
+In the first case the nonzero car velocity is $\leq$ 1 m/s and the position of the car is $>$ 1.9 meters.
 In this case, the pulsing signal should provide a continuous output as demanded by requirement D6.
 The subsystem outputs a value of 10 in that case.
 This value is the indication for a continuous signal.\\
-In the second case of the if condition the car velocity is also $\leq$ 1 m/s but the position of the car is between 1 and 1.9 meters.
+In the second case of the if condition the nonzero car velocity is also $\leq$ 1 m/s but the position of the car is between 1 and 1.9 meters.
 In this case the frequency of the pulsing signal should be between 1 and 9 Hz depending on the location.
 For that a lookup table is used, that provides an output frequency that linearly increases from 1 to 9 Hz depending on the position from 1 to 1.9 meters. A linear increase is used, because then the driver could estimate the position linearly by the signal.\\
 When none of the above mentioned conditions are the case, the subsystem outputs 0, which indicates that the pulsing signal is not present.

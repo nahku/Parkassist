@@ -56,7 +56,7 @@ for i=1:length(diff_notNaN_velocity)
 end
 
 
-%Plots
+%% Plots
 
 %Plot 1 - Overview of velocity and acceleration of the car from the
 %measurement

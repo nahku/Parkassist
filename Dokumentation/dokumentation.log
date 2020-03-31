@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.17)  31 MAR 2020 20:25
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.8)  31 MAR 2020 20:25
->>>>>>> nahku
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.8)  1 APR 2020 01:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2076,7 +2072,7 @@ Overfull \hbox (15.35449pt too wide) in paragraph at lines 6--7
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
 s/firma-deckblatt.jpg> <./images/dhbw.png>])
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 43.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 42.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -2085,7 +2081,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-Package tocbasic Info: character protrusion at toc deactivated on input line 43
+Package tocbasic Info: character protrusion at toc deactivated on input line 42
 .
 
 (./dokumentation.toc
@@ -2130,13 +2126,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-))
+) [2
+
+])
 \tf@toc=\write8
 \openout8 = `dokumentation.toc'.
 
- [2
 
-]
 [3] (./ads/acronyms.tex
 chapter without number
 
@@ -2160,7 +2156,7 @@ Class scrreprt Warning: \float@addtolists detected!
 
 
 ]
-Package tocbasic Info: character protrusion at lof deactivated on input line 65
+Package tocbasic Info: character protrusion at lof deactivated on input line 64
 .
  (./dokumentation.lof)
 \tf@lof=\write9
@@ -2171,7 +2167,7 @@ Package tocbasic Info: character protrusion at lof deactivated on input line 65
 
 
 ]
-Package tocbasic Info: character protrusion at lot deactivated on input line 71
+Package tocbasic Info: character protrusion at lot deactivated on input line 70
 .
  (./dokumentation.lot)
 \tf@lot=\write10
@@ -2193,7 +2189,7 @@ Class scrreprt Warning: \float@listhead detected!
 (scrreprt)              Loading of package `scrhack' may help to
 (scrreprt)              avoid this warning, if you are using a
 (scrreprt)              a package that still implements the
-(scrreprt)              deprecated \float@listhead interface  on input line 77.
+(scrreprt)              deprecated \float@listhead interface  on input line 76.
 
 
 chapter without number
@@ -2229,34 +2225,25 @@ l.23 \chapter
 ]
 chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--37
+Underfull \hbox (badness 10000) in paragraph at lines 33--38
 
  []
 
-<<<<<<< HEAD
-<images/D2_plot.jpg, id=129, 2890.8pt x 1704.3675pt>
-File: images/D2_plot.jpg Graphic file (type jpg)
-<use images/D2_plot.jpg>
-Package pdftex.def Info: images/D2_plot.jpg  used on input line 40.
-(pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
-<images/D2_sim.png, id=130, 1327.96124pt x 356.33125pt>
-=======
-<images/D2_sim.png, id=127, 1327.96124pt x 356.33125pt>
->>>>>>> nahku
+<images/D2_sim.png, id=145, 1327.96124pt x 356.33125pt>
 File: images/D2_sim.png Graphic file (type png)
 <use images/D2_sim.png>
-Package pdftex.def Info: images/D2_sim.png  used on input line 41.
+Package pdftex.def Info: images/D2_sim.png  used on input line 42.
 (pdftex.def)             Requested size: 455.24417pt x 122.15689pt.
-<images/D2_plot.jpg, id=128, 2890.8pt x 1704.3675pt>
+<images/D2_plot.jpg, id=146, 2890.8pt x 1704.3675pt>
 File: images/D2_plot.jpg Graphic file (type jpg)
 <use images/D2_plot.jpg>
-Package pdftex.def Info: images/D2_plot.jpg  used on input line 53.
+Package pdftex.def Info: images/D2_plot.jpg  used on input line 54.
 (pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.57 
+l.58 
       [3
 
  <./images/D2_sim.png>]
@@ -2268,87 +2255,129 @@ chapter 4.
 [5
 
 ]
+<images/D3_moving_average.jpg, id=176, 2890.8pt x 1704.3675pt>
+File: images/D3_moving_average.jpg Graphic file (type jpg)
+<use images/D3_moving_average.jpg>
+Package pdftex.def Info: images/D3_moving_average.jpg  used on input line 107.
+(pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
+<images/D3_Fig_Overview.jpg, id=177, 2890.8pt x 1704.3675pt>
+File: images/D3_Fig_Overview.jpg Graphic file (type jpg)
+<use images/D3_Fig_Overview.jpg>
+Package pdftex.def Info: images/D3_Fig_Overview.jpg  used on input line 114.
+(pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
+
+Overfull \vbox (7.89444pt too high) has occurred while \output is active []
+
+
+[6 <./images/D3_moving_average.jpg>]
 Package acronym Info: Label `acro:NaN' newly defined as it shall be overridden
-although it is yet undefined on input line 96.
+although it is yet undefined on input line 121.
+
+Overfull \vbox (7.89444pt too high) has occurred while \output is active []
+
+
+[7 <./images/D3_Fig_Overview.jpg>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 112.
+(Font)              <5> on input line 144.
+<images/D3_individual_braking.jpg, id=211, 2890.8pt x 1704.3675pt>
+File: images/D3_individual_braking.jpg Graphic file (type jpg)
+<use images/D3_individual_braking.jpg>
+Package pdftex.def Info: images/D3_individual_braking.jpg  used on input line 1
+74.
+(pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
 
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
-[6]
+[8]
+<images/D3_example1.jpg, id=244, 2890.8pt x 1704.3675pt>
+File: images/D3_example1.jpg Graphic file (type jpg)
+<use images/D3_example1.jpg>
+Package pdftex.def Info: images/D3_example1.jpg  used on input line 181.
+(pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
+<images/D3_example2.jpg, id=245, 2890.8pt x 1704.3675pt>
+File: images/D3_example2.jpg Graphic file (type jpg)
+<use images/D3_example2.jpg>
+Package pdftex.def Info: images/D3_example2.jpg  used on input line 188.
+(pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
+
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
-[7]
+[9 <./images/D3_individual_braking.jpg> <./images/D3_example1.jpg>]
+Overfull \vbox (7.89444pt too high) has occurred while \output is active []
+
+
+[10 <./images/D3_example2.jpg>]
 chapter 5.
-[8
+[11
 
 ]
 chapter 6.
-[9
+[12
 
 ]
 chapter 7.
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--193
+Underfull \hbox (badness 10000) in paragraph at lines 239--246
 
  []
 
-[10
+[13
 
 ]
-<images/D6_Frequency_Computation.png, id=229, 1620.0525pt x 724.7075pt>
+<images/D6_Frequency_Computation.png, id=268, 1165.35374pt x 506.89375pt>
 File: images/D6_Frequency_Computation.png Graphic file (type png)
 <use images/D6_Frequency_Computation.png>
 Package pdftex.def Info: images/D6_Frequency_Computation.png  used on input lin
-e 208.
-(pdftex.def)             Requested size: 455.24417pt x 203.64655pt.
-<images/D6_provide_signal.png, id=231, 1745.52126pt x 591.20876pt>
+e 261.
+(pdftex.def)             Requested size: 455.24417pt x 198.01262pt.
+<images/D6_provide_signal.png, id=270, 1318.9275pt x 540.0175pt>
 File: images/D6_provide_signal.png Graphic file (type png)
 <use images/D6_provide_signal.png>
-Package pdftex.def Info: images/D6_provide_signal.png  used on input line 223.
-(pdftex.def)             Requested size: 455.24417pt x 154.18877pt.
-<images/D6_integration.png, id=233, 1744.5175pt x 429.605pt>
+Package pdftex.def Info: images/D6_provide_signal.png  used on input line 276.
+(pdftex.def)             Requested size: 455.24417pt x 186.38863pt.
+
+Overfull \vbox (7.89444pt too high) has occurred while \output is active []
+
+
+[14 <./images/D6_Frequency_Computation.png>]
+<images/D6_integration.png, id=278, 1744.5175pt x 429.605pt>
 File: images/D6_integration.png Graphic file (type png)
 <use images/D6_integration.png>
-Package pdftex.def Info: images/D6_integration.png  used on input line 232.
+Package pdftex.def Info: images/D6_integration.png  used on input line 285.
 (pdftex.def)             Requested size: 455.24417pt x 112.10764pt.
 
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
-[11 <./images/D6_Frequency_Computation.png> <./images/D6_provide_signal.png>]
-Overfull \vbox (7.89444pt too high) has occurred while \output is active []
-
-
-[12 <./images/D6_integration.png>]
+[15 <./images/D6_provide_signal.png> <./images/D6_integration.png>]
 chapter 8.
-[13
-
-]
-chapter 9.
-[14
-
-]
-chapter 10.
-[15
-
-]
-chapter 11.
 [16
 
 ]
-chapter 12.
+chapter 9.
 [17
 
 ]
-chapter 13.
+chapter 10.
 [18
 
 ]
+chapter 11.
+[19
+
+]
+chapter 12.
+[20
+
+]
+chapter 13.
+[21
+
+]
 chapter 14.
-) [19
+) [22
 
 ]
 
@@ -2357,11 +2386,11 @@ Package glossaries Warning: No \printglossary or \printglossaries found.
 This document will not have a glossary.
 
 No complaints by nag.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 90.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 90.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 89.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 89.
 (./dokumentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 90.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 90.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 89.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 89.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2371,36 +2400,13 @@ Package logreq Info: Writing requests to 'dokumentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 49435 strings out of 492649
- 921919 string characters out of 6133384
- 1708317 words of memory out of 5000000
- 52299 multiletter control sequences out of 15000+600000
- 594865 words of font info for 94 fonts, out of 8000000 for 9000
+ 51939 strings out of 492616
+ 964238 string characters out of 6129481
+ 1760129 words of memory out of 5000000
+ 54817 multiletter control sequences out of 15000+600000
+ 597113 words of font info for 98 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 67i,12n,106p,10400b,3331s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2018
-/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2018/texmf-dist/fonts/enc/
-dvips/lm/lm-mathit.enc}{c:/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
-}<c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2018/
-texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/texlive/2018/texmf-dist/fonts/ty
-pe1/public/lm/lmmi12.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi
-8.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2
-018/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2018/texmf-dist/font
-s/type1/public/lm/lmr6.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lm
-r8.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive
-/2018/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2018/texmf-dist
-/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/publi
-c/lm/lmsy8.pfb>
-Output written on dokumentation.pdf (26 pages, 802992 bytes).
-=======
- 51478 strings out of 492616
- 958402 string characters out of 6129481
- 1753596 words of memory out of 5000000
- 54377 multiletter control sequences out of 15000+600000
- 596931 words of font info for 96 fonts, out of 8000000 for 9000
- 1143 hyphenation exceptions out of 8191
- 67i,12n,106p,9111b,3341s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,12n,106p,9111b,2280s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/lo
 cal/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/20
 19/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2019/texmf-d
@@ -2415,11 +2421,10 @@ ype1/public/lm/lmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
 lm/lmro12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmssbx1
 0.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></us
 r/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on dokumentation.pdf (26 pages, 838968 bytes).
->>>>>>> nahku
+Output written on dokumentation.pdf (29 pages, 2111903 bytes).
 PDF statistics:
- 439 PDF objects out of 1000 (max. 8388607)
- 383 compressed objects within 4 object streams
- 118 named destinations out of 1000 (max. 500000)
- 19224 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 476 PDF objects out of 1000 (max. 8388607)
+ 411 compressed objects within 5 object streams
+ 126 named destinations out of 1000 (max. 500000)
+ 19249 words of extra memory for PDF output out of 20736 (max. 10000000)
 
