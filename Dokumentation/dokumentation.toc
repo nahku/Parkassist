@@ -45,6 +45,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {10}D9: Implementation of unit tests for ASCET model parts}{15}{chapter.10}
 \defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.1}Unit tests Frequency Computation}{15}{section.10.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.2}Unit tests ParkAssistControll}{15}{section.10.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.3}Unit tests Pulse Signal}{15}{section.10.3}
+\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {11}D10: Development and implementation of a system test environment for ASCET simulation}{16}{chapter.11}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {12}D11*: Plausibility check comparing measured velocities and distances}{17}{chapter.12}

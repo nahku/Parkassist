@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.17)  29 MAR 2020 21:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.17)  31 MAR 2020 20:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2169,12 +2169,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--37
 
  []
 
-<images/D2_plot.jpg, id=127, 2890.8pt x 1704.3675pt>
+<images/D2_plot.jpg, id=129, 2890.8pt x 1704.3675pt>
 File: images/D2_plot.jpg Graphic file (type jpg)
 <use images/D2_plot.jpg>
 Package pdftex.def Info: images/D2_plot.jpg  used on input line 40.
 (pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
-<images/D2_sim.png, id=128, 1327.96124pt x 356.33125pt>
+<images/D2_sim.png, id=130, 1327.96124pt x 356.33125pt>
 File: images/D2_sim.png Graphic file (type png)
 <use images/D2_sim.png>
 Package pdftex.def Info: images/D2_sim.png  used on input line 47.
@@ -2225,18 +2225,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--187
 [10
 
 ]
-<images/D6_Frequency_Computation.png, id=227, 1620.0525pt x 724.7075pt>
+<images/D6_Frequency_Computation.png, id=229, 1620.0525pt x 724.7075pt>
 File: images/D6_Frequency_Computation.png Graphic file (type png)
 <use images/D6_Frequency_Computation.png>
 Package pdftex.def Info: images/D6_Frequency_Computation.png  used on input lin
 e 202.
 (pdftex.def)             Requested size: 455.24417pt x 203.64655pt.
-<images/D6_provide_signal.png, id=229, 1745.52126pt x 591.20876pt>
+<images/D6_provide_signal.png, id=231, 1745.52126pt x 591.20876pt>
 File: images/D6_provide_signal.png Graphic file (type png)
 <use images/D6_provide_signal.png>
 Package pdftex.def Info: images/D6_provide_signal.png  used on input line 217.
 (pdftex.def)             Requested size: 455.24417pt x 154.18877pt.
-<images/D6_integration.png, id=231, 1744.5175pt x 429.605pt>
+<images/D6_integration.png, id=233, 1744.5175pt x 429.605pt>
 File: images/D6_integration.png Graphic file (type png)
 <use images/D6_integration.png>
 Package pdftex.def Info: images/D6_integration.png  used on input line 226.
@@ -2298,10 +2298,10 @@ Package logreq Info: Writing requests to 'dokumentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49428 strings out of 492649
- 921849 string characters out of 6133384
- 1708318 words of memory out of 5000000
- 52296 multiletter control sequences out of 15000+600000
+ 49435 strings out of 492649
+ 921919 string characters out of 6133384
+ 1708317 words of memory out of 5000000
+ 52299 multiletter control sequences out of 15000+600000
  594865 words of font info for 94 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  67i,12n,106p,10400b,3331s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2318,10 +2318,10 @@ r8.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive
 /2018/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2018/texmf-dist
 /fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/publi
 c/lm/lmsy8.pfb>
-Output written on dokumentation.pdf (26 pages, 801549 bytes).
+Output written on dokumentation.pdf (26 pages, 802992 bytes).
 PDF statistics:
- 424 PDF objects out of 1000 (max. 8388607)
- 368 compressed objects within 4 object streams
- 114 named destinations out of 1000 (max. 500000)
- 19200 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 439 PDF objects out of 1000 (max. 8388607)
+ 383 compressed objects within 4 object streams
+ 118 named destinations out of 1000 (max. 500000)
+ 19224 words of extra memory for PDF output out of 20736 (max. 10000000)
 
