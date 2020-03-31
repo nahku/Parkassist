@@ -5,12 +5,12 @@ blockdiagramSpecification Main {
 			connection_3
 		}
 	}
-	literal Numeric "10.0" at (21, 123) size (69, 0) {
+	literal Numeric "10.0" at (21, 53) size (69, 0) {
 		outPin {
 			connection_8
 		}
 	}
-	equal at (301, 126) {
+	equal at (301, 56) {
 		inPin connection_8
 		inPin connection_30 {
 			bendpoints (220, 0), (220, -30)
@@ -19,19 +19,19 @@ blockdiagramSpecification Main {
 			connection_4
 		}
 	}
-	ifElse at (401, 131) {
+	ifElse at (401, 61) {
 		inPin connection_4
 		ifControlFlowOutPin {
 			connection_32
 		}
 		elseControlFlowOutPin {
-			connection_14, connection_18, connection_28
+			connection_41
 		}
 		sequenceCall at (-20, -30) {
 			inPin connection_3
 		}
 	}
-	literal Numeric "1.0" at (611, 153) size (49, 0) {
+	literal Numeric "1.0" at (611, 83) size (49, 0) {
 		outPin {
 			connection_33
 		}
@@ -45,20 +45,11 @@ blockdiagramSpecification Main {
 			connection_19
 		}
 	}
-	simpleIdentifier resources.TimeTick.dTs at (21, 325) {
-		label at (0, -1)
-		inPin outPin {
-			connection_7
-		}
-		sequenceCall {
-			inPin
-		}
-	}
 	multiplication at (311, 306) {
 		inPin connection_31 {
-			bendpoints (220, 0), (220, 130)
+			bendpoints (220, 0), (220, 200)
 		}
-		inPin connection_7
+		inPin connection_47
 		outPin {
 			connection_13
 		}
@@ -75,9 +66,7 @@ blockdiagramSpecification Main {
 			connection_17, connection_23, connection_16
 		}
 		sequenceCall at (-10, -34) {
-			inPin connection_14 {
-				bendpoints (0, 130)
-			}
+			inPin connection_14
 		}
 	}
 	addition at (371, 316) {
@@ -96,7 +85,7 @@ blockdiagramSpecification Main {
 		}
 		sequenceCall at (-40, -40) {
 			inPin connection_18 {
-				bendpoints (0, 80), (260, 80), (260, 330)
+				bendpoints (0, 60), (220, 60), (220, 310)
 			}
 		}
 	}
@@ -146,20 +135,20 @@ blockdiagramSpecification Main {
 		}
 		sequenceCall at (-30, -40) {
 			inPin connection_28 {
-				bendpoints (0, 80)
+				bendpoints (0, 60)
 			}
 		}
 	}
-	methodArgumentIdentifier calc.frequency at (31, 175) {
+	methodArgumentIdentifier calc.frequency at (31, 105) {
 		label at (0, -1)
 		outPin {
-			connection_31, connection_30
+			connection_31, connection_39, connection_30
 		}
 		sequenceCall {
 			inPin
 		}
 	}
-	return at (711, 155) {
+	return at (711, 85) {
 		label at (0, 0)
 		inPin connection_33
 		sequenceCall at (-10, -24) {
@@ -180,6 +169,57 @@ blockdiagramSpecification Main {
 		inPin connection_37
 		sequenceCall at (-10, -24) {
 			inPin connection_36
+		}
+	}
+	equal at (361, 146) {
+		inPin connection_39 {
+			bendpoints (220, 0), (220, 40)
+		}
+		inPin connection_40 {
+			bendpoints (0, -10)
+		}
+		outPin {
+			connection_42
+		}
+	}
+	literal Numeric "0.0" at (301, 173) size (49, 0) {
+		outPin {
+			connection_40
+		}
+	}
+	ifElse at (441, 151) {
+		inPin connection_42
+		ifControlFlowOutPin {
+			connection_43
+		}
+		elseControlFlowOutPin {
+			connection_18, connection_14, connection_28
+		}
+		sequenceCall {
+			inPin connection_41 {
+				bendpoints (0, 40)
+			}
+		}
+	}
+	return at (711, 185) {
+		label at (0, 0)
+		inPin connection_44
+		sequenceCall at (-10, -34) {
+			inPin connection_43
+		}
+	}
+	literal Numeric "0.0" at (611, 183) size (49, 0) {
+		outPin {
+			connection_44
+		}
+	}
+	methodArgumentIdentifier calc.dTs at (221, 325) {
+		label at (0, -1)
+		outPin {
+			connection_47
+		}
+		sequenceCall {
+			inPin
 		}
 	}
 }

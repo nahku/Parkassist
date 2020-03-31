@@ -13,7 +13,7 @@ todo describe block diagram vs script for every necessary requirement
 \begin{adjustbox}{width=1\textwidth, center=\textwidth}
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{lllllll}
-\textbf{Requirement} \textbf{Optimistic} & \textbf{Likely} & \textbf{Pessimistic} & \textbf{<T>} & \textbf{sigmahoch2} & \textbf{Actual}\\\hline
+\textbf{Requirement} & \textbf{Optimistic} & \textbf{Likely} & \textbf{Pessimistic} & \textbf{<T>} & \textbf{sigmahoch2} & \textbf{Actual}\\\hline
 D1 & .& .& .& .& .&\\
 \end{tabular}
 
@@ -236,6 +236,23 @@ Using subsystems for the developed components makes it easy to include into and 
 \chapter{D9: Implementation of unit tests for ASCET model parts}\label{cha:D9}
 - modular design for unit tests \\
 - pulse signal, drive model not possible to unit test because of time component
+
+\begin{table}[H]
+\centering
+\caption{Equivalence classes for unit testing}
+\begin{adjustbox}{width=1\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{lllllll}
+\textbf{Status ParkAssist} & \textbf{Position} & \textbf{Velocity}\\\hline
+Off & {0, 1, 1.5, 1.9, 2} & V = 0m/s oder V > 1m/s\\
+On & {1, 1.5, 1.9} & 0m/s < V <= 1m/s \\
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\section{Unit tests Frequency Computation}
+\section{Unit tests ParkAssistControll}
+\section{Unit tests Pulse Signal}
 
 \chapter{D10: Development and implementation of a system test environment for ASCET simulation}\label{cha:D10}
 
