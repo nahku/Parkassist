@@ -1,20 +1,34 @@
-set_param('D2','StopTime','1');
+%% Parametrize Model
+set_param('D2','StopTime','2');
+set_param('D2','Solver',['ode',sprintf('%d',8)]);
 set_param('D2','FixedStep',sprintf('%f',0.01));
-%set_param('D2/v0','value',sprintf('%f',10));
+set_param('D2/p','value',sprintf('%f',0.05));
 res = sim('D2','SaveOutput','on','SaveState','on');
 
+%% Get output
 t = res.tout;
 v = res.yout{1}.Values.Data;
 s = res.yout{2}.Values.Data;
+a = res.yout{3}.Values.Data;
+%convert velocity to km/h
 v = v*3.6;
-subplot(2,1,1);
+
+%% Plot results
+subplot(3,1,1);
+plot(t,a*ones(size(t)), 'LineWidth', 1.5);
+set(gca,'FontSize',22)
+title('Acceleration of car');
+xlabel('Time in [s]');
+ylabel('Acceleration in [m/s]');
+
+subplot(3,1,2);
 plot(t,v, 'LineWidth', 1.5);
 set(gca,'FontSize',22)
-title('Velocity of car in full brake');
+title('Velocity of car');
 xlabel('Time in [s]');
 ylabel('Velocity in [km/h]');
 
-subplot(2,1,2);
+subplot(3,1,3);
 plot(t,s, 'LineWidth', 1.5)
 set(gca,'FontSize',22)
 title('Covered distance');

@@ -11,11 +11,9 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Todo\relax }}{3}{figure.caption.7}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Simulink model of the differential equations\relax }}{3}{figure.caption.7}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Simulink model of the differential equations\relax }}{4}{figure.caption.8}
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Todo\relax }}{4}{figure.caption.8}% 
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
@@ -23,11 +21,13 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Simulink model of the frequency computation subsystem\relax }}{11}{figure.caption.10}
+\addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Simulink model of the pulse generation subsystem\relax }}{11}{figure.caption.11}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Simulink model of the frequency computation subsystem\relax }}{11}{figure.caption.10}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Simulink model of the car including the pulse signal\relax }}{12}{figure.caption.12}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Simulink model of the pulse generation subsystem\relax }}{11}{figure.caption.11}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Simulink model of the car including the pulse signal\relax }}{12}{figure.caption.12}% 
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
