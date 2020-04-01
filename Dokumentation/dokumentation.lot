@@ -9,7 +9,7 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {2.1}{\ignorespaces Three point estimation of effort for meeting requirements\relax }}{2}{table.caption.6}
+\contentsline {table}{\numberline {2.1}{\ignorespaces Three point estimation of effort for meeting requirements\relax }}{2}{table.caption.6}% 
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
@@ -27,15 +27,11 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-<<<<<<< HEAD
-\contentsline {table}{\numberline {10.1}{\ignorespaces Equivalence classes for unit testing\relax }}{18}{table.caption.18}
-\defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {10.2}{\ignorespaces Equivalence classes for unit testing of frequency computation class\relax }}{18}{table.caption.19}
-\defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {10.3}{\ignorespaces Equivalence classes for unit testing\relax }}{19}{table.caption.20}
-=======
 \contentsline {table}{\numberline {10.1}{\ignorespaces Equivalence classes for unit testing\relax }}{20}{table.caption.19}% 
->>>>>>> nahku
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {10.2}{\ignorespaces Equivalence classes for unit testing of frequency computation class\relax }}{20}{table.caption.20}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {10.3}{\ignorespaces Equivalence classes for unit testing\relax }}{21}{table.caption.21}% 
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
