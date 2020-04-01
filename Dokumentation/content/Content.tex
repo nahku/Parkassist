@@ -16,7 +16,6 @@ todo describe block diagram vs script for every necessary requirement
 \textbf{Requirement} & \textbf{Optimistic} & \textbf{Likely} & \textbf{Pessimistic} & \textbf{<T>} & \textbf{sigmahoch2} & \textbf{Actual}\\\hline
 D1 & .& .& .& .& .&\\
 \end{tabular}
-
 \end{adjustbox}
 \label{tbl:ConceptTPTPProductionSymbols}
 \end{table}
@@ -303,15 +302,50 @@ Using subsystems for the developed components makes it easy to include into and 
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{lllllll}
 \textbf{Status ParkAssist} & \textbf{Position} & \textbf{Velocity}\\\hline
-Off & {0, 1, 1.5, 1.9, 2} & V = 0m/s oder V > 1m/s\\
+Off & $X \in [0,2]$ & $V = 0m/s$ \\
+Off & $X \in [0,2]$ & $V \textgreater 1m/s$ \\
 On & {1, 1.5, 1.9} & 0m/s < V <= 1m/s \\
 \end{tabular}
 \end{adjustbox}
 \end{table}
 
 \section{Unit tests Frequency Computation}
+
+The frequency computation class 
+
+\begin{table}[H]
+\centering
+\caption{Equivalence classes for unit testing of frequency computation class}
+\begin{adjustbox}{width=1\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{lllllll}
+\textbf{Output} & \textbf{Position} & \textbf{Velocity}\\\hline
+0 & $0m \leq X \leq 2m$ & $V = 0m/s$ \\
+0 & $0m \leq X \leq 2m$ & $V \textgreater 1m/s$\\
+1Hz - 9Hz & $1m \leq X \leq 1.9m$  & $0m/s \textless V \leq 1m/s$ \\
+10 & $1.9m \textless X \leq 2m$  & $0m/s \textless V \leq 1m/s$ \\
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
 \section{Unit tests ParkAssistControll}
 \section{Unit tests Pulse Signal}
+
+\begin{table}[H]
+\centering
+\caption{Equivalence classes for unit testing}
+\begin{adjustbox}{width=1\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{lllllll}
+\textbf{Pulse Signal} & \textbf{Position} & \textbf{Velocity}\\\hline
+Zero & {0, 1, 1.5, 1.9, 2} & V = 0m/s oder V > 1m/s\\
+Alternating 0,1 & 1m <= X <= 1.9m  & 0m/s < V <= 1m/s \\
+Continuous & 1.9m < X <= 2m  & 0m/s < V <= 1m/s \\
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+- Alternating pulse signal not possible to test because dependant of time 
 
 \chapter{D10: Development and implementation of a system test environment for ASCET simulation}\label{cha:D10}
 
