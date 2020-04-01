@@ -1,16 +1,18 @@
+%% Parametrize model
 set_param('D6','StopTime','3');
 set_param('D6','Solver',['ode',sprintf('%d',8)]);
 set_param('D6','FixedStep',sprintf('%f',0.001));
 set_param('D6/p','value',sprintf('%f',0.05));
 res = sim('D6','SaveOutput','on','SaveState','on');
 
+%% Simulate and get output
 t = res.tout;
 v = res.yout{1}.Values.Data;
 s = res.yout{2}.Values.Data;
 pulse_frequency = res.yout{3}.Values.Data;
 pulse = res.yout{4}.Values.Data;
 
-
+%% Plot results
 subplot(4,1,1);
 plot(t,v*3.6, 'LineWidth', 1.5);
 set(gca,'FontSize',20)
