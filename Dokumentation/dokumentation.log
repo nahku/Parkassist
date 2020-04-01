@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.17)  1 APR 2020 23:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.17)  2 APR 2020 01:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2169,12 +2169,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--37
 
  []
 
-<images/D2_sim.png, id=149, 1327.96124pt x 356.33125pt>
+<images/D2_sim.png, id=167, 1327.96124pt x 356.33125pt>
 File: images/D2_sim.png Graphic file (type png)
 <use images/D2_sim.png>
 Package pdftex.def Info: images/D2_sim.png  used on input line 41.
 (pdftex.def)             Requested size: 455.24417pt x 122.15689pt.
-<images/D2_plot.jpg, id=150, 2890.8pt x 1704.3675pt>
+<images/D2_plot.jpg, id=168, 2890.8pt x 1704.3675pt>
 File: images/D2_plot.jpg Graphic file (type jpg)
 <use images/D2_plot.jpg>
 Package pdftex.def Info: images/D2_plot.jpg  used on input line 53.
@@ -2195,12 +2195,12 @@ chapter 4.
 [5
 
 ]
-<images/D3_moving_average.jpg, id=180, 2890.8pt x 1704.3675pt>
+<images/D3_moving_average.jpg, id=198, 2890.8pt x 1704.3675pt>
 File: images/D3_moving_average.jpg Graphic file (type jpg)
 <use images/D3_moving_average.jpg>
 Package pdftex.def Info: images/D3_moving_average.jpg  used on input line 106.
 (pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
-<images/D3_Fig_Overview.jpg, id=181, 2890.8pt x 1704.3675pt>
+<images/D3_Fig_Overview.jpg, id=199, 2890.8pt x 1704.3675pt>
 File: images/D3_Fig_Overview.jpg Graphic file (type jpg)
 <use images/D3_Fig_Overview.jpg>
 Package pdftex.def Info: images/D3_Fig_Overview.jpg  used on input line 113.
@@ -2219,7 +2219,7 @@ Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 [7 <./images/D3_Fig_Overview.jpg>]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 143.
-<images/D3_individual_braking.jpg, id=215, 2890.8pt x 1704.3675pt>
+<images/D3_individual_braking.jpg, id=233, 2890.8pt x 1704.3675pt>
 File: images/D3_individual_braking.jpg Graphic file (type jpg)
 <use images/D3_individual_braking.jpg>
 Package pdftex.def Info: images/D3_individual_braking.jpg  used on input line 1
@@ -2230,12 +2230,12 @@ Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
 [8]
-<images/D3_example1.jpg, id=248, 2890.8pt x 1704.3675pt>
+<images/D3_example1.jpg, id=266, 2890.8pt x 1704.3675pt>
 File: images/D3_example1.jpg Graphic file (type jpg)
 <use images/D3_example1.jpg>
 Package pdftex.def Info: images/D3_example1.jpg  used on input line 180.
 (pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
-<images/D3_example2.jpg, id=249, 2890.8pt x 1704.3675pt>
+<images/D3_example2.jpg, id=267, 2890.8pt x 1704.3675pt>
 File: images/D3_example2.jpg Graphic file (type jpg)
 <use images/D3_example2.jpg>
 Package pdftex.def Info: images/D3_example2.jpg  used on input line 187.
@@ -2266,13 +2266,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 238--245
 [13
 
 ]
-<images/D6_Frequency_Computation.png, id=272, 1165.35374pt x 506.89375pt>
+<images/D6_Frequency_Computation.png, id=291, 1165.35374pt x 506.89375pt>
 File: images/D6_Frequency_Computation.png Graphic file (type png)
 <use images/D6_Frequency_Computation.png>
 Package pdftex.def Info: images/D6_Frequency_Computation.png  used on input lin
 e 260.
 (pdftex.def)             Requested size: 455.24417pt x 198.01262pt.
-<images/D6_provide_signal.png, id=274, 1318.9275pt x 540.0175pt>
+<images/D6_provide_signal.png, id=293, 1318.9275pt x 540.0175pt>
 File: images/D6_provide_signal.png Graphic file (type png)
 <use images/D6_provide_signal.png>
 Package pdftex.def Info: images/D6_provide_signal.png  used on input line 275.
@@ -2282,7 +2282,7 @@ Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
 [14 <./images/D6_Frequency_Computation.png>]
-<images/D6_integration.png, id=282, 1744.5175pt x 429.605pt>
+<images/D6_integration.png, id=300, 1744.5175pt x 429.605pt>
 File: images/D6_integration.png Graphic file (type png)
 <use images/D6_integration.png>
 Package pdftex.def Info: images/D6_integration.png  used on input line 284.
@@ -2293,50 +2293,140 @@ Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 [15 <./images/D6_provide_signal.png> <./images/D6_integration.png>]
 chapter 8.
+<images/Blockdiagramm_car.png, id=307, 555.07375pt x 238.39063pt>
+File: images/Blockdiagramm_car.png Graphic file (type png)
+<use images/Blockdiagramm_car.png>
+Package pdftex.def Info: images/Blockdiagramm_car.png  used on input line 294.
+(pdftex.def)             Requested size: 455.24417pt x 195.51794pt.
+<images/Blockdiagramm_drivingmodel.png, id=308, 916.42375pt x 242.9075pt>
+File: images/Blockdiagramm_drivingmodel.png Graphic file (type png)
+<use images/Blockdiagramm_drivingmodel.png>
+Package pdftex.def Info: images/Blockdiagramm_drivingmodel.png  used on input l
+ine 301.
+(pdftex.def)             Requested size: 455.24417pt x 120.66766pt.
+<images/Blockdiagramm_ParkAssistController.png, id=309, 565.11125pt x 220.32312
+pt>
+File: images/Blockdiagramm_ParkAssistController.png Graphic file (type png)
+<use images/Blockdiagramm_ParkAssistController.png>
+Package pdftex.def Info: images/Blockdiagramm_ParkAssistController.png  used on
+ input line 308.
+(pdftex.def)             Requested size: 455.24417pt x 177.49252pt.
 [16
 
-]
+ <./images/Blockdiagramm_car.PNG> <./images/Blockdiagramm_drivingmodel.PNG>]
+<images/Blockdiagramm_ParkAssistControllerClass.png, id=316, 484.81125pt x 81.3
+0376pt>
+File: images/Blockdiagramm_ParkAssistControllerClass.png Graphic file (type png
+)
+<use images/Blockdiagramm_ParkAssistControllerClass.png>
+Package pdftex.def Info: images/Blockdiagramm_ParkAssistControllerClass.png  us
+ed on input line 315.
+(pdftex.def)             Requested size: 455.24417pt x 76.3486pt.
+
+Overfull \vbox (7.89444pt too high) has occurred while \output is active []
+
+
+[17 <./images/Blockdiagramm_ParkAssistController.PNG> <./images/Blockdiagramm_P
+arkAssistControllerClass.PNG>]
 chapter 9.
-[17
 
-]
-chapter 10.
+Underfull \hbox (badness 10000) in paragraph at lines 322--326
 
-LaTeX Warning: Command \textgreater invalid in math mode on input line 306.
+ []
 
+<images/Blockdiagramm_FrequencyComputation.png, id=323, 581.67313pt x 156.08313
+pt>
+File: images/Blockdiagramm_FrequencyComputation.png Graphic file (type png)
+<use images/Blockdiagramm_FrequencyComputation.png>
+Package pdftex.def Info: images/Blockdiagramm_FrequencyComputation.png  used on
+ input line 329.
+(pdftex.def)             Requested size: 455.24417pt x 122.15874pt.
+<images/Blockdiagramm_FrequencyComputationClass.png, id=324, 518.93875pt x 272.
+01625pt>
+File: images/Blockdiagramm_FrequencyComputationClass.png Graphic file (type png
+)
+<use images/Blockdiagramm_FrequencyComputationClass.png>
+Package pdftex.def Info: images/Blockdiagramm_FrequencyComputationClass.png  us
+ed on input line 338.
+(pdftex.def)             Requested size: 455.24417pt x 238.64037pt.
 
-LaTeX Warning: Command \textgreater invalid in math mode on input line 324.
+Underfull \hbox (badness 10000) in paragraph at lines 334--341
 
-
-LaTeX Warning: Command \textless invalid in math mode on input line 325.
-
-
-LaTeX Warning: Command \textless invalid in math mode on input line 326.
-
-
-LaTeX Warning: Command \textless invalid in math mode on input line 326.
+ []
 
 [18
+
+ <./images/Blockdiagramm_FrequencyComputation.PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 343--344
+
+ []
+
+<images/Blockdiagramm_PulseSignalClass.png, id=331, 663.98062pt x 299.1175pt>
+File: images/Blockdiagramm_PulseSignalClass.png Graphic file (type png)
+<use images/Blockdiagramm_PulseSignalClass.png>
+Package pdftex.def Info: images/Blockdiagramm_PulseSignalClass.png  used on inp
+ut line 347.
+(pdftex.def)             Requested size: 455.24417pt x 205.08594pt.
+
+Overfull \vbox (7.89444pt too high) has occurred while \output is active []
+
+
+[19 <./images/Blockdiagramm_FrequencyComputationClass.PNG> <./images/Blockdiagr
+amm_PulseSignalClass.PNG>]
+chapter 10.
+
+Underfull \hbox (badness 10000) in paragraph at lines 355--358
+
+ []
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 367.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 385.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 386.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 387.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 387.
+
+[20
 
 ]
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
-[19]
+[21]
 chapter 11.
-[20
+<images/Blockdiagramm_settings.png, id=346, 507.8975pt x 86.3225pt>
+File: images/Blockdiagramm_settings.png Graphic file (type png)
+<use images/Blockdiagramm_settings.png>
+Package pdftex.def Info: images/Blockdiagramm_settings.png  used on input line 
+419.
+(pdftex.def)             Requested size: 455.24417pt x 77.37602pt.
+<images/Blockdiagramm_stopwatch.png, id=347, 297.11pt x 108.405pt>
+File: images/Blockdiagramm_stopwatch.png Graphic file (type png)
+<use images/Blockdiagramm_stopwatch.png>
+Package pdftex.def Info: images/Blockdiagramm_stopwatch.png  used on input line
+ 426.
+(pdftex.def)             Requested size: 455.24417pt x 166.11052pt.
+[22
 
-]
+ <./images/Blockdiagramm_settings.PNG> <./images/Blockdiagramm_stopwatch.PNG>]
 chapter 12.
-[21
+[23
 
 ]
 chapter 13.
-[22
+[24
 
 ]
 chapter 14.
-) [23
+) [25
 
 ]
 
@@ -2359,10 +2449,10 @@ Package logreq Info: Writing requests to 'dokumentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49892 strings out of 492649
- 927724 string characters out of 6133384
- 1714812 words of memory out of 5000000
- 52736 multiletter control sequences out of 15000+600000
+ 49957 strings out of 492649
+ 930118 string characters out of 6133384
+ 1715483 words of memory out of 5000000
+ 52781 multiletter control sequences out of 15000+600000
  595047 words of font info for 96 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  67i,12n,106p,10400b,2269s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2379,10 +2469,10 @@ r8.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive
 /2018/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2018/texmf-dist
 /fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/publi
 c/lm/lmsy8.pfb>
-Output written on dokumentation.pdf (30 pages, 2116237 bytes).
+Output written on dokumentation.pdf (32 pages, 2276445 bytes).
 PDF statistics:
- 485 PDF objects out of 1000 (max. 8388607)
- 419 compressed objects within 5 object streams
- 129 named destinations out of 1000 (max. 500000)
- 19249 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 532 PDF objects out of 1000 (max. 8388607)
+ 446 compressed objects within 5 object streams
+ 140 named destinations out of 1000 (max. 500000)
+ 19294 words of extra memory for PDF output out of 20736 (max. 10000000)
 
