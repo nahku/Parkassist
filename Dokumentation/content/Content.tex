@@ -351,7 +351,12 @@ todo neu
 \chapter{D8: Implementation of pulse signal in ASCET}\label{cha:D8}
 
 \chapter{D9: Implementation of unit tests for ASCET model parts}\label{cha:D9}
-- modular design for unit tests \\
+This section covers the unit tests of all components of the ASCET model.
+The components were designed in a modular way to allow easy unit testing.
+Also wrapper classes, passing messages into the components, are used to make it possible to unit test the components.
+This is the only functionality the wrapper classes include.
+That is necessary to make sure that no new bugs are introduced by the wrapper classes, because they can not be unit tested.
+
 - pulse signal, drive model not possible to unit test because of time component
 
 \begin{table}[H]
