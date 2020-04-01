@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.17)  1 APR 2020 23:55
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.8)  1 APR 2020 23:55
+>>>>>>> nahku
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1825,9 +1829,6 @@ File: german.lbx 2018/03/04 v3.11 biblatex localization (PK/MW)
 ))
 (./dokumentation.aux
 
-LaTeX Warning: Label `fig:ConceptArchitectureOverview' multiply defined.
-
-
 LaTeX Warning: Label `sec:D6Frequency' multiply defined.
 
 )
@@ -2022,6 +2023,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 Package tocbasic Info: character protrusion at toc deactivated on input line 42
 .
+<<<<<<< HEAD
  (./dokumentation.toc
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 20.
 
@@ -2031,27 +2033,37 @@ File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Font Info:    Try loading font information for OML+lmm on input line 20.
 
 (c:/texlive/2018/texmf-dist/tex/latex/lm/omllmm.fd
+=======
+
+(./dokumentation.toc
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 18.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 18.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
+>>>>>>> nahku
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 20.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 18.
 
 
 (c:/texlive/2018/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 20.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 18.
 
 
 (c:/texlive/2018/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 20.
+(Font)              <12> on input line 18.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 20.
+(Font)              <8> on input line 18.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 20.
-LaTeX Font Info:    Try loading font information for U+msa on input line 20.
+(Font)              <6> on input line 18.
+LaTeX Font Info:    Try loading font information for U+msa on input line 18.
 
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -2059,7 +2071,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (c:/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 20.
+LaTeX Font Info:    Try loading font information for U+msb on input line 18.
 
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -2147,8 +2159,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.9 \chapter
-            {D1: Time estimate based on three point estimation}\label{cha:D1}
+l.10 \chapter
+             {D1: Time estimate based on three point estimation}\label{cha:D1}
 [1
 
 
@@ -2159,11 +2171,16 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
+<<<<<<< HEAD
 l.22 \chapter
+=======
+l.24 \chapter
+>>>>>>> nahku
              {D2: Feasibility study}\label{cha:D2} [2
 
 ]
 chapter 3.
+<<<<<<< HEAD
 
 Underfull \hbox (badness 10000) in paragraph at lines 32--37
 
@@ -2179,22 +2196,54 @@ File: images/D2_plot.jpg Graphic file (type jpg)
 <use images/D2_plot.jpg>
 Package pdftex.def Info: images/D2_plot.jpg  used on input line 53.
 (pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
+=======
+<images/D2_sim.png, id=158, 1305.87875pt x 423.5825pt>
+File: images/D2_sim.png Graphic file (type png)
+<use images/D2_sim.png>
+Package pdftex.def Info: images/D2_sim.png  used on input line 50.
+(pdftex.def)             Requested size: 455.24417pt x 147.66147pt.
+>>>>>>> nahku
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
+<<<<<<< HEAD
 l.57 
+=======
+l.54 
+>>>>>>> nahku
       [3
 
- <./images/D2_sim.png>]
+]
+
+LaTeX Warning: Reference `lst:lst:D2_matlab' on page 4 undefined on input line 
+64.
+
+
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
-[4 <./images/D2_plot.jpg>]
+[4 <./images/D2_sim.png>]
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 92.
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+<images/D2_plot.jpg, id=188, 2890.8pt x 1704.3675pt>
+File: images/D2_plot.jpg Graphic file (type jpg)
+<use images/D2_plot.jpg>
+Package pdftex.def Info: images/D2_plot.jpg  used on input line 103.
+(pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
+
+Overfull \vbox (7.89444pt too high) has occurred while \output is active []
+
+
+[5 <./images/D2_plot.jpg>]
 chapter 4.
-[5
+[6
 
 ]
+<<<<<<< HEAD
 <images/D3_moving_average.jpg, id=180, 2890.8pt x 1704.3675pt>
 File: images/D3_moving_average.jpg Graphic file (type jpg)
 <use images/D3_moving_average.jpg>
@@ -2204,31 +2253,56 @@ Package pdftex.def Info: images/D3_moving_average.jpg  used on input line 106.
 File: images/D3_Fig_Overview.jpg Graphic file (type jpg)
 <use images/D3_Fig_Overview.jpg>
 Package pdftex.def Info: images/D3_Fig_Overview.jpg  used on input line 113.
+=======
+<images/D3_moving_average.jpg, id=214, 2890.8pt x 1704.3675pt>
+File: images/D3_moving_average.jpg Graphic file (type jpg)
+<use images/D3_moving_average.jpg>
+Package pdftex.def Info: images/D3_moving_average.jpg  used on input line 156.
+(pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
+<images/D3_Fig_Overview.jpg, id=215, 2890.8pt x 1704.3675pt>
+File: images/D3_Fig_Overview.jpg Graphic file (type jpg)
+<use images/D3_Fig_Overview.jpg>
+Package pdftex.def Info: images/D3_Fig_Overview.jpg  used on input line 163.
+>>>>>>> nahku
 (pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
 
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
-[6 <./images/D3_moving_average.jpg>]
+[7 <./images/D3_moving_average.jpg>]
 Package acronym Info: Label `acro:NaN' newly defined as it shall be overridden
+<<<<<<< HEAD
 although it is yet undefined on input line 120.
+=======
+although it is yet undefined on input line 170.
+>>>>>>> nahku
 
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
-[7 <./images/D3_Fig_Overview.jpg>]
+[8 <./images/D3_Fig_Overview.jpg>]
 LaTeX Font Info:    External font `lmex10' loaded for size
+<<<<<<< HEAD
 (Font)              <5> on input line 143.
 <images/D3_individual_braking.jpg, id=215, 2890.8pt x 1704.3675pt>
 File: images/D3_individual_braking.jpg Graphic file (type jpg)
 <use images/D3_individual_braking.jpg>
 Package pdftex.def Info: images/D3_individual_braking.jpg  used on input line 1
 73.
+=======
+(Font)              <5> on input line 193.
+<images/D3_individual_braking.jpg, id=248, 2890.8pt x 1704.3675pt>
+File: images/D3_individual_braking.jpg Graphic file (type jpg)
+<use images/D3_individual_braking.jpg>
+Package pdftex.def Info: images/D3_individual_braking.jpg  used on input line 2
+23.
+>>>>>>> nahku
 (pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
 
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
+<<<<<<< HEAD
 [8]
 <images/D3_example1.jpg, id=248, 2890.8pt x 1704.3675pt>
 File: images/D3_example1.jpg Graphic file (type jpg)
@@ -2239,33 +2313,50 @@ Package pdftex.def Info: images/D3_example1.jpg  used on input line 180.
 File: images/D3_example2.jpg Graphic file (type jpg)
 <use images/D3_example2.jpg>
 Package pdftex.def Info: images/D3_example2.jpg  used on input line 187.
+=======
+[9]
+<images/D3_example1.jpg, id=282, 2890.8pt x 1704.3675pt>
+File: images/D3_example1.jpg Graphic file (type jpg)
+<use images/D3_example1.jpg>
+Package pdftex.def Info: images/D3_example1.jpg  used on input line 230.
+(pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
+<images/D3_example2.jpg, id=283, 2890.8pt x 1704.3675pt>
+File: images/D3_example2.jpg Graphic file (type jpg)
+<use images/D3_example2.jpg>
+Package pdftex.def Info: images/D3_example2.jpg  used on input line 237.
+>>>>>>> nahku
 (pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
 
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
-[9 <./images/D3_individual_braking.jpg> <./images/D3_example1.jpg>]
+[10 <./images/D3_individual_braking.jpg> <./images/D3_example1.jpg>]
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
-[10 <./images/D3_example2.jpg>]
+[11 <./images/D3_example2.jpg>]
 chapter 5.
-[11
+[12
 
 ]
 chapter 6.
-[12
+[13
 
 ]
 chapter 7.
 
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 238--245
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 288--295
+>>>>>>> nahku
 
  []
 
-[13
+[14
 
 ]
+<<<<<<< HEAD
 <images/D6_Frequency_Computation.png, id=272, 1165.35374pt x 506.89375pt>
 File: images/D6_Frequency_Computation.png Graphic file (type png)
 <use images/D6_Frequency_Computation.png>
@@ -2277,30 +2368,61 @@ File: images/D6_provide_signal.png Graphic file (type png)
 <use images/D6_provide_signal.png>
 Package pdftex.def Info: images/D6_provide_signal.png  used on input line 275.
 (pdftex.def)             Requested size: 455.24417pt x 186.38863pt.
+=======
+<images/D6_Frequency_Computation.png, id=306, 1165.35374pt x 506.89375pt>
+File: images/D6_Frequency_Computation.png Graphic file (type png)
+<use images/D6_Frequency_Computation.png>
+Package pdftex.def Info: images/D6_Frequency_Computation.png  used on input lin
+e 310.
+(pdftex.def)             Requested size: 455.24417pt x 198.01262pt.
+<images/D6_provide_signal.png, id=308, 1317.92375pt x 539.01375pt>
+File: images/D6_provide_signal.png Graphic file (type png)
+<use images/D6_provide_signal.png>
+Package pdftex.def Info: images/D6_provide_signal.png  used on input line 325.
+(pdftex.def)             Requested size: 455.24417pt x 186.19023pt.
+>>>>>>> nahku
 
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
+<<<<<<< HEAD
 [14 <./images/D6_Frequency_Computation.png>]
 <images/D6_integration.png, id=282, 1744.5175pt x 429.605pt>
 File: images/D6_integration.png Graphic file (type png)
 <use images/D6_integration.png>
 Package pdftex.def Info: images/D6_integration.png  used on input line 284.
+=======
+[15 <./images/D6_Frequency_Computation.png>]
+<images/D6_integration.png, id=315, 1744.5175pt x 429.605pt>
+File: images/D6_integration.png Graphic file (type png)
+<use images/D6_integration.png>
+Package pdftex.def Info: images/D6_integration.png  used on input line 334.
+>>>>>>> nahku
 (pdftex.def)             Requested size: 455.24417pt x 112.10764pt.
+<images/D6_result.jpg, id=316, 2890.8pt x 1704.3675pt>
+File: images/D6_result.jpg Graphic file (type jpg)
+<use images/D6_result.jpg>
+Package pdftex.def Info: images/D6_result.jpg  used on input line 344.
+(pdftex.def)             Requested size: 455.24417pt x 268.38728pt.
 
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 
-[15 <./images/D6_provide_signal.png> <./images/D6_integration.png>]
+[16 <./images/D6_provide_signal.png> <./images/D6_integration.png>]
+Overfull \vbox (7.89444pt too high) has occurred while \output is active []
+
+
+[17 <./images/D6_result.jpg>]
 chapter 8.
-[16
+[18
 
 ]
 chapter 9.
-[17
+[19
 
 ]
 chapter 10.
+<<<<<<< HEAD
 
 LaTeX Warning: Command \textgreater invalid in math mode on input line 306.
 
@@ -2317,6 +2439,9 @@ LaTeX Warning: Command \textless invalid in math mode on input line 326.
 LaTeX Warning: Command \textless invalid in math mode on input line 326.
 
 [18
+=======
+[20
+>>>>>>> nahku
 
 ]
 Overfull \vbox (7.89444pt too high) has occurred while \output is active []
@@ -2324,6 +2449,7 @@ Overfull \vbox (7.89444pt too high) has occurred while \output is active []
 
 [19]
 chapter 11.
+<<<<<<< HEAD
 [20
 
 ]
@@ -2337,6 +2463,21 @@ chapter 13.
 ]
 chapter 14.
 ) [23
+=======
+[21
+
+]
+chapter 12.
+[22
+
+]
+chapter 13.
+[23
+
+]
+chapter 14.
+) [24
+>>>>>>> nahku
 
 ]
 
@@ -2352,6 +2493,9 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 89.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 89.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package logreq Info: Writing requests to 'dokumentation.run.xml'.
@@ -2359,6 +2503,7 @@ Package logreq Info: Writing requests to 'dokumentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  49892 strings out of 492649
  927724 string characters out of 6133384
  1714812 words of memory out of 5000000
@@ -2385,4 +2530,34 @@ PDF statistics:
  419 compressed objects within 5 object streams
  129 named destinations out of 1000 (max. 500000)
  19249 words of extra memory for PDF output out of 20736 (max. 10000000)
+=======
+ 52051 strings out of 492616
+ 966085 string characters out of 6129481
+ 1760499 words of memory out of 5000000
+ 54886 multiletter control sequences out of 15000+600000
+ 598023 words of font info for 105 fonts, out of 8000000 for 9000
+ 1143 hyphenation exceptions out of 8191
+ 67i,12n,106p,9111b,3994s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/lo
+cal/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texliv
+e/2019/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2019/texmf-
+dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc
+/dvips/lm/lm-rm.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/l
+mbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><
+/usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local
+/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/20
+19/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2019/texmf-di
+st/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
+pe1/public/lm/lmr6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/l
+m/lmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmro12.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texli
+ve/2019/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
+Output written on dokumentation.pdf (31 pages, 2313643 bytes).
+PDF statistics:
+ 539 PDF objects out of 1000 (max. 8388607)
+ 471 compressed objects within 5 object streams
+ 152 named destinations out of 1000 (max. 500000)
+ 19798 words of extra memory for PDF output out of 20736 (max. 10000000)
+>>>>>>> nahku
 

@@ -2,7 +2,8 @@
 
 \chapter{Introduction}\label{cha:Introduction}
 ??
-matlab version
+matlab version Matlba R2019b
+ASCET ...
 ascet version
 
 todo describe block diagram vs script for every necessary requirement
@@ -20,39 +21,87 @@ D1 & .& .& .& .& .&\\
 \label{tbl:ConceptTPTPProductionSymbols}
 \end{table}
 \chapter{D2: Feasibility study}\label{cha:D2}
-The aim of the feasibility study is to analyse whether the introduced model in section \ref{cha:Introduction} based on the given formulas todo. 
-
+The aim of the feasibility study is to analyse whether it is possible to realise a smooth stop with the introduced model and parameters based on the given formulas
 \begin{equation}
 	\frac{\partial v}{\partial t} = -c-b*p
 \end{equation}
 \begin{equation}
 	\frac{\partial x}{\partial t} = v
 \end{equation}
+with $c = 1.5 m/s^2$ and $b = 10 m/s^2$.
+For that a Simulink model is created representing the model above in the next section.
+After that a test scenario to test the feasibility is described and in section \ref{sec:D2_results} the results of the study are outlined.
 
-- Minimale Geschwindigkeit 0,29km/h beachten -> in m/s umrechnen \\
-- included Switch -> wenn Geschwindigkeit kleiner 0,29 folgt daraus Geschwindigkeit = 0 \\
--otherwise car would reverse
-- Screenshot Simulink Modell und Ergebnis\\
-- R5 auch beachtet \\
-
-
+\section{Simulink model}\label{sec:D2_model}
+Figure \ref{fig:D2_Sim} shows the simulink model representing the differential equations above.
+The parameter $p$ is configured on execution of the simulation in Matlab.
+The initial velocity $v_0$ is set to 10 km/h, corresponding to the scenario, that should be tested.
+Since the output of the integrator is in m/s, $v_0$ needs to be divided by $3.6$ to convert $v_0$ from km/h to m/s.
+The minimal velocity of 0.29 km/h from requirement R5 has been included in the model.
+Otherwise, the car would not come to a full stop and the velocity would become negative eventually.
+This is realised by a switch, that sets velocity to zero if the computed velocity is below $0.29$ km/h, which corresponds to approximately $0.0806$ m/s.
+The velocity is integrated to compute the location, following the second differential equation.
+The output parameters acceleration (a), velocity (v) and travelled distance (s) are output using the out block.
+Input parameters are input as constants.
+In this preliminary test a constant p is used, which is not time-dependent.
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D2_sim.png}
 \caption{Simulink model of the differential equations}
-\label{fig:ConceptArchitectureOverview}
+\label{fig:D2_Sim}
 \end{figure}
 
--result with constant 5\% brake pressure
--stops before 2m
--constant brake pressure not human like but shows that it is possible to stop before 2 m
--brake function can be changed to human like behaviour
+\section{Test scenario}\label{sec:D2_scenario}
+The goal of this scenario is to check whether it is possible, with the given model, to realize a smooth stop with a position < 2 m.
+The idea is to demonstrate, that a full stop before 2 m can be realised with a reasonable brake pedal pressure and a reasonable deceleration.
+If, for example a stop before 2 m could only be realised with 100 \% brake pressure, that would mean that a smooth stop can not be realised.\\
+It is not necessary to realise a human-like smooth stop, but to show that that is possible.
+Therefore the proposed test scenario is to run the model and find a reasonable small brake pressure where the car comes to a full stop with a position < 2 m.
+This would show the feasibility of the task.
+Creating a human-like brake profile where the brake parameter p can be adjusted over time is not an objective of this feasibility study.\\
+The execution of this scenario is automated using a matlab script, which parametrizes the model and displays the outputs.
+Listing \ref{lst:lst:D2_matlab} shows the script that executes the simulation and stores the results.
+The code to create the result plots has been excluded.
+In lines one to eight the simulation is parametrized.
+A stop time of 2 seconds is chosen because the car will come to a stop before.
 
+todo solver begründen
+
+The constant brake pressure is set to 5 \%.
+This value results in a stop before the car traveled 2 meters of distance and is also reasonably small.
+
+\begin{lstlisting}[language=Matlab,basicstyle=\scriptsize, caption= Execution of the feasibility test,label= lst:D2_matlab]
+%% Parametrize Model
+set_param('D2','StopTime','2');
+%set solver
+set_param('D2','Solver',['ode',sprintf('%d',8)]);
+%set simulation step size
+set_param('D2','FixedStep',sprintf('%f',0.01));
+%set brake pressure parameter
+set_param('D2/p','value',sprintf('%f',0.05));
+
+
+%% Simulate and get output
+res = sim('D2','SaveOutput','on','SaveState','on');
+t = res.tout;
+v = res.yout{1}.Values.Data;
+s = res.yout{2}.Values.Data;
+a = res.yout{3}.Values.Data;
+%convert velocity to km/h
+v = v*3.6;
+\end{lstlisting}
+\section{Results}\label{sec:D2_results}
+The following figure \ref{fig:D2_Result} shows the simulation results with a constant brake pressure of 5\%. This results in a constant deceleration of -2 m/$s^2$. (todo acceleration remains the same but velocity does not increase)
+The velocity linearly decreases from $v_0 = 10$ km/h to zero (except the decrease from minimal velocity to zero, which was expected).
+The third plot shows the covered distance of the car, which is clearly under the 2 m mark.
+Therefore with a constant brake pressure of 5 \% the car can be stopped before reaching 2 m travelled distance with an acceptable deceleration of 2 m/$s^2$.\\
+These simulation results demonstrate show that it should be possible, with variation of the brake pressure over time, to realise a smooth stop with a human-like brake profile.
+todo vllt mehr begründen
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D2_plot.jpg}
 \caption{Simulation results of feasibility study}
-\label{fig:ConceptArchitectureOverview}
+\label{fig:D2_Result}
 \end{figure}
 
 \chapter{D3: Analysis of human velocity profile}\label{cha:D3}
@@ -278,12 +327,22 @@ If that is not the case ... todo
 \end{figure}
 
 \section{Integration into car model}\label{sec:D6Frequency}
-Using subsystems for the developed components makes it easy to include into and extend the existing model, which can be seen in figure \ref{fig:D6_Integation}
+Using subsystems for the developed components makes it easy to include into and extend the existing model, which can be seen in figure \ref{fig:D6_Integation}.
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D6_integration.png}
 \caption{Simulink model of the car including the pulse signal}
 \label{fig:D6_Integation}
+\end{figure}
+
+\section{Signal demonstration}\label{sec:D6_SignalDemonstration}
+
+todo neu
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D6_result.jpg}
+\caption{Demonstration of pulse signal}
+\label{fig:D6_Result}
 \end{figure}
 
 \chapter{D7: Transfer of Simulink model to ASCET}\label{cha:D7}

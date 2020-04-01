@@ -11,6 +11,7 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
+<<<<<<< HEAD
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Simulink model of the differential equations\relax }}{3}{figure.caption.7}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Simulation results of feasibility study\relax }}{4}{figure.caption.8}
@@ -26,6 +27,23 @@
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Human velocity profile extracted braking manoeuvre 1\relax }}{9}{figure.caption.13}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Human velocity profile extracted braking manoeuvre 2\relax }}{10}{figure.caption.14}
+=======
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Simulink model of the differential equations\relax }}{4}{figure.caption.7}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Simulation results of feasibility study\relax }}{5}{figure.caption.8}% 
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Human velocity profile car acceleration\relax }}{7}{figure.caption.9}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Smoothend data from human velocity profile\relax }}{8}{figure.caption.10}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Human velocity profile extracted individual braking manoeuvres\relax }}{10}{figure.caption.12}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Human velocity profile extracted braking manoeuvre 1\relax }}{10}{figure.caption.13}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Human velocity profile extracted braking manoeuvre 2\relax }}{11}{figure.caption.14}% 
+>>>>>>> nahku
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
@@ -33,11 +51,21 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
+<<<<<<< HEAD
 \contentsline {figure}{\numberline {7.1}{\ignorespaces Simulink model of the frequency computation subsystem\relax }}{14}{figure.caption.15}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {7.2}{\ignorespaces Simulink model of the pulse generation subsystem\relax }}{15}{figure.caption.16}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {7.3}{\ignorespaces Simulink model of the car including the pulse signal\relax }}{15}{figure.caption.17}
+=======
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Simulink model of the frequency computation subsystem\relax }}{15}{figure.caption.15}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Simulink model of the pulse generation subsystem\relax }}{16}{figure.caption.16}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Simulink model of the car including the pulse signal\relax }}{16}{figure.caption.17}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Demonstration of pulse signal\relax }}{17}{figure.caption.18}% 
+>>>>>>> nahku
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
