@@ -318,7 +318,14 @@ This component provides a pulse signal with a variable frequency input.
 The input is the output of the before described component.
 Therefore if the input is 10, a continuous signal should be output.
 This is realised by the if-condition, which, if the input signal is 10 provides a continuous high output.\\
-If that is not the case ... todo
+If that is not the case the pulse signal is generated.
+The frequency is the input to the integrator.
+The integrator has a reset input port and will be reset after each period.
+For each period the output of integrator will start at 0 and will go up to 1.
+Until the output reaches 0.5 a high pulse will be output (50 \% duty cycle).
+This is the purpose of the less or equal 0.5 check.
+If the output of the integrator is greater that 0.5 a low pulse is output.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D6_provide_signal.png}
@@ -355,45 +362,21 @@ This section covers the unit tests of all components of the ASCET model.
 The components were designed in a modular way to allow easy unit testing.
 Also wrapper classes, passing messages into the components, are used to make it possible to unit test the components.
 This is the only functionality the wrapper classes include.
-That is necessary to make sure that no new bugs are introduced by the wrapper classes, because they can not be unit tested.
+That is necessary to make sure that no new bugs are introduced by the wrapper classes, because they can not be unit tested.\\
+The unit tests are bundled in a package called $test$ in the ASCET project. The assertLib is imported for the assertions that are used in the unit tests. The unit tests are grouped by component with a static test class for each component. One test case corresponds to one method within the unit test classes.\\
+
+Test cases are derived by analysing the requirements and finding equivalence classes.
 
 - pulse signal, drive model not possible to unit test because of time component
 
-\begin{table}[H]
-\centering
-\caption{Equivalence classes for unit testing}
-\begin{adjustbox}{width=1\textwidth, center=\textwidth}
-\renewcommand{\arraystretch}{1}
-\begin{tabular}{lllllll}
-\textbf{Status ParkAssist} & \textbf{Position} & \textbf{Velocity}\\\hline
-Off & $X \in [0,2]$ & $V = 0m/s$ \\
-Off & $X \in [0,2]$ & $V \textgreater 1m/s$ \\
-On & {1, 1.5, 1.9} & 0m/s < V <= 1m/s \\
-\end{tabular}
-\end{adjustbox}
-\end{table}
-
-\section{Unit tests Frequency Computation}
+\section{Unit tests for Frequency Computation}
 
 The frequency computation class 
 
-\begin{table}[H]
-\centering
-\caption{Equivalence classes for unit testing of frequency computation class}
-\begin{adjustbox}{width=1\textwidth, center=\textwidth}
-\renewcommand{\arraystretch}{1}
-\begin{tabular}{lllllll}
-\textbf{Output} & \textbf{Position} & \textbf{Velocity}\\\hline
-0 & $0m \leq X \leq 2m$ & $V = 0m/s$ \\
-0 & $0m \leq X \leq 2m$ & $V \textgreater 1m/s$\\
-1Hz - 9Hz & $1m \leq X \leq 1.9m$  & $0m/s \textless V \leq 1m/s$ \\
-10 & $1.9m \textless X \leq 2m$  & $0m/s \textless V \leq 1m/s$ \\
-\end{tabular}
-\end{adjustbox}
-\end{table}
 
-\section{Unit tests ParkAssistControll}
-\section{Unit tests Pulse Signal}
+\section{Unit tests for ParkAssistControl}
+
+\section{Unit tests for Pulse Signal}
 
 \begin{table}[H]
 \centering
