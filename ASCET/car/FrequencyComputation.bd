@@ -23,12 +23,10 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	simpleIdentifier resources.CarMessages.pulse_signal at (1221, 175) {
+	simpleIdentifier resources.CarMessages.pulse_signal at (1151, 175) {
 		label at (0, -1)
-		inPin connection_18 {
-			bendpoints (100, 0), (100, -10)
-		}
-		sequenceCall {
+		inPin connection_18
+		sequenceCall at (10, -24) {
 			inPin connection_17
 		}
 	}
@@ -45,7 +43,7 @@ blockdiagramSpecification Main {
 			}
 		}
 	}
-	simpleIdentifier resources.TimeTick.dTs at (691, 235) {
+	simpleIdentifier resources.TimeTick.dTs at (691, 225) {
 		label at (0, -1)
 		inPin outPin {
 			connection_16
@@ -54,12 +52,10 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	complexIdentifier PulseSignalClass_instance at (821, 181) size (19, 23) {
+	complexIdentifier PulseSignalClass_instance at (871, 171) size (19, 23) {
 		label at (0, 1)
 		methodCall car.PulseSignalClass.calc {
-			argumentPin frequency at (left, 0) connection_15 {
-				bendpoints (120, 0)
-			}
+			argumentPin frequency at (left, 0) connection_15
 			argumentPin dTs at (left, 5) connection_16
 			returnPin at (right, 0) {
 				connection_18

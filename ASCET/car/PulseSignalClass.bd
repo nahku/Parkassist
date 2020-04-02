@@ -63,7 +63,7 @@ blockdiagramSpecification Main {
 		label at (-100, 9)
 		inPin connection_15
 		outPin {
-			connection_17, connection_23, connection_16
+			connection_17, connection_49, connection_16
 		}
 		sequenceCall at (-10, -34) {
 			inPin connection_14
@@ -101,16 +101,9 @@ blockdiagramSpecification Main {
 			connection_21
 		}
 	}
-	greaterOrEqual at (761, 326) {
-		inPin connection_23
-		inPin connection_22
-		outPin {
-			connection_29
-		}
-	}
 	literal Numeric "0.5" at (691, 343) size (49, 0) {
 		outPin {
-			connection_22
+			connection_48
 		}
 	}
 	literal Numeric "1.0" at (921, 303) size (49, 0) {
@@ -124,7 +117,7 @@ blockdiagramSpecification Main {
 		}
 	}
 	ifElse at (821, 281) {
-		inPin connection_29 {
+		inPin connection_50 {
 			bendpoints (10, 0), (10, -50)
 		}
 		ifControlFlowOutPin {
@@ -220,6 +213,13 @@ blockdiagramSpecification Main {
 		}
 		sequenceCall {
 			inPin
+		}
+	}
+	less at (751, 326) {
+		inPin connection_49
+		inPin connection_48
+		outPin {
+			connection_50
 		}
 	}
 }
