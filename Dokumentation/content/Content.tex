@@ -430,28 +430,71 @@ Test cases are derived by analysing the requirements and finding equivalence cla
 - pulse signal, drive model not possible to unit test because of time component
 - Messages erklären\\
 
-\section{Unit tests for Frequency Computation}
-
-The frequency computation class 
-
-
 \section{Unit tests for ParkAssistControl}
 
-\section{Unit tests for Pulse Signal}
-
+\section{Unit tests for pulse signal frequency generation}
 \begin{table}[H]
 \centering
-\caption{Equivalence classes for unit testing}
+\caption{Equivalence classes for unit testing pulse signal frequency generation}
 \begin{adjustbox}{width=1\textwidth, center=\textwidth}
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{lllllll}
-\textbf{Pulse Signal} & \textbf{Position} & \textbf{Velocity}\\\hline
-Zero & {0, 1, 1.5, 1.9, 2} & V = 0m/s oder V > 1m/s\\
-Alternating 0,1 & 1m <= X <= 1.9m  & 0m/s < V <= 1m/s \\
-Continuous & 1.9m < X <= 2m  & 0m/s < V <= 1m/s \\
+\textbf{Position} & \textbf{Velocity} & \textbf{Pulse Signal} \\\hline
+{0, 1, 1.5, 1.9, 2} & V = 0m/s oder V > 1m/s & Zero\\
+1m <= X <= 1.9m  & 0m/s < V <= 1m/s & Alternating 0,1\\
+1.9m < X <= 2m  & 0m/s < V <= 1m/s &Continuous
 \end{tabular}
 \end{adjustbox}
 \end{table}
+
+\begin{table}[H]
+\centering
+\caption{Unit test test cases pulse signal frequency generation}
+\begin{adjustbox}{width=1\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{llll}
+\textbf{Test case name}               & \textbf{Velocity {[}m/s{]}} & \textbf{Position {[}m{]}} & \textbf{Expected frequency} \\ \hline
+continuousPulse                       & 0.5                         & 1.91                      & 10                                    \\
+noFrequencyBecauseVelocityHigh        & 1.5                         & 1                         & 1                                     \\
+noFrequencyBecauseVelocityZero        & 0                           & 1.8                       & 0                                     \\
+noFrequencyBecausPosition             & 0.9                         & 0.9                       & 0                                     \\
+noFrequencyBecauseVelocityAndPosition & 1.1                         & 0.9                       & 0                                     \\
+frequencyLow                          & 1.0                         & 1.0                       & 1                                     \\
+frequencyHigh                         & 1.0                         & 1.9                       & 9                                     \\
+frequencyMid                          & 1.0                         & 1.5                       & 5.44 < result \textless 5.45 
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\section{Unit tests for pulse signal}
+
+\begin{table}[H]
+\centering
+\caption{Equivalence classes for unit testing pulse signal}
+\begin{adjustbox}{width=1\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{lllllll}
+\textbf{Position} & \textbf{Velocity} & \textbf{Pulse Signal} \\\hline
+{0, 1, 1.5, 1.9, 2} & V = 0m/s oder V > 1m/s & Zero\\
+1m <= X <= 1.9m  & 0m/s < V <= 1m/s & Alternating 0,1\\
+1.9m < X <= 2m  & 0m/s < V <= 1m/s &Continuous
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+-test cases
+
+\begin{table}[H]
+\centering
+\caption{Pulse signal test cases}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{lll}
+\textbf{Frequency} & \textbf{dts} & \textbf{Expected result} \\\hline
+0         & 1   & 0               \\
+10        & 1   & 1              
+\end{tabular}
+\end{table}
+
 
 - Alternating pulse signal not possible to test because dependant of time 
 
