@@ -36,15 +36,6 @@ blockdiagramSpecification Main {
 			connection_33
 		}
 	}
-	greater at (711, 526) {
-		inPin connection_17 {
-			bendpoints (140, 0), (140, 200)
-		}
-		inPin connection_38
-		outPin {
-			connection_19
-		}
-	}
 	multiplication at (311, 306) {
 		inPin connection_31 {
 			bendpoints (220, 0), (220, 200)
@@ -79,7 +70,7 @@ blockdiagramSpecification Main {
 		}
 	}
 	if at (831, 531) {
-		inPin connection_19
+		inPin connection_51
 		ifControlFlowOutPin {
 			connection_20
 		}
@@ -117,7 +108,7 @@ blockdiagramSpecification Main {
 		}
 	}
 	ifElse at (821, 281) {
-		inPin connection_50 {
+		inPin connection_52 {
 			bendpoints (10, 0), (10, -50)
 		}
 		ifControlFlowOutPin {
@@ -215,11 +206,20 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	less at (751, 326) {
+	lessOrEqual at (751, 326) {
 		inPin connection_49
 		inPin connection_48
 		outPin {
-			connection_50
+			connection_52
+		}
+	}
+	greaterOrEqual at (711, 526) {
+		inPin connection_17 {
+			bendpoints (140, 0), (140, 200)
+		}
+		inPin connection_38
+		outPin {
+			connection_51
 		}
 	}
 }

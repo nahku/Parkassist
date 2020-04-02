@@ -442,36 +442,53 @@ todo neu
 
 \chapter{D8: Implementation of pulse signal in ASCET}\label{cha:D8}
 
-- consists of two classes, one class calculates frequency, second class generates pulse signal \\
-- frequency computation class connects two classes, passes calculated frequency to generate pulse signal \\
-- input: velocity and position, dTs \\
-- output: intern output: frequency, pulse signal \\
+The pulse signal that has been implemented in Simulink (see chapter \ref{cha:D6}) is now transferred to ASCET. The requirements remain the same.
+The ASCET model consists of three sub-models described in three block diagrams. Two of the sub-models are regular classes that can be instantiated. This makes the whole model modular and the sub-models are able to unit test. One of the two classes calculates a frequency based on a given velocity and position of the car. The second class generates a pulse signal based on the calculated frequency.
+The third class is a static class that passes the calculated frequency to the pulse signal generating class. The static class is also responsible for receiving the velocity and position messages of the car and pass them to the frequency computation class as well as sending the generated pulse signal as a new message. This can be seen in Figure\ref{fig:BlockdiagrammFrequencyComputation} that shows the block diagram of the static class.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/Blockdiagramm_FrequencyComputation.png}
-\caption{ASCET Blockdiagramm of frequency computation}
+\caption{ASCET block diagram of static class $FrequencyComputation$}
 \label{fig:BlockdiagrammFrequencyComputation}
 \end{figure}
 
-- important: sequenzing \\
-- input: velocity and position, if velocity greater zero and less or equal than 1 and if position greater than 1.9 meters return 10 for continuous pulse, else: check if position greater than 1, then frequency lookup table, else: return zero \\
+The frequency is calculated based on the Simulink implementation. However, in ASCET if-clauses with multiple conditions need to be implemented in series. The model can be seen in Figure \ref{fig:BlockdiagrammFrequencyComputationClass} and the sequencing process is described in the following:
+
+\begin{enumerate}
+\item If $x \geq 1.9m$, $v \leq 1.0$ and $v \textgreater 0.0$ return 10 (\textbf{1a} in Figure \ref{fig:BlockdiagrammFrequencyComputationClass})
+\item Otherwise (\textbf{1b} in Figure \ref{fig:BlockdiagrammFrequencyComputationClass}) if $x \geq 1.0$, $v \leq 1.0$ and $v \textgreater 0.0$ find frequency in lookup table (\textbf{2a} in Figure \ref{fig:BlockdiagrammFrequencyComputationClass}). The lookup table is shown in Listing \ref{lst:D8_lookup}. If none of the conditions haven not been meet return 0 (\textbf{2b} in Figure \ref{fig:BlockdiagrammFrequencyComputationClass})
+\end{enumerate}
+
+\begin{lstlisting}[language=Java,basicstyle=\scriptsize, caption= ASCET frequency lookup table,label= lst:D8_lookup]
+characteristic curve_cont frequency_lookup = {{1.0, 1.9}, {1.0, 9.0}};
+\end{lstlisting}
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{images/Blockdiagramm_FrequencyComputationClass.png}
-\caption{ASCET Blockdiagramm of frequency computation class}
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_FrequencyComputationClassAnno.png}
+\caption{ASCET block diagram of class $FrequencyComputationClass$}
 \label{fig:BlockdiagrammFrequencyComputationClass}
 \end{figure}
 
-- if frequency zero, return 1, else: if frequency 0 return 0, else: integrate frequency, if integrated frequency greater than 0.5 (pulse width changes by changing this parameter, now half of period) return 1 else 0 so half of period signal high, other half low, reset integration if integrated frequency greater than 1 beziehungsweise if periode is over\\
+After the frequency has been calculated, it is passed to generate the pulse signal. If the frequency equals 10, the desired output is a continuous pulse. This means the pulse is set to 1 (\textbf{1a} in Figure \ref{fig:BlockdiagrammPulseSignal}). If however the frequency equals 0, no pulse is desired resulting in the pulse being set to 0 (\textbf{2a} in Figure \ref{fig:BlockdiagrammPulseSignal}). If $0 \textless frequency \textless 10$, the frequency is integrated to generate the pulse signal. For integration a time component is required. Due to the ability to unit test the component, the time component is passed through a method argument. The frequency is integrated by multiplying frequency and time and adding the result to the previous results (\textbf{2b} in Figure \ref{fig:BlockdiagrammPulseSignal}). In Simulink it is possible to reset the integration block. Due to this not being possible in ASCET, the integrated frequency is reset as soon as the integrated frequency is greater or equal 1 because then one period is over and the new periodic time can be calculated (\textbf{2b} in Figure \ref{fig:BlockdiagrammPulseSignal}).  
+While the integrated frequency is smaller or equal 0.5 the pulse signal is set to 1 (\textbf{3a} in Figure \ref{fig:BlockdiagrammPulseSignal}). Once the frequency is greater than 0.5 the pulse signal is set to 0 (\textbf{3b} in Figure \ref{fig:BlockdiagrammPulseSignal}). This means the signal is high for one half of a period and low for the other half of a period.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{images/Blockdiagramm_PulseSignalClass.png}
-\caption{ASCET Blockdiagramm of pulse signal class}
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_PulseSignalClassAnno.png}
+\caption{ASCET block diagram of class $PulseSignalClass$}
 \label{fig:BlockdiagrammPulseSignal}
 \end{figure}
 
+The resulting pulse signal is shown in Figure \ref{fig:BlockdiagrammPulseSignalOutput}. It shows that the period of the pulse signal is getting shorter once the car approaches the target position. The plot also shows that the pulse signal starts once the car is slower than 3.6 km/h (\^= 1m/s) and ends once the car is standing. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/ASCET_pulseSignal.png}
+\caption{ASCET output pulse signal}
+\label{fig:BlockdiagrammPulseSignalOutput}
+\end{figure}
 
 
 \chapter{D9: Implementation of unit tests for ASCET model parts}\label{cha:D9}

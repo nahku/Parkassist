@@ -16,7 +16,9 @@ blockdiagramSpecification Main {
 		}
 	}
 	lessOrEqual at (221, 216) {
-		inPin connection_24
+		inPin connection_54 {
+			bendpoints (10, 0), (10, 60)
+		}
 		inPin connection_2 {
 			bendpoints (90, 0), (90, -40)
 		}
@@ -117,10 +119,10 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	methodArgumentIdentifier calc.v at (71, 215) {
+	methodArgumentIdentifier calc.v at (-49, 145) {
 		label at (0, -1)
 		outPin {
-			connection_46, connection_24
+			connection_51
 		}
 		sequenceCall {
 			inPin
@@ -168,9 +170,7 @@ blockdiagramSpecification Main {
 		}
 	}
 	greater at (281, 156) {
-		inPin connection_46 {
-			bendpoints (30, 0), (30, -60)
-		}
+		inPin connection_53
 		inPin connection_47
 		outPin {
 			connection_48
@@ -179,6 +179,20 @@ blockdiagramSpecification Main {
 	literal Numeric "0.0" at (171, 173) size (49, 0) {
 		outPin {
 			connection_47
+		}
+	}
+	division at (91, 146) {
+		inPin connection_51
+		inPin connection_52 {
+			bendpoints (80, 0), (80, -30)
+		}
+		outPin {
+			connection_54, connection_53
+		}
+	}
+	literal Numeric "3.6" at (-49, 193) size (49, 0) {
+		outPin {
+			connection_52
 		}
 	}
 }
