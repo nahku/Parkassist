@@ -36,7 +36,7 @@ blockdiagramSpecification Main {
 			}
 		}
 	}
-	simpleIdentifier resources.TimeTick.dTs at (-49, 5) {
+	simpleIdentifier resources.TimeTick.dTs at (-29, 5) {
 		label at (0, -1)
 		inPin outPin {
 			connection_5

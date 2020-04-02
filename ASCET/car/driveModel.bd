@@ -99,13 +99,13 @@ blockdiagramSpecification Main {
 	addition at (1261, 16) {
 		inPin connection_59
 		inPin connection_27 {
-			bendpoints (80, 0), (80, 90), (-160, 90)
+			bendpoints (70, 0), (70, 90), (-130, 90)
 		}
 		outPin {
 			connection_26
 		}
 	}
-	simpleIdentifier s at (1371, 25) {
+	simpleIdentifier s at (1341, 25) {
 		label at (0, -1)
 		inPin connection_26
 		outPin {
@@ -180,17 +180,17 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	simpleIdentifier ultrasonic_distance at (1611, -65) {
+	simpleIdentifier ultrasonic_distance at (1551, -65) {
 		label at (0, -1)
 		inPin connection_79
 		outPin sequenceCall at (-10, -44) {
 			inPin connection_80
 		}
 	}
-	subtraction at (1531, -74) {
+	subtraction at (1471, -74) {
 		inPin connection_76
 		inPin connection_77 {
-			bendpoints (80, 0), (80, -80)
+			bendpoints (70, 0), (70, -80)
 		}
 		outPin {
 			connection_79

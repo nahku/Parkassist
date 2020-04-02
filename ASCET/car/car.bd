@@ -35,7 +35,7 @@ blockdiagramSpecification Main {
 			inPin connection_5
 		}
 	}
-	simpleIdentifier resources.CarMessages.ultrasonic_distance at (1011, 505) {
+	simpleIdentifier resources.CarMessages.ultrasonic_distance at (1001, 505) {
 		label at (0, -1)
 		inPin connection_8
 		sequenceCall {
