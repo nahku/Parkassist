@@ -355,7 +355,67 @@ todo neu
 \chapter{D7: Transfer of Simulink model to ASCET}\label{cha:D7}
 - integration block as combination of multiplication and addition
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_car.png}
+\caption{ASCET Blockdiagramm of car}
+\label{fig:BlockdiagrammCar}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_drivingmodel.png}
+\caption{ASCET Blockdiagramm of driving model}
+\label{fig:BlockdiagrammDrivingModel}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_ParkAssistController.png}
+\caption{ASCET Blockdiagramm of park assist controller}
+\label{fig:BlockdiagrammParkAssistController}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_ParkAssistControllerClass.png}
+\caption{ASCET Blockdiagramm of park assist controller class}
+\label{fig:BlockdiagrammParkAssistControllerClass}
+\end{figure}
+
 \chapter{D8: Implementation of pulse signal in ASCET}\label{cha:D8}
+
+- consists of two classes, one class calculates frequency, second class generates pulse signal \\
+- frequency computation class connects two classes, passes calculated frequency to generate pulse signal \\
+- input: velocity and position, dTs \\
+- output: intern output: frequency, pulse signal \\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_FrequencyComputation.png}
+\caption{ASCET Blockdiagramm of frequency computation}
+\label{fig:BlockdiagrammFrequencyComputation}
+\end{figure}
+
+- important: sequenzing \\
+- input: velocity and position, if velocity greater zero and less or equal than 1 and if position greater than 1.9 meters return 10 for continuous pulse, else: check if position greater than 1, then frequency lookup table, else: return zero \\
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_FrequencyComputationClass.png}
+\caption{ASCET Blockdiagramm of frequency computation class}
+\label{fig:BlockdiagrammFrequencyComputationClass}
+\end{figure}
+
+- if frequency zero, return 1, else: if frequency 0 return 0, else: integrate frequency, if integrated frequency greater than 0.5 (pulse width changes by changing this parameter, now half of period) return 1 else 0 so half of period signal high, other half low, reset integration if integrated frequency greater than 1 beziehungsweise if periode is over\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_PulseSignalClass.png}
+\caption{ASCET Blockdiagramm of pulse signal class}
+\label{fig:BlockdiagrammPulseSignal}
+\end{figure}
+
+
 
 \chapter{D9: Implementation of unit tests for ASCET model parts}\label{cha:D9}
 This section covers the unit tests of all components of the ASCET model.
@@ -368,6 +428,7 @@ The unit tests are bundled in a package called $test$ in the ASCET project. The 
 Test cases are derived by analysing the requirements and finding equivalence classes.
 
 - pulse signal, drive model not possible to unit test because of time component
+- Messages erklären\\
 
 \section{Unit tests for Frequency Computation}
 
@@ -399,6 +460,22 @@ Continuous & 1.9m < X <= 2m  & 0m/s < V <= 1m/s \\
 - wait 5 seconds until starting because ascet experiment environment does not display the first seconds \\
 - in first 5 seconds brake = -0.15 to counter c and b, v = 0 \\
 - after five seconds set v to 10 km/h and start experiment
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_settings.png}
+\caption{ASCET Blockdiagramm of settings}
+\label{fig:BlockdiagrammSettings}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_stopwatch.png}
+\caption{ASCET Blockdiagramm of stopwatch}
+\label{fig:BlockdiagrammStopwatch}
+\end{figure}
+
+
 
 \chapter{D11*: Plausibility check comparing measured velocities and distances}\label{cha:D11}
 -statistically independent ultrasonic distance and velocity
