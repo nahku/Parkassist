@@ -1,11 +1,15 @@
 %% Parametrize Model
 set_param('D2','StopTime','2');
+%set solver
 set_param('D2','Solver',['ode',sprintf('%d',8)]);
-set_param('D2','FixedStep',sprintf('%f',0.01));
+%set simulation step size
+set_param('D2','FixedStep',sprintf('%f',0.001));
+%set brake pressure parameter
 set_param('D2/p','value',sprintf('%f',0.05));
-res = sim('D2','SaveOutput','on','SaveState','on');
 
-%% Get output
+
+%% Simulate and get output
+res = sim('D2','SaveOutput','on','SaveState','on');
 t = res.tout;
 v = res.yout{1}.Values.Data;
 s = res.yout{2}.Values.Data;
