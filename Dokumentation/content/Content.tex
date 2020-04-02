@@ -1,45 +1,87 @@
 %!TEX root = ../dokumentation.tex
 
 \chapter{Introduction}\label{cha:Introduction}
-??
-matlab version Matlba R2019b
-ASCET ...
-ascet version
+In this project Matlab version R2019b and ASCET version 7.4 have been used.
+The Matlab and Simulink code is in the Matlab subfolder and the ASCET project is in the ASCET subfolder.
+The report is structured by devoting one chapter to each requirement.
 
-todo describe block diagram vs script for every necessary requirement
 \chapter{D1: Time estimate based on three point estimation}\label{cha:D1}
+For the three point estimation we use the formuals from this source\footnote{\url{https://de.qwe.wiki/wiki/Three-point_estimation}}.
+The expected effort is computed using a weighted mean formula:
+\begin{equation}
+	E = \frac{optimistic + 4*likely + pessimistic}{6}
+\end{equation}
+
+To compute the standard deviation we use the following equation.
+\begin{equation}
+	\sigma = \frac{pessimistic-optimistic}{6}
+\end{equation}
+
+In the following the time unit is hours.\\
+Table \ref{tbl:D1_effort_estimation} contains our effort estimates for the tasks at hand, the expected value, computed standard deviation and the actually needed time.
 \begin{table}[H]
 \centering
 \caption{Three point estimation of effort for meeting requirements}
 \begin{adjustbox}{width=1\textwidth, center=\textwidth}
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{lllllll}
-\textbf{Requirement} & \textbf{Optimistic} & \textbf{Likely} & \textbf{Pessimistic} & \textbf{<T>} & \textbf{sigmahoch2} & \textbf{Actual}\\\hline
-D1 & .& .& .& .& .&\\
+\textbf{Requirement} & \textbf{Optimistic} & \textbf{Likely} & \textbf{Pessimistic} & \textbf{Expected value} & \textbf{$\sigma$} & \textbf{Actual}\\\hline
+	D1 & 0.75 & 1 & 1.5 & 1.0417 & 0.125 & 0.75 \\
+	D2 & 0.5 & 1 & 1.5 & 1 & 0.16667 & 1.25 \\
+	D3 & 1.5 & 2 & 3 & 2.08333 & 0.25 & 4 \\
+	D4 & 2 & 3 & 4 & 3 & 0.33333 & 2 \\
+	D5 & 2 & 3 & 4 & 3 & 0.33333 & 3 \\
+	D6 & 2 & 2.5 & 3 & 2.5 & 0.16667 & 5 \\
+	D7 & 3 & 4 & 5 & 4 & 0.33333 & 3 \\
+	D8 & 1.5 & 2.5 & 3 & 2.41667 & 0.25 & 1 \\
+	D9 & 4 & 4.5 & 5 & 4.5 & 0.16667& 2 \\
+	D10 & 3 & 3.5 & 4 & 3.5 & 0.16667 & 2.5 \\
+	D11 & 1 & 1.5 & 2 & 1.5 & 0.16667 & 2 \\
+	D12 & 6 & 7 & 8 & 7 & 0.33333 & 7 \\
+	D13 & 1 & 1.5 & 2 & 1.5 & 0.16667 & 1 \\
+	D14 & 1.5 & 2 & 2.5 & 2 & 0.16667 & 2 \\\hline
+	Total & 29,75 & 39 & 48,5 & 39,04167 & \ & 36.5
 \end{tabular}
 \end{adjustbox}
-\label{tbl:ConceptTPTPProductionSymbols}
+\label{tbl:D1_effort_estimation}
 \end{table}
+
+The estimation of the 95 \% confidence computed as
+
+\begin{equation}
+	[E(project) - 2*\sigma;\; E(project) + 2*\sigma]
+\end{equation}
+
+results in a confidence interval of circa [32.879; 45.292].\\
+The total actually needed time is slightly less than the expected value.
+Some tasks, like D3 (human velocity profile extraction) and D6 (pulse signal in simulink) took significantly longer than expected.
+
+-other tasks less time
+
+Nontheless the acutally needed time is well within 95 \% confidence interval. 
+
+
+
 \chapter{D2: Feasibility study}\label{cha:D2}
-The aim of the feasibility study is to analyse whether it is possible to realise a smooth stop with the introduced model and parameters based on the given formulas
+The aim of the feasibility study is to analyse whether it is possible to realise smooth braking with the introduced model and parameters based on the given formulas
 \begin{equation}
 	\frac{\partial v}{\partial t} = -c-b*p
 \end{equation}
 \begin{equation}
 	\frac{\partial x}{\partial t} = v
 \end{equation}
-with $c = 1.5 m/s^2$ and $b = 10 m/s^2$.
-For that a Simulink model is created representing the model above in the next section.
-After that a test scenario to test the feasibility is described and in section \ref{sec:D2_results} the results of the study are outlined.
+with $c = 1.5\; m/s^2$ and $b = 10\; m/s^2$.
+For that, in the next section a Simulink model is created, based on the equations above.
+After that, a test scenario to test the feasibility is described and in section \ref{sec:D2_results} the results of the study are outlined.
 
 \section{Simulink model}\label{sec:D2_model}
 Figure \ref{fig:D2_Sim} shows the simulink model representing the differential equations above.
 The parameter $p$ is configured on execution of the simulation in Matlab.
-The initial velocity $v_0$ is set to 10 km/h, corresponding to the scenario, that should be tested.
-Since the output of the integrator is in m/s, $v_0$ needs to be divided by $3.6$ to convert $v_0$ from km/h to m/s.
+The initial velocity $v_0$ is set to 10 km/h and the initial car position $x_0$ is set to 0, corresponding to the scenario, that should be tested.
+Since the output of the first integrator is in m/s, $v_0$ needs to be divided by $3.6$ to convert $v_0$ from km/h to m/s.
 The minimal velocity of 0.29 km/h from requirement R5 has been included in the model.
-Otherwise, the car would not come to a full stop and the velocity would become negative eventually.
-This is realised by a switch, that sets velocity to zero if the computed velocity is below $0.29$ km/h, which corresponds to approximately $0.0806$ m/s.
+Otherwise, the car would not come to a full stop because the velocity would become negative eventually.
+R5 is realised with a switch, that sets velocity to zero if the computed velocity is below $0.29$ km/h, which corresponds to approximately $0.0806$ m/s.
 The velocity is integrated to compute the location, following the second differential equation.
 The output parameters acceleration (a), velocity (v) and travelled distance (s) are output using the out block.
 Input parameters are input as constants.
@@ -52,15 +94,15 @@ In this preliminary test a constant p is used, which is not time-dependent.
 \end{figure}
 
 \section{Test scenario}\label{sec:D2_scenario}
-The goal of this scenario is to check whether it is possible, with the given model, to realize a smooth stop with a position < 2 m.
+The goal of this scenario is to check whether it is possible, with the given model, to realize a smooth stop with a stopping location < 2 m.
 The idea is to demonstrate, that a full stop before 2 m can be realised with a reasonable brake pedal pressure and a reasonable deceleration.
 If, for example a stop before 2 m could only be realised with 100 \% brake pressure, that would mean that a smooth stop can not be realised.\\
-It is not necessary to realise a human-like smooth stop, but to show that that is possible.
-Therefore the proposed test scenario is to run the model and find a reasonable small brake pressure where the car comes to a full stop with a position < 2 m.
+It is not necessary to implement a human-like smooth stop, but to show that this is possible.
+Therefore the proposed test scenario is to run the model and find a reasonable small brake pressure where the car comes to a full stop with a location < 2 m.
 This would show the feasibility of the task.
-Creating a human-like brake profile where the brake parameter p can be adjusted over time is not an objective of this feasibility study.\\
-The execution of this scenario is automated using a matlab script, which parametrizes the model and displays the outputs.
-Listing \ref{lst:lst:D2_matlab} shows the script that executes the simulation and stores the results.
+Creating a human-like brake profile where the brake parameter p can be adjusted over time is not an objective of this feasibility study, this will be covered at a later stage.\\
+The execution of this scenario is automated using a Matlab script, which parametrizes the model and displays the outputs.
+Listing \ref{lst:D2_matlab} shows the script that executes the simulation and stores the results.
 The code to create the result plots has been excluded.
 In lines one to eight the simulation is parametrized.
 A stop time of 2 seconds is chosen because the car will come to a stop before.
@@ -91,12 +133,12 @@ a = res.yout{3}.Values.Data;
 v = v*3.6;
 \end{lstlisting}
 \section{Results}\label{sec:D2_results}
-The following figure \ref{fig:D2_Result} shows the simulation results with a constant brake pressure of 5\%. This results in a constant deceleration of -2 m/$s^2$. (todo acceleration remains the same but velocity does not increase)
+The following figure \ref{fig:D2_Result} shows the simulation results with a constant brake pressure of 5\%. This results in a constant deceleration of -2 m/$s^2$. Setting the velocity to zero, when reaching the minimal velocity, has no impact on the computed acceleration. This is the reason, why the acceleration still remains the same, even though the car is not moving anymore.\\
 The velocity linearly decreases from $v_0 = 10$ km/h to zero (except the decrease from minimal velocity to zero, which was expected).
-The third plot shows the covered distance of the car, which is clearly under the 2 m mark.
-Therefore with a constant brake pressure of 5 \% the car can be stopped before reaching 2 m travelled distance with an acceptable deceleration of 2 m/$s^2$.\\
-These simulation results demonstrate show that it should be possible, with variation of the brake pressure over time, to realise a smooth stop with a human-like brake profile.
-todo vllt mehr begründen
+The third subplot shows the covered distance of the car, which is clearly under the 2 m mark.
+Therefore, with a constant brake pressure of 5 \% the car can be stopped before reaching 2 m travelled distance with an acceptable deceleration of 2 m/$s^2$. In the cruise control project we have discussed that an acceleration of less than 4 m/$s^2$ is not uncomfortable.\\
+These simulation results demonstrate that it should be possible, with variation of the brake pressure over time, to realise a smooth stop with a human-like brake profile.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D2_plot.jpg}
@@ -106,35 +148,45 @@ todo vllt mehr begründen
 
 \chapter{D3: Analysis of human velocity profile}\label{cha:D3}
 
-In this section the provided human velocity profile is analysed in order to find a pattern that shows how a human is breaking a car. This pattern will be used in the following sections and will be adapted to the braking function of the ParkAssist. The analysis is divided into four steps.
-
--um auf bremse rückzuschließen, beschleunigung berechnen, weil bremse geht in beschleunigung ein
+In this section the provided human velocity profile is analysed in order to find a pattern that can be abstracted as a human-like brake profile.
+This pattern will be used in the following sections and will be adapted to the braking function of the ParkAssist.
+For the analysis Matlab functions are used, as demanded by requirement D3.
 \section{Import the measurement data}
-The measurement data is imported in Matlab.
+The human velocity profile contains a time dimension and the four wheel velocities.
+The following listing shows how the measurement data is imported in Matlab.
+A Matlab library function is used for the import of the textfile.
+This results in a standard numeric matrix.
 
-\begin{lstlisting}[basicstyle=\scriptsize	,caption= Import measurement data in Matlab,label= lst:D3Import]
+\begin{lstlisting}[language=Matlab,basicstyle=\scriptsize	,caption= Import measurement data in Matlab,label= lst:D3Import]
 %import velocity data
 velocity_data = importdata('MeasuredVelocities.txt');
 \end{lstlisting}
 
 \section{Data preparation}
-Before analysing the data it is necessary to preprocess it. First the four velocities of each wheel are extracted from the measurement data and a mean velocity is calculated (see line 1,2). 
+Before analysing the data it is necessary to preprocess it. The aim is to make conclusions on a brake profile.
+Since the brake pressure has a linear influence on the acceleration (model formula) it would be desirable to extract an acceleration curve from the human velocity profile, from which to make deductions on the brake profile.
+For that, a car acceleration and in consequence car velocity is needed.
+Therefore a car velocity has to be extracted from the four wheel velocities.\\
 
+Listing \ref{lst:D3Preprocess} shows the matlab script, that does the preprocessing.
+As a first step, the four wheel velocities are extracted from the measurement data and a mean velocity is calculated (lines 2 and 3) with the following equation:
 \begin{equation}
-	v_{car} = (v_{w1} +v_{w2} + v_{w3} +v_{w4})*4
+	v_{car} = (v_{w1} +v_{w2} + v_{w3} +v_{w4})/4
 \end{equation}
+This mean velocity serves as an estimate for the car velocity.
+It is only an estimate, because friction losses, other physical influences and cornering are not considered.
+The mean velocity is converted to [m/s] for further calculations in line 4.
+For analysing the braking behaviour the acceleration can be calculated by differentiating the mean velocity.
+As can be seen in figure \ref{fig:D3_MovingAverage} in the upper subplot the calculated acceleration is noisy because of noise in the measured velocity.
+Due to the noise it would be harder to analyse the braking behaviour. Therefore, we used a moving average filter to smoothen the data (line 8).
+A moving average filter is calculating a mean value of neighbouring elements within a sliding window of a predefined size.
+Applying a moving average filter results into a filtered graph that can bee seen in the lower subplot in figure \ref{fig:D3_MovingAverage}. 
+However, applying a moving average filter distorts the acceleration values because the exact value is replaced by the average of the neighbouring elements. This reduces the difference between the values of neighbouring elements.
+As a result the differentiation of the velocity results in an acceleration that is is in our case approximately 10 times smaller than the non-filtered results.
+Although the values of the acceleration are smaller the relation of the acceleration is not changed.
+Therefore the filtered data is not used to extract exact acceleration values, but to get an understanding of the acceleration curve during braking.\\
 
-
-The mean velocity is converted to [m/s] for further calculations.
-For analysing the braking behaviour the acceleration is calculated.
-This can be done by differentiating the velocity (see line 11).
-As can be seen in figure \ref{fig:D3_MovingAverage} in the upper plot the calculated acceleration is ?? as cause of minor variations in the velocity.
-Due to the ?? it would be hard to analyse the braking behaviour. Therefore, we used a moving average filter to smoothen the data (line 8).
-A moving average filter is calculating a mean value of neighbourhood elements within a sliding window of a predefined size.
-Applying a moving average filter results in a smoother graph as can bee seen in the lower plot in figure \ref{fig:D3_MovingAverage}.
-
-
--linear dependance between acceleration and brake pedal
+The movering average filter is applied in line 8. The sliding window has a size of 200 neighbouring elements. This means that for each data point the 200 neighbour points sorrounding that point are used in the filtered value computation. The factor 200 is chosen because it is big enough to reduce noise but is also small enough to maintain the general course of the graph. In line 11 and 12 the velocity is differentiated.
 \begin{lstlisting}[language=Matlab,basicstyle=\scriptsize	,caption= Preprocessing measurement data,label= lst:D3Preprocess]
 %compute mean velocity of all 4 wheels
 velocity_per_wheel = velocity_data(:,2:5);
@@ -150,17 +202,21 @@ acceleration = diff(mean_velocity);
 raw_acceleration = diff(raw_mean_velocity);     %for demonstration purposes
 \end{lstlisting}
 
+Figure \ref{fig:D3_MovingAverage} shows the impact of the moving average filter on the car velocity.
+The course of the graph still the same, even though the absolute values are smaller that the unfiltered acceleration because of the before mentioned reasons.
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D3_moving_average.jpg}
-\caption{Human velocity profile car acceleration}
+\caption{Impact of applying a moving average filter on the cars acceleration}
 \label{fig:D3_MovingAverage}
 \end{figure}
+
+Figure \ref{fig:D3_Fig_Overview} shows the smoothed extracted mean velocity of the car as well as the corresponding acceleration of the car over time.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D3_Fig_Overview.jpg}
-\caption{Smoothend data from human velocity profile}
+\caption{Extracted human velocity profile}
 \label{fig:D3_Fig_Overview}
 \end{figure}
 
@@ -318,7 +374,8 @@ This component provides a pulse signal with a variable frequency input.
 The input is the output of the before described component.
 Therefore if the input is 10, a continuous signal should be output.
 This is realised by the if-condition, which, if the input signal is 10 provides a continuous high output.\\
-If that is not the case the pulse signal is generated.
+If the frequency is 0, 0 should be output.\\
+If that is not the case either the pulse signal is generated.
 The frequency is the input to the integrator.
 The integrator has a reset input port and will be reset after each period.
 For each period the output of integrator will start at 0 and will go up to 1.
@@ -426,6 +483,7 @@ That is necessary to make sure that no new bugs are introduced by the wrapper cl
 The unit tests are bundled in a package called $test$ in the ASCET project. The assertLib is imported for the assertions that are used in the unit tests. The unit tests are grouped by component with a static test class for each component. One test case corresponds to one method within the unit test classes.\\
 
 Test cases are derived by analysing the requirements and finding equivalence classes.
+The goal of the test case coverage is to cover equivalence class and in addition to that select values that might result in errors based on experience.s
 
 - pulse signal, drive model not possible to unit test because of time component
 - Messages erklären\\
@@ -433,20 +491,22 @@ Test cases are derived by analysing the requirements and finding equivalence cla
 \section{Unit tests for ParkAssistControl}
 
 \section{Unit tests for pulse signal frequency generation}
+
 \begin{table}[H]
 \centering
 \caption{Equivalence classes for unit testing pulse signal frequency generation}
 \begin{adjustbox}{width=1\textwidth, center=\textwidth}
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{lllllll}
-\textbf{Position} & \textbf{Velocity} & \textbf{Pulse Signal} \\\hline
-{0, 1, 1.5, 1.9, 2} & V = 0m/s oder V > 1m/s & Zero\\
-1m <= X <= 1.9m  & 0m/s < V <= 1m/s & Alternating 0,1\\
-1.9m < X <= 2m  & 0m/s < V <= 1m/s &Continuous
+\textbf{Position} & \textbf{Velocity} & \textbf{Output} \\\hline
+irrelevant & v = 0m/s or v > 1m/s & Zero\\
+1 m <= s <= 1.9 m  & 0 m/s < v <= 1 m/s & $f(s)=-7.889\; Hz + 8.889*s\; Hz$\\
+1.9 m < s <= 2 m  & 0 m/s < v <= 1 m/s & Continuous (10)
 \end{tabular}
 \end{adjustbox}
 \end{table}
 
+Table \ref{tbl:D9_FrequencyGenerationTestCases} shows the test cases derived from the equivalence classes above.
 \begin{table}[H]
 \centering
 \caption{Unit test test cases pulse signal frequency generation}
@@ -464,10 +524,11 @@ frequencyHigh                         & 1.0                         & 1.9       
 frequencyMid                          & 1.0                         & 1.5                       & 5.44 < result \textless 5.45 
 \end{tabular}
 \end{adjustbox}
+\label{tbl:D9_FrequencyGenerationTestCases}
 \end{table}
 
 \section{Unit tests for pulse signal}
-
+The table below shows the equivalence classes for the pulse signal.
 \begin{table}[H]
 \centering
 \caption{Equivalence classes for unit testing pulse signal}
@@ -475,7 +536,7 @@ frequencyMid                          & 1.0                         & 1.5       
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{lllllll}
 \textbf{Position} & \textbf{Velocity} & \textbf{Pulse Signal} \\\hline
-{0, 1, 1.5, 1.9, 2} & V = 0m/s oder V > 1m/s & Zero\\
+irrelevant & V = 0m/s oder V > 1m/s & Zero\\
 1m <= X <= 1.9m  & 0m/s < V <= 1m/s & Alternating 0,1\\
 1.9m < X <= 2m  & 0m/s < V <= 1m/s &Continuous
 \end{tabular}
