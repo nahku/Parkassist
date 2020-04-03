@@ -5,7 +5,7 @@ class driveModel {
 	const real b = 10.0;
 	const real c = 1.5;
 	@get
-	real v = 0.0;
+	real v = 10.0;
 	@get
 	real s = 0.0;
 	@get
@@ -15,16 +15,13 @@ class driveModel {
 	real ultrasonic_distance = 0.0;
 
 	@generated("blockdiagram")
-	public void calc(real in p) {
-		if (p == -0.14) {
-			v = 10.0; // Main/calc 1/if-then 1
-		} // Main/calc 1
-		acc = ((-c) - (b * p)); // Main/calc 2
-		v = ((TimeTick.dTs * 3.6 * ((-c) - (b * p))) + v); // Main/calc 3
+	public void drive(real in p, real in dTs) {
+		acc = ((-c) - (b * p)); // Main/drive 1
+		v = ((dTs * 3.6 * ((-c) - (b * p))) + v); // Main/drive 2
 		if (v < 0.29) {
-			v = 0.0; // Main/calc 4/if-then 1
-		} // Main/calc 4
-		s = (((TimeTick.dTs * v) / 3.6) + s); // Main/calc 5
-		ultrasonic_distance = (target_position - s); // Main/calc 6
+			v = 0.0; // Main/drive 3/if-then 1
+		} // Main/drive 3
+		s = (((dTs * v) / 3.6) + s); // Main/drive 4
+		ultrasonic_distance = (target_position - s); // Main/drive 5
 	}
 }

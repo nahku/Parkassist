@@ -13,7 +13,7 @@ static class PulseSignalTest{
 		real frequency = 0.0;
 		real expected_result = 0.0;
 		
-		res = pulseSignal.calc(frequency, 1.0);
+		res = pulseSignal.generatePulsSignal(frequency, 1.0);
 		Assert.assertEqual(res, expected_result);
 	}
 	
@@ -23,7 +23,7 @@ static class PulseSignalTest{
 		real frequency = 10.0;
 		real expected_result = 1.0;
 		
-		res = pulseSignal.calc(frequency, 1.0);
+		res = pulseSignal.generatePulsSignal(frequency, 1.0);
 		Assert.assertEqual(res, expected_result);
 	}
 

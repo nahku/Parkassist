@@ -9,9 +9,14 @@ schedule {
 	}
 	shutdown {
 	}
+	task Task1 priority 0 period 2ms delay 0ms {
+		process car.ParkAssistController.setBrake
+		process car.FrequencyComputation.computePuls
+		process car.car.drive
+		process car.car.ultrasonic
+	}
 	task Task0 priority 0 period 10ms delay 0ms {
-		process car.ParkAssistController.calc
-		process car.car.calc
-		process car.FrequencyComputation.calc
+		process car.car.drive
+		process car.car.velocity
 	}
 }

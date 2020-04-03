@@ -329,6 +329,8 @@ A brake assist on a positive or negative slope would need to keep holding the br
 
 In the model without a minimum velocity, the velocity would become negative on braking instead of the car coming to a full stop.
 
+- p(t) müsste angepasst werden, regler bauen, der stärker/schwächer bremsen kann 
+
 \chapter{D5: Discussion of inaccuracies in velocity measurement}\label{cha:D5}
 -inaccuracy of velocity +- 0.1 km/h
 -also minimal velocity is 0.29 km/h which is not realistic, because velocity does not drop from 0.29 km/h to zero
@@ -337,6 +339,9 @@ In the model without a minimum velocity, the velocity would become negative on b
 -because of inaccuracy in velocity computed acceleration also has inaccuracy
 -car driving around corner
 validate findings by numbers from simulation
+-wie viel würde man maximal zu weit fahren
+-p(t) nicht von uncertainties in der geschwindigkeit abhängig, da p nur von Zeit abhängig 
+- in unserem fall p(s) wird die position auf grundlage der geschwindigkeit berechnet, daher muss von größter ungenauigkeit ausgangen werden, um auf jeden fall zu bremsen
 
 \chapter{D6: Implementation of pulse signal in Simulink}\label{cha:D6}
 
@@ -473,6 +478,12 @@ Figure \ref{fig:D6_Result} shows a demonstration of the implemented pulse signal
 \end{figure}
 
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=1 \textwidth]{images/ASCET_pulseSignal.png}
+\caption{ASCET output pulse signal}
+\label{fig:BlockdiagrammPulseSignalOutput}
+\end{figure}
 
 \chapter{D9: Implementation of unit tests for ASCET model parts}\label{cha:D9}
 This section covers the unit tests of all components of the ASCET model.

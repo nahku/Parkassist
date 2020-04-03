@@ -1,6 +1,6 @@
 classType car.FrequencyComputationClass
 blockdiagramSpecification Main {
-	methodBody calc {
+	methodBody computeFrequency {
 		outPin active {
 			connection_11
 		}
@@ -10,25 +10,25 @@ blockdiagramSpecification Main {
 			connection_2
 		}
 	}
-	literal Numeric "1.9" at (101, 453) size (49, 0) {
+	literal Numeric "1.9" at (71, 443) size (49, 0) {
 		outPin {
 			connection_4
 		}
 	}
 	lessOrEqual at (221, 216) {
 		inPin connection_54 {
-			bendpoints (10, 0), (10, 60)
+			bendpoints (0, 110)
 		}
 		inPin connection_2 {
 			bendpoints (90, 0), (90, -40)
 		}
 		outPin {
-			connection_45
+			connection_55, connection_45
 		}
 	}
 	and at (411, 226) {
 		inPin connection_49 {
-			bendpoints (20, 0), (20, 10)
+			bendpoints (10, 0), (10, 60)
 		}
 		inPin connection_6 {
 			bendpoints (60, 0), (60, -140)
@@ -40,30 +40,32 @@ blockdiagramSpecification Main {
 	greaterOrEqual at (291, 376) {
 		inPin connection_25
 		inPin connection_4 {
-			bendpoints (90, 0), (90, -60)
+			bendpoints (140, 0), (140, -50)
 		}
 		outPin {
 			connection_6
 		}
 	}
-	literal Numeric "1.0" at (111, 43) size (49, 0) {
+	literal Numeric "1.0" at (71, 323) size (49, 0) {
 		outPin {
 			connection_7
 		}
 	}
-	greaterOrEqual at (291, 26) {
+	greaterOrEqual at (291, 306) {
 		inPin connection_26 {
-			bendpoints (140, 0), (140, -350)
+			bendpoints (280, 0), (280, -70)
 		}
 		inPin connection_7
 		outPin {
-			connection_36
+			connection_56
 		}
 	}
-	and at (381, 36) {
-		inPin connection_36
-		inPin connection_50 {
-			bendpoints (10, 0)
+	and at (351, 266) {
+		inPin connection_55 {
+			bendpoints (80, 0), (80, 40)
+		}
+		inPin connection_56 {
+			bendpoints (10, 0), (10, -30)
 		}
 		outPin {
 			connection_14
@@ -77,13 +79,13 @@ blockdiagramSpecification Main {
 		elseControlFlowOutPin {
 			connection_13
 		}
-		sequenceCall {
+		sequenceCall at (-10, -30) {
 			inPin connection_11
 		}
 	}
-	ifElse at (471, 101) {
+	ifElse at (491, 401) {
 		inPin connection_14 {
-			bendpoints (0, 60)
+			bendpoints (60, 0), (60, 130)
 		}
 		ifControlFlowOutPin {
 			connection_31
@@ -91,10 +93,8 @@ blockdiagramSpecification Main {
 		elseControlFlowOutPin {
 			connection_34
 		}
-		sequenceCall at (0, -20) {
-			inPin connection_13 {
-				bendpoints (0, 90), (500, 90), (500, -210), (-40, -210), (-40, -180)
-			}
+		sequenceCall at (0, -30) {
+			inPin connection_13
 		}
 	}
 	literal Numeric "10.0" at (661, 263) size (69, 0) {
@@ -102,15 +102,15 @@ blockdiagramSpecification Main {
 			connection_30
 		}
 	}
-	literal Numeric "0.0" at (681, 163) size (49, 0) {
+	literal Numeric "0.0" at (421, 493) size (49, 0) {
 		outPin {
 			connection_35
 		}
 	}
-	simpleIdentifier frequency_lookup at (471, -29) {
+	simpleIdentifier frequency_lookup at (601, 551) {
 		label at (0, 1)
 		inPin connection_33 {
-			bendpoints (140, 0), (140, -390)
+			bendpoints (280, 0), (280, 190)
 		}
 		outPin {
 			connection_32
@@ -119,8 +119,8 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	methodArgumentIdentifier calc.v at (-49, 145) {
-		label at (0, -1)
+	methodArgumentIdentifier computeFrequency.v at (-39, 95) {
+		label at (0, -51)
 		outPin {
 			connection_51
 		}
@@ -128,7 +128,7 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	methodArgumentIdentifier calc.x at (101, 375) {
+	methodArgumentIdentifier computeFrequency.x at (-39, 375) {
 		label at (0, -1)
 		outPin {
 			connection_26, connection_33, connection_25
@@ -144,44 +144,48 @@ blockdiagramSpecification Main {
 			inPin connection_29
 		}
 	}
-	return at (851, -15) {
+	return at (931, 445) {
 		label at (0, 0)
-		inPin connection_32
+		inPin connection_32 {
+			bendpoints (250, 0), (250, -120)
+		}
 		sequenceCall at (-10, -44) {
-			inPin connection_31 {
-				bendpoints (300, 0), (300, -160)
-			}
+			inPin connection_31
 		}
 	}
-	return at (801, 165) {
+	return at (551, 495) {
 		label at (0, 0)
 		inPin connection_35
 		sequenceCall at (-20, -34) {
-			inPin connection_34
+			inPin connection_34 {
+				bendpoints (0, 30)
+			}
 		}
 	}
-	and at (331, 206) {
+	and at (341, 156) {
 		inPin connection_48 {
 			bendpoints (10, 0)
 		}
-		inPin connection_45
+		inPin connection_45 {
+			bendpoints (80, 0)
+		}
 		outPin {
-			connection_50, connection_49
+			connection_49
 		}
 	}
-	greater at (281, 156) {
+	greater at (291, 106) {
 		inPin connection_53
 		inPin connection_47
 		outPin {
 			connection_48
 		}
 	}
-	literal Numeric "0.0" at (171, 173) size (49, 0) {
+	literal Numeric "0.0" at (181, 123) size (49, 0) {
 		outPin {
 			connection_47
 		}
 	}
-	division at (91, 146) {
+	division at (101, 96) {
 		inPin connection_51
 		inPin connection_52 {
 			bendpoints (80, 0), (80, -30)
@@ -190,7 +194,7 @@ blockdiagramSpecification Main {
 			connection_54, connection_53
 		}
 	}
-	literal Numeric "3.6" at (-49, 193) size (49, 0) {
+	literal Numeric "3.6" at (-39, 143) size (49, 0) {
 		outPin {
 			connection_52
 		}
