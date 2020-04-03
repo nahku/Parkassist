@@ -1,6 +1,6 @@
 classType car.PulseSignalClass
 blockdiagramSpecification Main {
-	methodBody calc {
+	methodBody generatePulsSignal {
 		outPin active {
 			connection_3
 		}
@@ -13,7 +13,7 @@ blockdiagramSpecification Main {
 	equal at (301, 56) {
 		inPin connection_8
 		inPin connection_30 {
-			bendpoints (220, 0), (220, -30)
+			bendpoints (360, 0), (360, -30)
 		}
 		outPin {
 			connection_4
@@ -38,7 +38,7 @@ blockdiagramSpecification Main {
 	}
 	multiplication at (311, 306) {
 		inPin connection_31 {
-			bendpoints (220, 0), (220, 200)
+			bendpoints (360, 0), (360, 200)
 		}
 		inPin connection_47
 		outPin {
@@ -51,7 +51,7 @@ blockdiagramSpecification Main {
 		}
 	}
 	simpleIdentifier integrated_frequency at (471, 325) {
-		label at (-100, 9)
+		label at (-120, 9)
 		inPin connection_15
 		outPin {
 			connection_17, connection_49, connection_16
@@ -123,7 +123,7 @@ blockdiagramSpecification Main {
 			}
 		}
 	}
-	methodArgumentIdentifier calc.frequency at (31, 105) {
+	methodArgumentIdentifier generatePulsSignal.frequency at (-109, 105) {
 		label at (0, -1)
 		outPin {
 			connection_31, connection_39, connection_30
@@ -157,7 +157,7 @@ blockdiagramSpecification Main {
 	}
 	equal at (361, 146) {
 		inPin connection_39 {
-			bendpoints (220, 0), (220, 40)
+			bendpoints (360, 0), (360, 40)
 		}
 		inPin connection_40 {
 			bendpoints (0, -10)
@@ -197,7 +197,7 @@ blockdiagramSpecification Main {
 			connection_44
 		}
 	}
-	methodArgumentIdentifier calc.dTs at (221, 325) {
+	methodArgumentIdentifier generatePulsSignal.dTs at (1, 325) {
 		label at (0, -1)
 		outPin {
 			connection_47

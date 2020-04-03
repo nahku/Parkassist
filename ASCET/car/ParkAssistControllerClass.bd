@@ -1,6 +1,6 @@
 classType car.ParkAssistControllerClass
 blockdiagramSpecification Main {
-	methodBody calc {
+	methodBody getBrake {
 		outPin active {
 			connection_8
 		}
@@ -22,7 +22,7 @@ blockdiagramSpecification Main {
 			inPin connection_8
 		}
 	}
-	methodArgumentIdentifier calc.ultrasonic_distance at (81, 175) {
+	methodArgumentIdentifier getBrake.time at (81, 175) {
 		label at (0, -1)
 		outPin {
 			connection_11

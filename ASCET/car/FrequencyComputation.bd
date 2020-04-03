@@ -1,6 +1,6 @@
 classType car.FrequencyComputation
 blockdiagramSpecification Main {
-	methodBody calc {
+	methodBody computePuls {
 		outPin active {
 			connection_17
 		}
@@ -30,9 +30,9 @@ blockdiagramSpecification Main {
 			inPin connection_17
 		}
 	}
-	complexIdentifier FrequencyComputationClass_instance_3 at (351, 171) size (33, 25) {
+	complexIdentifier FrequencyComputationClass_instance_3 at (351, 171) size (25, 25) {
 		label at (0, 1)
-		methodCall car.FrequencyComputationClass.calc {
+		methodCall car.FrequencyComputationClass.computeFrequency {
 			argumentPin v at (left, 0) connection_14
 			argumentPin x at (left, 7) connection_13
 			returnPin at (right, 0) {
@@ -43,7 +43,7 @@ blockdiagramSpecification Main {
 			}
 		}
 	}
-	simpleIdentifier resources.TimeTick.dTs at (691, 225) {
+	simpleIdentifier resources.TimeTick.dTs at (611, 225) {
 		label at (0, -1)
 		inPin outPin {
 			connection_16
@@ -52,9 +52,9 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	complexIdentifier PulseSignalClass_instance at (871, 171) size (19, 23) {
+	complexIdentifier PulseSignalClass_instance at (781, 171) size (33, 23) {
 		label at (0, 1)
-		methodCall car.PulseSignalClass.calc {
+		methodCall car.PulseSignalClass.generatePulsSignal {
 			argumentPin frequency at (left, 0) connection_15
 			argumentPin dTs at (left, 5) connection_16
 			returnPin at (right, 0) {

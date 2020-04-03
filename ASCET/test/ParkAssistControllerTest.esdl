@@ -14,7 +14,7 @@ static class ParkAssistControllerTest{
 		real ultrasonic_distance = 0.3;
 		real expected_result = 0.02;
 		
-		res = parkAssistController.calc(ultrasonic_distance);
+		res = parkAssistController.getBrake(ultrasonic_distance);
 		Assert.assertEqual(res, expected_result);
 	}
 	
@@ -23,7 +23,7 @@ static class ParkAssistControllerTest{
 		real res;
 		real ultrasonic_distance = 1.5;
 		real expected_result = 0.1;
-		res = parkAssistController.calc(ultrasonic_distance);
+		res = parkAssistController.getBrake(ultrasonic_distance);
 		
 		Assert.assertEqual(res, expected_result);
 	}

@@ -1,86 +1,106 @@
 classType car.car
 blockdiagramSpecification Main {
-	methodBody calc {
+	methodBody velocity {
 		outPin active {
-			connection_9, connection_1, connection_3, connection_5, connection_7
+			connection_14, connection_24
 		}
 	}
-	simpleIdentifier resources.DriverMessages.brake at (181, 205) {
+	methodBody ultrasonic {
+		outPin {
+			connection_22
+		}
+	}
+	methodBody drive {
+		outPin {
+			connection_2, connection_18
+		}
+	}
+	simpleIdentifier resources.DriverMessages.brake at (181, 215) {
 		label at (0, -1)
 		outPin {
-			connection_10
+			connection_1
 		}
 		sequenceCall {
 			inPin
 		}
 	}
-	simpleIdentifier resources.CarMessages.v at (991, 205) {
+	simpleIdentifier resources.CarMessages.v at (991, 215) {
 		label at (0, -1)
-		inPin connection_2
-		sequenceCall {
-			inPin connection_1
+		inPin connection_15
+		sequenceCall at (-10, -24) {
+			inPin connection_14
 		}
 	}
 	simpleIdentifier resources.CarMessages.position at (1001, 305) {
 		label at (0, -1)
-		inPin connection_4
+		inPin connection_25
 		sequenceCall at (-10, -34) {
-			inPin connection_3
+			inPin connection_24
 		}
 	}
-	simpleIdentifier resources.CarMessages.acceleration at (1001, 425) {
+	simpleIdentifier resources.CarMessages.acceleration at (1001, 415) {
 		label at (0, -1)
-		inPin connection_6
+		inPin connection_19
 		sequenceCall {
-			inPin connection_5
+			inPin connection_18
 		}
 	}
 	simpleIdentifier resources.CarMessages.ultrasonic_distance at (1001, 505) {
 		label at (0, -1)
-		inPin connection_8
-		sequenceCall {
-			inPin connection_7
+		inPin connection_23
+		sequenceCall at (-10, -24) {
+			inPin connection_22
 		}
 	}
-	complexIdentifier driveModel_instance_3 at (421, 201) size (46, 35) {
+	complexIdentifier driveModel_instance_2 at (431, 211) size (47, 36) {
 		label at (0, 1)
-		methodCall car.driveModel.calc {
-			argumentPin p at (left, 0) connection_10
-			sequenceCall at (-90, -62) {
-				inPin connection_9
+		methodCall car.driveModel.drive {
+			argumentPin p at (left, 0) connection_1
+			argumentPin dTs at (left, 6) connection_3
+			sequenceCall at (-100, -62) {
+				inPin connection_2
 			}
 		}
 		elementCall (car.driveModel.v) {
 			returnPin at (right, 0) {
-				connection_2
+				connection_15
 			}
 			sequenceCall {
 				inPin
 			}
 		}
 		elementCall (car.driveModel.s) {
-			returnPin at (right, 10) {
-				connection_4
+			returnPin at (right, 9) {
+				connection_25
 			}
 			sequenceCall {
 				inPin
 			}
 		}
 		elementCall (car.driveModel.acc) {
-			returnPin at (right, 22) {
-				connection_6
+			returnPin at (right, 20) {
+				connection_19
 			}
 			sequenceCall {
 				inPin
 			}
 		}
 		elementCall (car.driveModel.ultrasonic_distance) {
-			returnPin at (right, 30) {
-				connection_8
+			returnPin at (right, 29) {
+				connection_23
 			}
 			sequenceCall {
 				inPin
 			}
+		}
+	}
+	simpleIdentifier resources.TimeTick.dTs at (181, 275) {
+		label at (0, -1)
+		inPin outPin {
+			connection_3
+		}
+		sequenceCall {
+			inPin
 		}
 	}
 }

@@ -118,14 +118,14 @@ ylabel('Acceleration in [m/s^2]');
 figure
 %Plot only one braking sequence for a more detailled view
 subplot(2,1,1);
-plot(velocity_data(section{1,6},1),decreasing_velocity(section{1,6})*3.6, 'LineWidth', 1.5)
+plot(velocity_data(section{1,9},1),decreasing_velocity(section{1,9})*3.6, 'LineWidth', 1.5)
 set(gca,'FontSize',22)
 title('Velocity of car while braking');
 xlabel('Time in [s]');
 ylabel('Velocity in [km/h]');
 
 subplot(2,1,2);
-plot(velocity_data(section{1,6},1),neg_acceleration(section{1,6}), 'LineWidth', 1.5) 
+plot(velocity_data(section{1,9},1),neg_acceleration(section{1,9}), 'LineWidth', 1.5) 
 set(gca,'FontSize',22)
 title('Acceleration of car while braking');
 xlabel('Time in [s]');
