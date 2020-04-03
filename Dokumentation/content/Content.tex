@@ -342,7 +342,7 @@ To simulate a time dependant brake pressure the before developed Simulink model 
 0.2  & 0.043\\
 0.4  & 0.073\\
 0.6  & 0.078\\
-0.8  & 0.043\\
+0.8  & 0.073\\
 1  & 0.043\\
 1.2  & 0\\
 \end{tabular}
@@ -362,23 +362,27 @@ To simulate a time dependant brake pressure the before developed Simulink model 
 
 \chapter{D4*: Consideration of uneven parking spaces}\label{cha:D4}
 
--diagram
-
--forces need to be considered (hangabtriebskraft)
-
-A negative slope would increase stopping time and position. Whereas a positive slope would make stopping time shorter.
-A negative slope critical since collision could occur.
-
-
--therefore brake power would have to be increased or decreased
-
--physical borders need to be considered
-
-Also when the car is stopped it should not start to roll forwards or backwards.
-On a plain surface, the brake can be released, after the car is stopped. That might not be the case on an uneven parking space and the car could start rolling. To prevent that the handbrake would have do be engaged.
-A brake assist on a positive or negative slope would need to keep holding the brake or engaging the handbrake.
-
-In the model without a minimum velocity, the velocity would become negative on braking instead of the car coming to a full stop.
+For consideration of uneven parking spaces, the physical car model needs to be expanded to include slope downforce (Hangabtriebskraft).
+Also the height profile of the parking space would have to be stored, to be used in the model.
+A lookup-table could be used to store the height profile.\\
+A negative slope would increase stopping time and position.
+A negative slope is critical since a collision could occur.
+Depending on the steepness the p(t), that is used now, would not suffice and harder braking would be necessary.\\
+A positive slope would make stopping time and location shorter.
+This would not lead to a collision, but the car would stop further away from the obstacle.
+That could also be not wanted, since then parking space would be used less efficient.\\
+If the distance from the obstacle should be the same, regardless of positive/negative slope or even parking space, the brake power needs to be varied depending on steepness. With a negative slope it is needed to brake harder in comparison to an even parking space. With a positive slope lesser braking would be necessary.\\
+Depending on $v_0$, with a negative slope, it might not be possible to stop before 2 m of travelled distance.
+Also after the car is stopped it should not start to roll forwards or backwards.
+On a plain surface, the brake can be released, after the car is stopped.
+That might not be the case with an uneven parking space and the car could start rolling.
+A brake assist on a positive or negative slope would need to keep holding the brake or engaging the handbrake.\\
+If the slope is known beforehand (the same as we know now that the parking space is even), that can be included when determining p(t) and adjusting the brake pedal position according to the slope.
+Of course the feasibility study (D1) would have to be done again, to determine the feasibility of the task with the changed slope.\\
+Also, it does not have to be a solely positive or negative slope.
+It could also be first a positive and then a negative slope (or any other height profile) when approaching the parking spot.
+For each different slope, a different p(t) would be needed to result in the same stopping position.\\
+If the car should be able to stop before 2 m with an unknown slope, a controller with feedback would have to be used instead of p(t), to dynamically adjust the brake pedal position depending on the car behaviour.
 
 \chapter{D5: Discussion of inaccuracies in velocity measurement}\label{cha:D5}
 \section{Inaccuracy in car velocity}
@@ -409,10 +413,9 @@ As can be seen from the results of the simulation a
 
 
 
-
 Uncertanties in the measured velcoity also influence the computed travelled distance.
-The velocity is needed to compute the travelled distance. The travelled distance is computed as the integral of the velocity. Therefore errors in the velocity carry into computed travelled distance.
--integral could add up
+The velocity is needed to compute the travelled distance. The travelled distance is computed as the integral of the velocity. Therefore errors in the velocity accumulate in travelled distance.
+
 -if gaussian distribution overall error could be smaller
 
 \section{Inaccuracy in velocity measurement of human velocity profile}
@@ -568,9 +571,10 @@ In order to execute the experiment, it is necessary to define the schedule. As c
 \label{fig:D7_schedule}
 \end{figure}
 
-The following Figure \ref{fig:D7_result} shows the simulation results. The acceleration has the form of a parable as desired. Due to the friction and braking constant the velocity is steeper than the curve that can be seen in chapter \ref{cha:D3}. If one would like to have a similar velocity curve it would be necessary to apply gas in order to brake more slowly which is not possible in this model as there is no gas pedal. with a constant brake pressure of
-The third subplot shows the covered
-distance of the car, which is clearly under the 2 m mark. 
+The following Figure \ref{fig:D7_result} shows the simulation results.
+The acceleration has the form of a parable as desired.
+Due to the friction and braking constant the velocity is steeper than the curve that can be seen in chapter \ref{cha:D3}. If one would like to have a similar velocity curve it would be necessary to apply gas in order to brake more slowly which is not possible in this model as there is no gas pedal.
+The third subplot shows the covered distance of the car, which is clearly under the 2 m mark. 
 
 \begin{figure}[H]
 \centering
@@ -728,12 +732,10 @@ irrelevant & V = 0m/s oder V > 1m/s & Zero\\
 \label{fig:BlockdiagrammStopwatch}
 \end{figure}
 
-
-
 \chapter{D11*: Plausibility check comparing measured velocities and distances}\label{cha:D11}
 The distance signal from the ultrasonic sensor (in case there is a non-moving object in front of it) and the measured car velocity are two measurements that provide independent measurement of travelled distance.\\
 In the given scenario it is known that a non-moving object is 2 m in front of the car. So the ultrasonic sensor can be used to compute travelled distance by comparing distance measurements.\\
-Integrating the velocity also provides a measurement of the travelled distance. These two measurements provide a redundancy in measuring travelled distance. If thes measurements would be significantly different, one of the measurements must be inaccurate. 
+Integrating the velocity also provides a measurement of the travelled distance. These two measurements provide a redundancy in measuring travelled distance. If these measurements would be significantly different, one of the measurements must be inaccurate. 
 
 The distance signal from the ultrasonic sensor and the measured velocity.
 -statistically independent ultrasonic distance and velocity
@@ -761,7 +763,7 @@ With one ultrasonic sensor blind spot over ultrasonic sensor
 \label{fig:D13_USLimitSide}
 \end{figure}
 pictures poles, round object.
-
+-ultrasonic senor only sound reflecting materials
 a countermeasure for that could be to use multiple ultrasonic sensors 
 -ultrasonic measurement: what if object is round?
 -
@@ -773,3 +775,4 @@ a countermeasure for that could be to use multiple ultrasonic sensors
 -only 2 meter stop considered
 -no feedback
 -model not realistic
+-no air friction, but relatively low at low speed
