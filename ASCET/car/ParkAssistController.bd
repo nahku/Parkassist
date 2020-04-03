@@ -2,29 +2,22 @@ classType car.ParkAssistController
 blockdiagramSpecification Main {
 	methodBody setBrake {
 		outPin active {
-			connection_50, connection_38
+			connection_50, connection_54
 		}
 	}
-	simpleIdentifier resources.DriverMessages.brake at (691, 255) {
-		label at (0, -1)
-		inPin connection_39
-		sequenceCall at (-30, -34) {
-			inPin connection_38
-		}
-	}
-	complexIdentifier ParkAssistControllerClass_instance_4 at (341, 251) size (28, 16) {
+	complexIdentifier ParkAssistControllerClass_instance_4 at (551, 261) size (28, 16) {
 		label at (0, 1)
 		methodCall car.ParkAssistControllerClass.getBrake {
 			argumentPin time at (left, 0) connection_52
 			returnPin at (right, 0) {
-				connection_39
+				connection_55
 			}
 			sequenceCall {
 				inPin
 			}
 		}
 	}
-	simpleIdentifier resources.TimeTick.dTs at (-109, 245) {
+	simpleIdentifier resources.TimeTick.dTs at (101, 255) {
 		label at (0, -1)
 		inPin outPin {
 			connection_53
@@ -33,7 +26,7 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	addition at (71, 246) {
+	addition at (281, 256) {
 		inPin connection_53
 		inPin connection_49 {
 			bendpoints (90, 0), (90, 80), (-160, 80), (-160, 10)
@@ -42,7 +35,7 @@ blockdiagramSpecification Main {
 			connection_51
 		}
 	}
-	simpleIdentifier time at (171, 255) {
+	simpleIdentifier time at (381, 265) {
 		label at (0, -1)
 		inPin connection_51
 		outPin {
@@ -50,6 +43,13 @@ blockdiagramSpecification Main {
 		}
 		sequenceCall at (-10, -34) {
 			inPin connection_50
+		}
+	}
+	simpleIdentifier resources.ParkAssistMessages.brake at (971, 265) {
+		label at (0, -1)
+		inPin connection_55
+		sequenceCall at (-30, -34) {
+			inPin connection_54
 		}
 	}
 }

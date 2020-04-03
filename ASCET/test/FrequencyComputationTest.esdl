@@ -10,7 +10,7 @@ static class FrequencyComputationTest{
 	@Test
 	public void continuousPulse(){
 		real res;
-		real v = 0.5;
+		real v = (0.5)*3.6;
 		real x = 1.91;
 		
 		res = frequencyComputation.computeFrequency(v,x);
@@ -20,7 +20,7 @@ static class FrequencyComputationTest{
 	@Test
 	public void noFrequencyBecauseVelocity(){
 		real res;
-		real v = 1.5;
+		real v = (1.5)*3.6;
 		real x = 1.8;
 		
 		res = frequencyComputation.computeFrequency(v,x);
@@ -40,7 +40,7 @@ static class FrequencyComputationTest{
 	@Test
 	public void noFrequencyBecausePositon(){
 		real res;
-		real v = 0.9;
+		real v = (0.9)*3.6;
 		real x = 0.9;
 		
 		res = frequencyComputation.computeFrequency(v,x);
@@ -50,7 +50,7 @@ static class FrequencyComputationTest{
 	@Test
 	public void noFrequencyBecauseVelocityAndPositon(){
 		real res;
-		real v = 1.1;
+		real v = (1.1)*3.6;
 		real x = 0.9;
 		
 		res = frequencyComputation.computeFrequency(v,x);
@@ -60,7 +60,7 @@ static class FrequencyComputationTest{
 	@Test
 	public void frequencyLow(){
 		real res;
-		real v = 1.0;
+		real v = (1.0)*3.6;
 		real x = 1.0;
 		
 		res = frequencyComputation.computeFrequency(v,x);
@@ -70,7 +70,7 @@ static class FrequencyComputationTest{
 	@Test
 	public void frequencyHigh(){
 		real res;
-		real v = 1.0;
+		real v = (1.0)*3.6;
 		real x = 1.9;
 		
 		res = frequencyComputation.computeFrequency(v,x);
@@ -80,7 +80,7 @@ static class FrequencyComputationTest{
 	@Test
 	public void frequencyMid(){
 		real res;
-		real v = 1.0;
+		real v = (1.0)*3.6;
 		real x = 1.5;
 		
 		res = frequencyComputation.computeFrequency(v,x);

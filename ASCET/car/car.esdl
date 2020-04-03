@@ -1,13 +1,12 @@
 package car;
-import resources.DriverMessages;
+import resources.ParkAssistMessages;
 import resources.CarMessages;
 import resources.TimeTick;
 
 static class car
-reads DriverMessages.brake
+reads ParkAssistMessages.brake
 writes CarMessages.v, CarMessages.position, CarMessages.acceleration, CarMessages.ultrasonic_distance {
-	driveModel driveModel_instance_3;
-	driveModel driveModel_instance;
+
 	driveModel driveModel_instance_2;
 
 	@generated("blockdiagram")
@@ -15,6 +14,7 @@ writes CarMessages.v, CarMessages.position, CarMessages.acceleration, CarMessage
 	public void velocity() {
 		CarMessages.v = driveModel_instance_2.v; // Main/velocity 1
 		CarMessages.position = driveModel_instance_2.s; // Main/velocity 2
+		driveModel_instance_2.drive(ParkAssistMessages.brake, TimeTick.dTs); // Main/velocity 3
 	}
 
 	@generated("blockdiagram")
@@ -26,7 +26,6 @@ writes CarMessages.v, CarMessages.position, CarMessages.acceleration, CarMessage
 	@generated("blockdiagram")
 	@thread
 	public void drive() {
-		driveModel_instance_2.drive(DriverMessages.brake, TimeTick.dTs); // Main/drive 1
-		CarMessages.acceleration = driveModel_instance_2.acc; // Main/drive 2
+		CarMessages.acceleration = driveModel_instance_2.acc; // Main/drive 1
 	}
 }

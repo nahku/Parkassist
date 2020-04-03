@@ -5,17 +5,17 @@ blockdiagramSpecification Main {
 			connection_11
 		}
 	}
-	literal Numeric "1.0" at (71, 273) size (49, 0) {
+	literal Numeric "1.0" at (231, 283) size (49, 0) {
 		outPin {
 			connection_2
 		}
 	}
-	literal Numeric "1.9" at (71, 443) size (49, 0) {
+	literal Numeric "1.9" at (231, 453) size (49, 0) {
 		outPin {
 			connection_4
 		}
 	}
-	lessOrEqual at (221, 216) {
+	lessOrEqual at (381, 226) {
 		inPin connection_54 {
 			bendpoints (0, 110)
 		}
@@ -23,10 +23,10 @@ blockdiagramSpecification Main {
 			bendpoints (90, 0), (90, -40)
 		}
 		outPin {
-			connection_55, connection_45
+			connection_45
 		}
 	}
-	and at (411, 226) {
+	and at (571, 236) {
 		inPin connection_49 {
 			bendpoints (10, 0), (10, 60)
 		}
@@ -37,7 +37,7 @@ blockdiagramSpecification Main {
 			connection_12
 		}
 	}
-	greaterOrEqual at (291, 376) {
+	greaterOrEqual at (451, 386) {
 		inPin connection_25
 		inPin connection_4 {
 			bendpoints (140, 0), (140, -50)
@@ -46,12 +46,12 @@ blockdiagramSpecification Main {
 			connection_6
 		}
 	}
-	literal Numeric "1.0" at (71, 323) size (49, 0) {
+	literal Numeric "1.0" at (231, 333) size (49, 0) {
 		outPin {
 			connection_7
 		}
 	}
-	greaterOrEqual at (291, 306) {
+	greaterOrEqual at (451, 316) {
 		inPin connection_26 {
 			bendpoints (280, 0), (280, -70)
 		}
@@ -60,9 +60,9 @@ blockdiagramSpecification Main {
 			connection_56
 		}
 	}
-	and at (351, 266) {
-		inPin connection_55 {
-			bendpoints (80, 0), (80, 40)
+	and at (511, 276) {
+		inPin connection_57 {
+			bendpoints (10, 0), (10, 70), (-40, 70), (-40, 100)
 		}
 		inPin connection_56 {
 			bendpoints (10, 0), (10, -30)
@@ -71,7 +71,7 @@ blockdiagramSpecification Main {
 			connection_14
 		}
 	}
-	ifElse at (471, 231) {
+	ifElse at (631, 241) {
 		inPin connection_12
 		ifControlFlowOutPin {
 			connection_29
@@ -83,7 +83,7 @@ blockdiagramSpecification Main {
 			inPin connection_11
 		}
 	}
-	ifElse at (491, 401) {
+	ifElse at (651, 411) {
 		inPin connection_14 {
 			bendpoints (60, 0), (60, 130)
 		}
@@ -97,17 +97,17 @@ blockdiagramSpecification Main {
 			inPin connection_13
 		}
 	}
-	literal Numeric "10.0" at (661, 263) size (69, 0) {
+	literal Numeric "10.0" at (821, 273) size (69, 0) {
 		outPin {
 			connection_30
 		}
 	}
-	literal Numeric "0.0" at (421, 493) size (49, 0) {
+	literal Numeric "0.0" at (581, 503) size (49, 0) {
 		outPin {
 			connection_35
 		}
 	}
-	simpleIdentifier frequency_lookup at (601, 551) {
+	simpleIdentifier frequency_lookup at (761, 561) {
 		label at (0, 1)
 		inPin connection_33 {
 			bendpoints (280, 0), (280, 190)
@@ -119,7 +119,7 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	methodArgumentIdentifier computeFrequency.v at (-39, 95) {
+	methodArgumentIdentifier computeFrequency.v at (121, 105) {
 		label at (0, -51)
 		outPin {
 			connection_51
@@ -128,7 +128,7 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	methodArgumentIdentifier computeFrequency.x at (-39, 375) {
+	methodArgumentIdentifier computeFrequency.x at (121, 385) {
 		label at (0, -1)
 		outPin {
 			connection_26, connection_33, connection_25
@@ -137,14 +137,14 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	return at (791, 265) {
+	return at (951, 275) {
 		label at (0, 0)
 		inPin connection_30
 		sequenceCall at (-30, -34) {
 			inPin connection_29
 		}
 	}
-	return at (931, 445) {
+	return at (1091, 455) {
 		label at (0, 0)
 		inPin connection_32 {
 			bendpoints (250, 0), (250, -120)
@@ -153,7 +153,7 @@ blockdiagramSpecification Main {
 			inPin connection_31
 		}
 	}
-	return at (551, 495) {
+	return at (711, 505) {
 		label at (0, 0)
 		inPin connection_35
 		sequenceCall at (-20, -34) {
@@ -162,7 +162,7 @@ blockdiagramSpecification Main {
 			}
 		}
 	}
-	and at (341, 156) {
+	and at (501, 166) {
 		inPin connection_48 {
 			bendpoints (10, 0)
 		}
@@ -170,22 +170,22 @@ blockdiagramSpecification Main {
 			bendpoints (80, 0)
 		}
 		outPin {
-			connection_49
+			connection_57, connection_49
 		}
 	}
-	greater at (291, 106) {
+	greater at (451, 116) {
 		inPin connection_53
 		inPin connection_47
 		outPin {
 			connection_48
 		}
 	}
-	literal Numeric "0.0" at (181, 123) size (49, 0) {
+	literal Numeric "0.0" at (341, 133) size (49, 0) {
 		outPin {
 			connection_47
 		}
 	}
-	division at (101, 96) {
+	division at (261, 106) {
 		inPin connection_51
 		inPin connection_52 {
 			bendpoints (80, 0), (80, -30)
@@ -194,7 +194,7 @@ blockdiagramSpecification Main {
 			connection_54, connection_53
 		}
 	}
-	literal Numeric "3.6" at (-39, 143) size (49, 0) {
+	literal Numeric "3.6" at (121, 153) size (49, 0) {
 		outPin {
 			connection_52
 		}
