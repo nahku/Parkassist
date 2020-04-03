@@ -6,13 +6,13 @@ The Matlab and Simulink code is in the Matlab subfolder and the ASCET project is
 The report is structured by devoting one chapter to each requirement.
 
 \chapter{D1: Time estimate based on three point estimation}\label{cha:D1}
-For the three point estimation we use the formuals from this source\footnote{\url{https://de.qwe.wiki/wiki/Three-point_estimation}}.
+For the three point estimation we use the formuals from the lecture.
 The expected effort is computed using a weighted mean formula:
 \begin{equation}
-	E = \frac{optimistic + 4*likely + pessimistic}{6}
+	<T> = \frac{optimistic + 4*likely + pessimistic}{6}
 \end{equation}
 
-To compute the standard deviation we use the following equation.
+To compute the standard deviation we use the following equation:
 \begin{equation}
 	\sigma = \frac{pessimistic-optimistic}{6}
 \end{equation}
@@ -25,36 +25,36 @@ Table \ref{tbl:D1_effort_estimation} contains our effort estimates for the tasks
 \begin{adjustbox}{width=1\textwidth, center=\textwidth}
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{lllllll}
-\textbf{Requirement} & \textbf{Optimistic} & \textbf{Likely} & \textbf{Pessimistic} & \textbf{Expected value} & \textbf{$\sigma$} & \textbf{Actual}\\\hline
-	D1 & 0.75 & 1 & 1.5 & 1.0417 & 0.125 & 0.75 \\
-	D2 & 0.5 & 1 & 1.5 & 1 & 0.16667 & 1.25 \\
-	D3 & 1.5 & 2 & 3 & 2.08333 & 0.25 & 4 \\
-	D4 & 2 & 3 & 4 & 3 & 0.33333 & 2 \\
-	D5 & 2 & 3 & 4 & 3 & 0.33333 & 3 \\
-	D6 & 2 & 2.5 & 3 & 2.5 & 0.16667 & 5 \\
-	D7 & 3 & 4 & 5 & 4 & 0.33333 & 3 \\
-	D8 & 1.5 & 2.5 & 3 & 2.41667 & 0.25 & 1 \\
-	D9 & 4 & 4.5 & 5 & 4.5 & 0.16667& 2 \\
-	D10 & 3 & 3.5 & 4 & 3.5 & 0.16667 & 2.5 \\
-	D11 & 1 & 1.5 & 2 & 1.5 & 0.16667 & 2 \\
-	D12 & 6 & 7 & 8 & 7 & 0.33333 & 7 \\
-	D13 & 1 & 1.5 & 2 & 1.5 & 0.16667 & 1 \\
-	D14 & 1.5 & 2 & 2.5 & 2 & 0.16667 & 2 \\\hline
-	Total & 29,75 & 39 & 48,5 & 39,04167 & \ & 36.5
+\textbf{Requirement} & \textbf{Optimistic} & \textbf{Likely} & \textbf{Pessimistic} & \textbf{<T>} & \textbf{$\sigma^2$} & \textbf{Actual}\\\hline
+	D1 & 0.75 & 1 & 1.5 & 1.0417 & 0.0156 & 0.75 \\
+	D2 & 0.5 & 1 & 1.5 & 1 & 0.02778 & 1.25 \\
+	D3 & 1.5 & 2 & 3 & 2.08333 & 0.0625 & 4 \\
+	D4 & 2 & 3 & 4 & 3 & 0.11111 & 2 \\
+	D5 & 2 & 3 & 4 & 3 & 0.11111 & 3 \\
+	D6 & 2 & 2.5 & 3 & 2.5 & 0.02778 & 5 \\
+	D7 & 3 & 4 & 5 & 4 & 0.11111 & 3 \\
+	D8 & 1.5 & 2.5 & 3 & 0.0625 & 0.25 & 1 \\
+	D9 & 4 & 4.5 & 5 & 4.5 & 0.02778& 2 \\
+	D10 & 3 & 3.5 & 4 & 3.5 & 0.02778 & 2.5 \\
+	D11 & 1 & 1.5 & 2 & 1.5 & 0.02778 & 2 \\
+	D12 & 6 & 7 & 8 & 7 & 0.11111 & 7 \\
+	D13 & 1 & 1.5 & 2 & 1.5 & 0.02778 & 1 \\
+	D14 & 1.5 & 2 & 2.5 & 2 & 0.02778 & 2 \\\hline
+	Total & 29,75 & 39 & 48,5 & 39,04167 & 0.77951 & 36.5
 \end{tabular}
 \end{adjustbox}
 \label{tbl:D1_effort_estimation}
 \end{table}
 
-The estimation of the 95 \% confidence computed as
+The estimation of the 95 \% estimate of the total duration is computed as:
 
 \begin{equation}
-	[E(project) - 2*\sigma;\; E(project) + 2*\sigma]
+	\sum <T> + 2*\sqrt{\sum \sigma(T)^2}
 \end{equation}
 
-results in a confidence interval of circa [32.879; 45.292].\\
-The total actually needed time is slightly less than the expected value.
-Some tasks, like D3 (human velocity profile extraction) and D6 (pulse signal in simulink) took significantly longer than expected.
+This results in a 95 \% estimate of 40.8 hours.\\
+The total actually needed time is slightly less than the expected value of 39 hours.
+Some tasks, like D3 (human velocity profile extraction) and D6 (pulse signal in Simulink) took significantly longer than expected.
 
 -other tasks less time
 
@@ -294,7 +294,7 @@ end
 \label{fig:D3_IndividualBraking2}
 \end{figure}
 
-\section{Result}
+\section{Results}
 Considering Figures REF, REF and REF, it can be seen that the acceleration is approximately in the shape of a parable with the minimal turning point at XX. For further implementation of the ParkAssist, we will start the breaking process with an acceleration and increase it until we reach approximately REF and will then decrease it.
 
 %entschieden Durchschnitt der vier Radgeschwindigkeiten zu nehmen (vllt. vor nachteile)
@@ -308,23 +308,75 @@ Considering Figures REF, REF and REF, it can be seen that the acceleration is ap
 %lösung: moving average filter zum glätten der messwerte
 %dann extrahieren der negativen beschleunigungen
 
+\section{Development of p(t)}
+with no brake:
+-model from D2
+-stopped after 1.8s, at approx 2.6m
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D3_no_brake.jpg}
+\caption{Simulation without braking}
+\label{fig:D3_IndividualBraking2}
+\end{figure}
+
+Now goal
+-p(t) time dependant
+-with acceleration curve similar to extracted above
+-start pressing brake increasing from start of brake maneuver and releasing pedal after half of maneuver
+
+To simulate a time dependant brake pressure the before developed Simulink model has been extended with a lookup-table that contains the brake pressure parameters. The integrator that integrates the constant 1 provides the time input to the lookup table.
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D3_model_extension.png}
+\caption{Simulation without braking}
+\label{fig:D3_IndividualBraking2}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Determined p(t) parameters}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{lllllll}
+\textbf{Time in [s]} & \textbf{Brake pressure}\\\hline
+0 & 0\\
+0.2  & 0.043\\
+0.4  & 0.073\\
+0.6  & 0.078\\
+0.8  & 0.043\\
+1  & 0.043\\
+1.2  & 0\\
+\end{tabular}
+\end{table}
+
+-$v_0$ 10 km/h
+-Stop at circa 1.92 meters
+-leave margin for inaccurate $v_0$, which will be analysed in chapter \ref{cha:D5} todo check
+-Acceleration curve similar to human profile
+-let go of brake before coming to a stop, let friction do the rest
+-
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D3_pt.jpg}
+\caption{Simulation results with p(t)}
+\label{fig:D3_IndividualBraking2}
+\end{figure}
+
 \chapter{D4*: Consideration of uneven parking spaces}\label{cha:D4}
+
 -diagram
 
 -forces need to be considered (hangabtriebskraft)
 
--negative slope would increase stopping time and position
+A negative slope would increase stopping time and position. Whereas a positive slope would make stopping time shorter.
+A negative slope critical since collision could occur.
 
--positive slope would make stopping time shorter
-
--negative slope critical since collision could occur
 
 -therefore brake power would have to be increased or decreased
 
 -physical borders need to be considered
 
--also when the car is stopped it should not start to roll forwards or backwards.
-On a plain surface, the brake can be released, after the car is stopped.
+Also when the car is stopped it should not start to roll forwards or backwards.
+On a plain surface, the brake can be released, after the car is stopped. That might not be the case on an uneven parking space and the car could start rolling. To prevent that the handbrake would have do be engaged.
 A brake assist on a positive or negative slope would need to keep holding the brake or engaging the handbrake.
 
 In the model without a minimum velocity, the velocity would become negative on braking instead of the car coming to a full stop.
@@ -332,8 +384,25 @@ In the model without a minimum velocity, the velocity would become negative on b
 - p(t) müsste angepasst werden, regler bauen, der stärker/schwächer bremsen kann 
 
 \chapter{D5: Discussion of inaccuracies in velocity measurement}\label{cha:D5}
--inaccuracy of velocity +- 0.1 km/h
--also minimal velocity is 0.29 km/h which is not realistic, because velocity does not drop from 0.29 km/h to zero
+
+
+
+The velocity information of the car has an inaccuracy of velocity +/- 0.1 km/h. Also the minimal velocity is 0.29 km/h which is not realistic, because velocity does not drop from 0.29 km/h to zero in one step. The brake pedal function is not dependant on the velocity, therefore inaccuracies in the velocity measurement during the braking procedure do not influence the braking procedure. This has one exception.
+Considering the velocity measurement inaccuracy, the initial velocity could be in a range of $9.9\; km/h \leq v  \geq 10.1\; km/h$. This would certainly influence the braking behaviour of the cat. It would be dangerous if the initial velocity would be higher than expected, because the car would travel further than expected because of that. This might cause an accident. If it would be lower, the car might stop earlier but that would not lead to an accident.\\
+A simulation is used to evaluate the danger of the initial velocity being higher than expected. The, highest initial velocity that is possible with R5 is 10.1 km/h.
+
+
+
+
+
+
+
+As can be seen from the results of the simulation a 
+The brake pedal function must be able, even if the initia velocity would be 10.1 km/h, to come to a stop before travelling 2 m
+Uncertanties in the measured velcoity also influence the computed travelled distance
+The velocity is needed to compute the travelled distance. The travelled distance is computed as the integral of the velocity. Therefore errors in the velocity carry into computed travelled distance.
+
+
 -in human velocity profile 4 tire velocities recorded
 -mean used to compute car velocity
 -because of inaccuracy in velocity computed acceleration also has inaccuracy
@@ -342,6 +411,9 @@ validate findings by numbers from simulation
 -wie viel würde man maximal zu weit fahren
 -p(t) nicht von uncertainties in der geschwindigkeit abhängig, da p nur von Zeit abhängig 
 - in unserem fall p(s) wird die position auf grundlage der geschwindigkeit berechnet, daher muss von größter ungenauigkeit ausgangen werden, um auf jeden fall zu bremsen
+
+Findings:
+-leave safety margin
 
 \chapter{D6: Implementation of pulse signal in Simulink}\label{cha:D6}
 
