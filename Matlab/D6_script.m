@@ -14,11 +14,11 @@ pulse = res.yout{4}.Values.Data;
 
 %% Plot results
 subplot(4,1,1);
-plot(t,v*3.6, 'LineWidth', 1.5);
+plot(t,v, 'LineWidth', 1.5);
 set(gca,'FontSize',20)
 title('Velocity of car');
 xlabel('Time in [s]');
-ylabel('Velocity in [km/h]');
+ylabel('Velocity in [m/s]');
 
 subplot(4,1,2);
 plot(t,s, 'LineWidth', 1.5)
