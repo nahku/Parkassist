@@ -5,7 +5,7 @@ set_param('D3_test','Solver',['ode',sprintf('%d',8)]);
 %set simulation step size
 set_param('D3_test','FixedStep',sprintf('%f',0.001));
 %set brake pressure parameter
-set_param('D3_test/v0','value',sprintf('%f',10));
+set_param('D3_test/v0','value',sprintf('%f',10.1));
 
 
 %% Simulate and get output

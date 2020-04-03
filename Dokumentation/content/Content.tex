@@ -353,7 +353,6 @@ To simulate a time dependant brake pressure the before developed Simulink model 
 -leave margin for inaccurate $v_0$, which will be analysed in chapter \ref{cha:D5} todo check
 -Acceleration curve similar to human profile
 -let go of brake before coming to a stop, let friction do the rest
--
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D3_pt.jpg}
@@ -381,36 +380,48 @@ A brake assist on a positive or negative slope would need to keep holding the br
 
 In the model without a minimum velocity, the velocity would become negative on braking instead of the car coming to a full stop.
 
-- p(t) müsste angepasst werden, regler bauen, der stärker/schwächer bremsen kann 
-
 \chapter{D5: Discussion of inaccuracies in velocity measurement}\label{cha:D5}
+\section{Inaccuracy in car velocity}
 
-
-
-The velocity information of the car has an inaccuracy of velocity +/- 0.1 km/h. Also the minimal velocity is 0.29 km/h which is not realistic, because velocity does not drop from 0.29 km/h to zero in one step. The brake pedal function is not dependant on the velocity, therefore inaccuracies in the velocity measurement during the braking procedure do not influence the braking procedure. This has one exception.
-Considering the velocity measurement inaccuracy, the initial velocity could be in a range of $9.9\; km/h \leq v  \geq 10.1\; km/h$. This would certainly influence the braking behaviour of the cat. It would be dangerous if the initial velocity would be higher than expected, because the car would travel further than expected because of that. This might cause an accident. If it would be lower, the car might stop earlier but that would not lead to an accident.\\
-A simulation is used to evaluate the danger of the initial velocity being higher than expected. The, highest initial velocity that is possible with R5 is 10.1 km/h.
-
-
-
-
-
-
+The velocity information of the car has an inaccuracy of velocity +/- 0.1 km/h.
+Also the minimal velocity is 0.29 km/h which is not realistic, because velocity does not drop from 0.29 km/h to zero in one step.
+The brake pedal function is not dependant on the velocity, therefore inaccuracies in the velocity measurement during the braking procedure do not influence the braking procedure.
+This has one exception.
+Considering the velocity measurement inaccuracy, the initial velocity could be in a range of $9.9\; km/h \leq v  \geq 10.1\; km/h$.
+This would certainly influence the braking behaviour of the car.
+It would be dangerous if the initial velocity would be higher than expected, because the car would travel further than expected because of that.
+This might cause an accident.
+If it would be lower, the car might stop earlier but that would not lead to an accident.\\
+A simulation is used to evaluate the danger of the initial velocity being higher than expected.
+The, highest initial velocity that is possible with R5 is 10.1 km/h.
+So this is used as $v_0$ for the impact evaluation.
+The model from Figure \ref{fig:D3_IndividualBraking2} from before is used for the evaluation, to see if the margin to 2 m is enough with a $v_0$ of 10.1 km/h.\\
 
 As can be seen from the results of the simulation a 
-The brake pedal function must be able, even if the initia velocity would be 10.1 km/h, to come to a stop before travelling 2 m
-Uncertanties in the measured velcoity also influence the computed travelled distance
-The velocity is needed to compute the travelled distance. The travelled distance is computed as the integral of the velocity. Therefore errors in the velocity carry into computed travelled distance.
+-Figure shows that margin is enough, because stopping distance is 1.96 m.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D5_result.jpg}
+\caption{Simulation of inaccurate $v_0$}
+\label{fig:D5_restuls}
+\end{figure}
+
+
+
+
+Uncertanties in the measured velcoity also influence the computed travelled distance.
+The velocity is needed to compute the travelled distance. The travelled distance is computed as the integral of the velocity. Therefore errors in the velocity carry into computed travelled distance.
+-integral could add up
+-if gaussian distribution overall error could be smaller
+
+\section{Inaccuracy in velocity measurement of human velocity profile}
 
 -in human velocity profile 4 tire velocities recorded
 -mean used to compute car velocity
 -because of inaccuracy in velocity computed acceleration also has inaccuracy
 -car driving around corner
 validate findings by numbers from simulation
--wie viel würde man maximal zu weit fahren
--p(t) nicht von uncertainties in der geschwindigkeit abhängig, da p nur von Zeit abhängig 
-- in unserem fall p(s) wird die position auf grundlage der geschwindigkeit berechnet, daher muss von größter ungenauigkeit ausgangen werden, um auf jeden fall zu bremsen
 
 Findings:
 -leave safety margin
@@ -611,12 +622,6 @@ While the integrated frequency is smaller or equal 0.5 the pulse signal is set t
 
 The resulting pulse signal is shown in Figure \ref{fig:BlockdiagrammPulseSignalOutput}. It shows that the period of the pulse signal is getting shorter once the car approaches the target position. The plot also shows that the pulse signal starts once the car is slower than 3.6 km/h (\^= 1m/s) and ends once the car is standing. 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/ASCET_pulseSignal.png}
-\caption{ASCET output pulse signal}
-\label{fig:BlockdiagrammPulseSignalOutput}
-\end{figure}
 
 \chapter{D9: Implementation of unit tests for ASCET model parts}\label{cha:D9}
 This section covers the unit tests of all components of the ASCET model.
