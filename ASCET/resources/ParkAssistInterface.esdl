@@ -1,5 +1,5 @@
 package resources;
 
-data interface DriverMessages {
+data interface ParkAssistMessages {
 	real brake = 0.0;
 }

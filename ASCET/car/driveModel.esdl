@@ -1,5 +1,4 @@
 package car;
-import resources.TimeTick;
 
 class driveModel {
 	const real b = 10.0;

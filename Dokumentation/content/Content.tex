@@ -487,68 +487,129 @@ Figure \ref{fig:D6_Result} shows a demonstration of the implemented pulse signal
 \end{figure}
 
 \chapter{D7: Transfer of Simulink model to ASCET}\label{cha:D7}
-- integration block as combination of multiplication and addition
+
+This chapter describes how the Simulink model from chapter \ref{cha:D2} is transferred to ASCET. The model is also extended  to include a time dependent brake pedal function as described in chapter \ref{cha:D3}. Furthermore, as ASCET is time discrete execution slots for threads have to be defined.
+
+First, messages are defined to describe the needed data interfaces. Listing \ref{lst:D7_Messages} shows the two defined message interfaces. The first interface represents messages regarding the car including its velocity, its acceleration, its position, the ultrasonic distance and the pulse signal. The other interface contains a message that describes the current brake pedal position.
+
+\begin{lstlisting}[language=Java,basicstyle=\scriptsize, caption= Defined messages in ASCET,label= lst:D7_Messages]
+data interface CarMessages {
+	real v = 0.0;
+	real acceleration = 0.0;
+	real position = 0.0;
+	real ultrasonic_distance = 0.0;
+	real pulse_signal = 0.0;
+}
+
+data interface ParkAssistMessages {
+	real brake = 0.0;
+}
+\end{lstlisting}
+
+The car model is built using the static class $Car$ whose block diagram is shown in Figure \ref{fig:BlockdiagrammCar}. The class consists of three thread functions: $drive$, $velocity$ and $ultrasonic$. The $drive$ function reads the brake pedal message and passes it together with a time constant to an instance of the $DriveModel$ class (shown in Figure \ref{fig:BlockdiagrammDrivingModel}). Consequently, the function writes the acceleration message based on the $DriveModel$ classes output. The $velocity$ function writes the v message and the position message. The $ultrasonic$ function writes the ultrasonic\textunderscore distance message. The functionality of the $Car$ class is split in three thread functions because of the given requirements demanding the ultrasonic\textunderscore distance to be available every 2ms and the velocity to be available every 10ms. The implemented functions can be called individually in the specified time intervals.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/Blockdiagramm_car.png}
-\caption{ASCET Blockdiagramm of car}
+\caption{ASCET block diagram of static class $Car$}
 \label{fig:BlockdiagrammCar}
 \end{figure}
+
+The $DrivingModel$ class is responsible for calculating the acceleration, velocity and position of the car as well as the ultrasonic distance. These calculations are based on the input brake pedal position. The block diagram of the class is shown in Figure \ref{fig:BlockdiagrammDrivingModel}. Similar to the Simulink model, the acceleration is calculated by multiplying brake pedal position and braking constant and substracting it from the negative friction constant. The velocity is calculated by integrating the acceleration. Unlike Simulink ASCET does not possess integration blocks, so acceleration, time constant and the factor 3.6 to convert the acceleration from [m/s] to [km/h] are multiplied. The product is then added to the previous velocity. The default velocity is set to 10 km/h due to the requirements. If the velocity is less than 0.29 km/h it is set to zero based on requirement R5. The position is gained by multiplying velocity and time and diving it by 3.6 to get the position in meters and not in kilometres. The product is then also being added to the previous position whose default value is zero. The ultrasonic distance is gained by subtracting target position (2m) and position.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/Blockdiagramm_drivingmodel.png}
-\caption{ASCET Blockdiagramm of driving model}
+\caption{ASCET block diagram of class $DrivingModel$}
 \label{fig:BlockdiagrammDrivingModel}
 \end{figure}
+
+Besides the car model, the static class $ParkAssistController$ (see Figure \ref{fig:BlockdiagrammParkAssistController}) is implemented for generating the brake pedal position. Based on the elapsed time since starting the experiment, the class uses an instance of the class $ParkAssistControllerClass$ to generate the brake pedal position and writes the brake pedal message afterwards. 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/Blockdiagramm_ParkAssistController.png}
-\caption{ASCET Blockdiagramm of park assist controller}
+\caption{ASCET block diagram of static class $ParkAssistController$}
 \label{fig:BlockdiagrammParkAssistController}
 \end{figure}
+
+The brake pedal position is determined based on a look-up table that represents the brake pedal function described in chapter \ref{cha:D3}. After determining the brake pedal position, the position is returned.  The class $ParkAssistClass$ is implemented as a non static class in order to unit test the class. The block diagram of the class is shown in Figure \ref{fig:BlockdiagrammParkAssistControllerClass}. 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/Blockdiagramm_ParkAssistControllerClass.png}
-\caption{ASCET Blockdiagramm of park assist controller class}
+\caption{ASCET block diagram of class $ParkAssistControllerClass$}
 \label{fig:BlockdiagrammParkAssistControllerClass}
+\end{figure}
+
+The braking pedal position look-up table is shown in Listing \ref{lst:D7_lookup}. 
+
+\begin{lstlisting}[language=Java,basicstyle=\scriptsize, caption= Braking pressure look up table,label= lst:D7_lookup]
+characteristic curve_cont curve_cont_table = {{0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2}, {0.0, 0.043, 0.073, 0.078, 0.073, 0.043, 0.0}};
+\end{lstlisting}
+
+In order to execute the experiment, it is necessary to define the schedule. As can be seen in Figure \ref{fig:D7_schedule}, the experiment is divided in two tasks, one being executed every 2ms and the other task being executed every 10ms. As defined in requirement R4, the ultrasonic distance message is computed every 2ms. Alongside this, the ParkAssistController adjusts the brake pedal position and the pulse signal is computed also every 2ms for a higher precision. The velocity however is generated every 10ms as described in requirement R5.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/pc_app.png}
+\caption{Schedule of ASCET model}
+\label{fig:D7_schedule}
+\end{figure}
+
+The following Figure \ref{fig:D7_result} shows the simulation results. The acceleration has the form of a parable as desired. Due to the friction and braking constant the velocity is steeper than the curve that can be seen in chapter \ref{cha:D3}. If one would like to have a similar velocity curve it would be necessary to apply gas in order to brake more slowly which is not possible in this model as there is no gas pedal. with a constant brake pressure of
+The third subplot shows the covered
+distance of the car, which is clearly under the 2 m mark. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/ascet_acceleration.png}
+\caption{ASCET car model}
+\label{fig:D7_result}
 \end{figure}
 
 \chapter{D8: Implementation of pulse signal in ASCET}\label{cha:D8}
 
-- consists of two classes, one class calculates frequency, second class generates pulse signal \\
-- frequency computation class connects two classes, passes calculated frequency to generate pulse signal \\
-- input: velocity and position, dTs \\
-- output: intern output: frequency, pulse signal \\
+The pulse signal that has been implemented in Simulink (see chapter \ref{cha:D6}) is now transferred to ASCET. The requirements remain the same.
+The ASCET model consists of three sub-models described in three block diagrams. Two of the sub-models are regular classes that can be instantiated. This makes the whole model modular and the sub-models are able to unit test. One of the two classes calculates a frequency based on a given velocity and position of the car. The second class generates a pulse signal based on the calculated frequency.
+The third class is a static class that passes the calculated frequency to the pulse signal generating class. The static class is also responsible for receiving the velocity and position messages of the car and pass them to the frequency computation class as well as sending the generated pulse signal as a new message. This can be seen in Figure\ref{fig:BlockdiagrammFrequencyComputation} that shows the block diagram of the static class.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/Blockdiagramm_FrequencyComputation.png}
-\caption{ASCET Blockdiagramm of frequency computation}
+\caption{ASCET block diagram of static class $FrequencyComputation$}
 \label{fig:BlockdiagrammFrequencyComputation}
 \end{figure}
 
-- important: sequenzing \\
-- input: velocity and position, if velocity greater zero and less or equal than 1 and if position greater than 1.9 meters return 10 for continuous pulse, else: check if position greater than 1, then frequency lookup table, else: return zero \\
+The frequency is calculated based on the Simulink implementation. However, in ASCET if-clauses with multiple conditions need to be implemented in series. The model can be seen in Figure \ref{fig:BlockdiagrammFrequencyComputationClass} and the sequencing process is described in the following:
+
+\begin{enumerate}
+\item If $x \geq 1.9m$, $v \leq 1.0$ and $v \textgreater 0.0$ return 10 (\textbf{1a} in Figure \ref{fig:BlockdiagrammFrequencyComputationClass})
+\item Otherwise (\textbf{1b} in Figure \ref{fig:BlockdiagrammFrequencyComputationClass}) if $x \geq 1.0$, $v \leq 1.0$ and $v \textgreater 0.0$ find frequency in lookup table (\textbf{2a} in Figure \ref{fig:BlockdiagrammFrequencyComputationClass}). The lookup table is shown in Listing \ref{lst:D8_lookup}. If none of the conditions haven not been meet return 0 (\textbf{2b} in Figure \ref{fig:BlockdiagrammFrequencyComputationClass})
+\end{enumerate}
+
+\begin{lstlisting}[language=Java,basicstyle=\scriptsize, caption= ASCET frequency lookup table,label= lst:D8_lookup]
+characteristic curve_cont frequency_lookup = {{1.0, 1.9}, {1.0, 9.0}};
+\end{lstlisting}
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{images/Blockdiagramm_FrequencyComputationClass.png}
-\caption{ASCET Blockdiagramm of frequency computation class}
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_FrequencyComputationClassAnno.png}
+\caption{ASCET block diagram of class $FrequencyComputationClass$}
 \label{fig:BlockdiagrammFrequencyComputationClass}
 \end{figure}
 
-- if frequency zero, return 1, else: if frequency 0 return 0, else: integrate frequency, if integrated frequency greater than 0.5 (pulse width changes by changing this parameter, now half of period) return 1 else 0 so half of period signal high, other half low, reset integration if integrated frequency greater than 1 beziehungsweise if periode is over\\
+After the frequency has been calculated, it is passed to generate the pulse signal. If the frequency equals 10, the desired output is a continuous pulse. This means the pulse is set to 1 (\textbf{1a} in Figure \ref{fig:BlockdiagrammPulseSignal}). If however the frequency equals 0, no pulse is desired resulting in the pulse being set to 0 (\textbf{2a} in Figure \ref{fig:BlockdiagrammPulseSignal}). If $0 \textless frequency \textless 10$, the frequency is integrated to generate the pulse signal. For integration a time component is required. Due to the ability to unit test the component, the time component is passed through a method argument. The frequency is integrated by multiplying frequency and time and adding the result to the previous results (\textbf{2b} in Figure \ref{fig:BlockdiagrammPulseSignal}). In Simulink it is possible to reset the integration block. Due to this not being possible in ASCET, the integrated frequency is reset as soon as the integrated frequency is greater or equal 1 because then one period is over and the new periodic time can be calculated (\textbf{2b} in Figure \ref{fig:BlockdiagrammPulseSignal}).  
+While the integrated frequency is smaller or equal 0.5 the pulse signal is set to 1 (\textbf{3a} in Figure \ref{fig:BlockdiagrammPulseSignal}). Once the frequency is greater than 0.5 the pulse signal is set to 0 (\textbf{3b} in Figure \ref{fig:BlockdiagrammPulseSignal}). This means the signal is high for one half of a period and low for the other half of a period.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{images/Blockdiagramm_PulseSignalClass.png}
-\caption{ASCET Blockdiagramm of pulse signal class}
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_PulseSignalClassAnno.png}
+\caption{ASCET block diagram of class $PulseSignalClass$}
 \label{fig:BlockdiagrammPulseSignal}
 \end{figure}
 
+The resulting pulse signal is shown in Figure \ref{fig:BlockdiagrammPulseSignalOutput}. It shows that the period of the pulse signal is getting shorter once the car approaches the target position. The plot also shows that the pulse signal starts once the car is slower than 3.6 km/h (\^= 1m/s) and ends once the car is standing. 
 
 \begin{figure}[H]
 \centering

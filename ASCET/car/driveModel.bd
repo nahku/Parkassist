@@ -5,19 +5,19 @@ blockdiagramSpecification Main {
 			connection_49, connection_94, connection_66, connection_25, connection_100
 		}
 	}
-	multiplication at (561, 86) {
+	multiplication at (471, 146) {
 		inPin connection_102 {
-			bendpoints (390, 0), (390, 90)
+			bendpoints (360, 0), (360, 90)
 		}
 		inPin connection_90 {
-			bendpoints (390, 0), (390, 50)
+			bendpoints (320, 0), (320, 40)
 		}
 		inPin connection_89
 		outPin {
 			connection_12
 		}
 	}
-	simpleIdentifier b at (41, 165) {
+	simpleIdentifier b at (51, 225) {
 		label at (0, -1)
 		outPin {
 			connection_9
@@ -26,7 +26,7 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	simpleIdentifier c at (41, 95) {
+	simpleIdentifier c at (51, 155) {
 		label at (0, -1)
 		outPin {
 			connection_1
@@ -35,31 +35,31 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	multiplication at (271, 166) {
+	multiplication at (241, 226) {
 		inPin connection_9
 		inPin connection_82 {
-			bendpoints (150, 0), (150, -40)
+			bendpoints (70, 0), (70, -40)
 		}
 		outPin {
 			connection_2
 		}
 	}
-	subtraction at (351, 96) {
+	subtraction at (351, 156) {
 		inPin connection_11
 		inPin connection_2 {
-			bendpoints (20, 0), (20, -60)
+			bendpoints (30, 0), (30, -60)
 		}
 		outPin {
 			connection_89, connection_50
 		}
 	}
-	negation at (271, 91) {
+	negation at (291, 151) {
 		inPin connection_1
 		outPin {
 			connection_11
 		}
 	}
-	simpleIdentifier v at (731, 105) {
+	simpleIdentifier v at (621, 165) {
 		label at (-40, 9)
 		inPin connection_95
 		outPin {
@@ -69,7 +69,7 @@ blockdiagramSpecification Main {
 			inPin connection_94
 		}
 	}
-	addition at (651, 96) {
+	addition at (541, 156) {
 		inPin connection_12
 		inPin connection_74 {
 			bendpoints (40, 0), (40, 110), (-140, 110), (-140, 10)
@@ -78,7 +78,7 @@ blockdiagramSpecification Main {
 			connection_95
 		}
 	}
-	multiplication at (851, -4) {
+	multiplication at (741, 56) {
 		inPin connection_101
 		inPin connection_93 {
 			bendpoints (40, 0), (40, -90)
@@ -87,7 +87,7 @@ blockdiagramSpecification Main {
 			connection_58
 		}
 	}
-	addition at (1261, 16) {
+	addition at (1151, 76) {
 		inPin connection_59
 		inPin connection_27 {
 			bendpoints (70, 0), (70, 90), (-130, 90)
@@ -96,7 +96,7 @@ blockdiagramSpecification Main {
 			connection_26
 		}
 	}
-	simpleIdentifier s at (1341, 25) {
+	simpleIdentifier s at (1231, 85) {
 		label at (0, -1)
 		inPin connection_26
 		outPin {
@@ -106,7 +106,7 @@ blockdiagramSpecification Main {
 			inPin connection_25
 		}
 	}
-	simpleIdentifier acc at (1141, 255) {
+	simpleIdentifier acc at (1031, 315) {
 		label at (0, -1)
 		inPin connection_50 {
 			bendpoints (60, 0), (60, 150)
@@ -115,7 +115,7 @@ blockdiagramSpecification Main {
 			inPin connection_49
 		}
 	}
-	division at (1041, 6) {
+	division at (931, 66) {
 		inPin connection_58
 		inPin connection_57 {
 			bendpoints (80, 0), (80, -30)
@@ -124,24 +124,24 @@ blockdiagramSpecification Main {
 			connection_59
 		}
 	}
-	literal Numeric "3.6" at (861, 53) size (49, 0) {
+	literal Numeric "3.6" at (751, 113) size (49, 0) {
 		outPin {
 			connection_57
 		}
 	}
-	literal Numeric "0.29" at (841, 123) size (69, 0) {
+	literal Numeric "0.29" at (731, 183) size (69, 0) {
 		outPin {
 			connection_61
 		}
 	}
-	less at (961, 106) {
+	less at (851, 166) {
 		inPin connection_60
 		inPin connection_61
 		outPin {
 			connection_67
 		}
 	}
-	if at (1031, 111) {
+	if at (921, 171) {
 		inPin connection_67
 		ifControlFlowOutPin {
 			connection_96
@@ -150,20 +150,20 @@ blockdiagramSpecification Main {
 			inPin connection_66
 		}
 	}
-	simpleIdentifier v at (1151, 165) {
+	simpleIdentifier v at (1041, 225) {
 		label at (-40, 9)
 		inPin connection_97
 		outPin sequenceCall at (-30, -54) {
 			inPin connection_96
 		}
 	}
-	literal Numeric "0.0" at (861, 163) size (49, 0) {
+	literal Numeric "0.0" at (751, 223) size (49, 0) {
 		outPin {
 			connection_97
 		}
 	}
-	simpleIdentifier target_position at (91, -75) {
-		label at (-80, 9)
+	simpleIdentifier target_position at (51, -15) {
+		label at (0, 9)
 		outPin {
 			connection_76
 		}
@@ -171,14 +171,14 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	simpleIdentifier ultrasonic_distance at (1551, -65) {
+	simpleIdentifier ultrasonic_distance at (1441, -5) {
 		label at (0, -1)
 		inPin connection_79
 		outPin sequenceCall at (-10, -44) {
 			inPin connection_100
 		}
 	}
-	subtraction at (1471, -74) {
+	subtraction at (1361, -14) {
 		inPin connection_76
 		inPin connection_77 {
 			bendpoints (70, 0), (70, -80)
@@ -187,12 +187,12 @@ blockdiagramSpecification Main {
 			connection_79
 		}
 	}
-	literal Numeric "3.6" at (31, 43) size (49, 0) {
+	literal Numeric "3.6" at (51, 113) size (49, 0) {
 		outPin {
 			connection_90
 		}
 	}
-	methodArgumentIdentifier drive.p at (41, 225) {
+	methodArgumentIdentifier drive.p at (51, 285) {
 		label at (0, -1)
 		outPin {
 			connection_82
@@ -201,7 +201,7 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	methodArgumentIdentifier drive.dTs at (91, -5) {
+	methodArgumentIdentifier drive.dTs at (51, 55) {
 		label at (0, -1)
 		outPin {
 			connection_102, connection_101

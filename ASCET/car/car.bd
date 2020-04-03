@@ -2,7 +2,7 @@ classType car.car
 blockdiagramSpecification Main {
 	methodBody velocity {
 		outPin active {
-			connection_14, connection_24
+			connection_14, connection_24, connection_26
 		}
 	}
 	methodBody ultrasonic {
@@ -12,16 +12,7 @@ blockdiagramSpecification Main {
 	}
 	methodBody drive {
 		outPin {
-			connection_2, connection_18
-		}
-	}
-	simpleIdentifier resources.DriverMessages.brake at (181, 215) {
-		label at (0, -1)
-		outPin {
-			connection_1
-		}
-		sequenceCall {
-			inPin
+			connection_18
 		}
 	}
 	simpleIdentifier resources.CarMessages.v at (991, 215) {
@@ -55,10 +46,10 @@ blockdiagramSpecification Main {
 	complexIdentifier driveModel_instance_2 at (431, 211) size (47, 36) {
 		label at (0, 1)
 		methodCall car.driveModel.drive {
-			argumentPin p at (left, 0) connection_1
+			argumentPin p at (left, 0) connection_27
 			argumentPin dTs at (left, 6) connection_3
 			sequenceCall at (-100, -62) {
-				inPin connection_2
+				inPin connection_26
 			}
 		}
 		elementCall (car.driveModel.v) {
@@ -98,6 +89,15 @@ blockdiagramSpecification Main {
 		label at (0, -1)
 		inPin outPin {
 			connection_3
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.ParkAssistMessages.brake at (191, 215) {
+		label at (0, -1)
+		outPin {
+			connection_27
 		}
 		sequenceCall {
 			inPin
