@@ -1,4 +1,4 @@
-classType car.driveModel
+classType car.DriveModel
 blockdiagramSpecification Main {
 	methodBody drive {
 		outPin active {

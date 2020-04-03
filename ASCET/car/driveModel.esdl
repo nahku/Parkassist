@@ -1,6 +1,6 @@
 package car;
 
-class driveModel {
+class DriveModel {
 	const real b = 10.0;
 	const real c = 1.5;
 	@get

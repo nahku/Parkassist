@@ -622,24 +622,81 @@ While the integrated frequency is smaller or equal 0.5 the pulse signal is set t
 
 The resulting pulse signal is shown in Figure \ref{fig:BlockdiagrammPulseSignalOutput}. It shows that the period of the pulse signal is getting shorter once the car approaches the target position. The plot also shows that the pulse signal starts once the car is slower than 3.6 km/h (\^= 1m/s) and ends once the car is standing. 
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/ascet_pulsesignal.png}
+\caption{Output pulse signal}
+\label{fig:BlockdiagrammPulseSignalOutput}
+\end{figure}
 
 \chapter{D9: Implementation of unit tests for ASCET model parts}\label{cha:D9}
 This section covers the unit tests of all components of the ASCET model.
-The components were designed in a modular way to allow easy unit testing.
+The components are designed in a modular way to allow easy unit testing.
 Also wrapper classes, passing messages into the components, are used to make it possible to unit test the components.
-This is the only functionality the wrapper classes include.
+This is the only functionality the wrapper classes have.
 That is necessary to make sure that no new bugs are introduced by the wrapper classes, because they can not be unit tested.\\
-The unit tests are bundled in a package called $test$ in the ASCET project. The assertLib is imported for the assertions that are used in the unit tests. The unit tests are grouped by component with a static test class for each component. One test case corresponds to one method within the unit test classes.\\
+The unit tests are bundled in a package called $test$ in the ASCET project. The assertLib is imported for the assertions that are used in the unit tests. The unit tests are grouped by component with a static test class for each component. One test case corresponds to one method within the unit test classes.
 
 Test cases are derived by analysing the requirements and finding equivalence classes.
-The goal of the test case coverage is to cover equivalence class and in addition to that select values that might result in errors based on experience.s
+The goal of the test case coverage is to cover equivalence class and in addition to that select values that might result in errors based on experience.
 
-- pulse signal, drive model not possible to unit test because of time component
-- Messages erklären\\
+\section{Unit tests for DriveModel}
 
-\section{Unit tests for ParkAssistControl}
+$DriveModel$ computes acceleration, velocity, position and ultrasonic distance based on a defined time and brake pedal position. Generally, there are two equivalence classes. One equivalence class covers all velocities greater than 0.29 km/h and the other all velocities less or equal 0.29 km/h. As only one time step is simulated while unit testing the position will become zero if the velocity is zero. By the time the velocity becomes zero in the system test environment, the position is greater than zero. Due to this inconsistency this equivalence class is not tested. Defined test cases can be seen in the table below.
 
-\section{Unit tests for pulse signal frequency generation}
+\begin{table}[H]
+\centering
+\caption{Test cases for unit testing driveModel}
+\begin{adjustbox}{width=1\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{lllllll}
+\textbf{Brake pedal} & \textbf{Time constant [s]} & \textbf{Acceleration [m/s]} &\textbf{Velocity [km/h]} & \textbf{Position [m]} & \textbf{Ultrasonic distance [m]} \\\hline
+p = 0.0 & dTs = 1.0 & acc = -1.5 & v = 4.6 & s $\approx$ 1.278 & u $\approx$ 0.722\\
+p = 0.5 & dTs = 0.1 & acc = -6.5 & v = 7.66 & s $\approx$ 0.213 & u $\approx$ 1.787\\
+\label{tab:D10_drivemodel}
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\section{Unit tests ParkAssistControllerTest}
+
+$ParkAssistControllClass$ generates a brake pedal position based on a defined time using a look-up table.
+There are two equivalence classes defined for the $ParkAssistControll$ class that cover the brake pedal position if the time is inside the time span of the look-up table and if the time is greater than the time span of the look-up table.
+
+\begin{table}[H]
+\centering
+\caption{Equivalence classes for unit testing ParkAssistControll}
+\begin{adjustbox}{width=0.5\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{lllllll}
+\textbf{Time [s]} & \textbf{Output p(t)} \\\hline
+$0 \leq t \leq 1.2$ &$ 0 \leq p(t) \leq 0.078$ \\
+t > 1.2 & p(t) = 0\\
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Based on the equivalence classes three test cases have been derived. Two test cases correspond to the first equivalence class and the third test case corresponds to the second equivalence class. 
+
+\begin{table}[H]
+\centering
+\caption{Unit test test cases pulse signal frequency generation}
+\begin{adjustbox}{width=0.5\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{llll}
+\textbf{Test case name} & \textbf{Time [s]} & \textbf{Brake pedal} \\ \hline
+time\textunderscore 0\textunderscore 0 & 0.0 & 0.0 \\
+time\textunderscore 0\textunderscore 6 & 0.6 & 0.078 \\
+time\textunderscore 2\textunderscore 0 & 2.0 & 0.0 \\                   
+\end{tabular}
+\end{adjustbox}
+\label{tbl:D9_FrequencyGenerationTestCases}
+\end{table}
+
+\section{Unit tests FrequencyComputationTest}\label{sec:unitfrequency}
+
+$FrequencyComputationClass$ generates a frequency based on a defined position and velocity using a look-up table.
+There are three equivalence classes defined for the $FrequencyComputationClass$ class that cover three output scenarios: Zero frequency, variable frequency based on a defined function and Continuous frequency. 
 
 \begin{table}[H]
 \centering
@@ -676,7 +733,10 @@ frequencyMid                          & 1.0                         & 1.5       
 \label{tbl:D9_FrequencyGenerationTestCases}
 \end{table}
 
-\section{Unit tests for pulse signal}
+\section{Unit tests PulseSignalClass}
+
+$PulseSignalClass$ generates a pulse signal based on a defined frequency.
+There are three equivalence classes defined for the $PulseSignalClass$ class that refer to the equivalence classes in section \ref{sec:unitfrequency}. 
 The table below shows the equivalence classes for the pulse signal.
 \begin{table}[H]
 \centering
@@ -692,7 +752,7 @@ irrelevant & V = 0m/s oder V > 1m/s & Zero\\
 \end{adjustbox}
 \end{table}
 
--test cases
+The derived test cases are shown below.
 
 \begin{table}[H]
 \centering
@@ -701,12 +761,11 @@ irrelevant & V = 0m/s oder V > 1m/s & Zero\\
 \begin{tabular}{lll}
 \textbf{Frequency} & \textbf{dts} & \textbf{Expected result} \\\hline
 0         & 1   & 0               \\
+1         & 0.1   & 1               \\
+1         & 0.6   & 0               \\
 10        & 1   & 1              
 \end{tabular}
 \end{table}
-
-
-- Alternating pulse signal not possible to test because dependant of time 
 
 \chapter{D10: Development and implementation of a system test environment for ASCET simulation}\label{cha:D10}
 
