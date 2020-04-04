@@ -248,9 +248,9 @@ decreasing_velocity(isnan(neg_acceleration)) = nan;
 \section{Separating breaking sequences}
 For better visualisation, the breaking sequences that can be seen in figure \ref{fig:D3_IndividualBraking} will be stored separately.
 One breaking sequence consists of multiple consequent velocity measurements.
-This means that the breaking sequences can be separated by searching for a gap in the velocity measurements (\ac{NaN} values).
-Therefore, the indices of all velocities that are set not \ac{NaN} are extracted (line 2 in listing \ref{lst:D3Seperat}) and differentiated (line 3 in listing \ref{lst:D3Seperat}).
-Consequently, every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are subsequent (differentiation equals 1).
+This means that the breaking sequences can be separated by searching for a gap in the velocity measurements (\ac{NaN} values). \\
+The indices of all velocities that are not \ac{NaN} are extracted (line 2 in listing \ref{lst:D3Seperat}) and differentiated (line 3 in listing \ref{lst:D3Seperat}).
+Every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence would be subsequent (differentiation equals 1).
 Furthermore, short breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line 13 in listing \ref{lst:D3Seperat}).
 Two individual breaking sequences can be seen in figure \ref{fig:D3_IndividualBraking1} and figure \ref{fig:D3_IndividualBraking2}.
 
@@ -592,8 +592,9 @@ The third subplot shows the covered distance of the car, which is clearly under 
 \chapter{D8: Implementation of pulse signal in ASCET}\label{cha:D8}
 
 The pulse signal that has been implemented in Simulink (see chapter \ref{cha:D6}) is transferred to ASCET in this chapter.
-The ASCET model consists of three sub-models described in three block diagrams. Two of the sub-models are regular classes that can be instantiated. This makes the whole model modular and the sub-models are able to be unit tested. One of the two classes calculates a frequency based on a given velocity and position of the car. The second class generates a pulse signal based on the calculated frequency.
-The third class is a static class that passes the calculated frequency to the pulse signal generating class. The static class is also responsible for receiving the velocity and position messages of the car and pass them to the frequency computation class as well as sending the generated pulse signal as a new message. This can be seen in figure \ref{fig:BlockdiagrammFrequencyComputation} that shows the block diagram of the static class.
+
+The implementation in ASCET consists of the three classes $FrequencyComputation$, $FrequencyComputationClass$ and $PulseSignalClass$. $FrequencyComputationClass$ and $PulseSignalClass$ are "regular" classes that can be instantiated so that they can be unit tested. $FrequencyComputationClass$ calculates a frequency based on a given velocity and position of the car. $PulseSignalClass$ generates a pulse signal based on the calculated frequency.
+$FrequencyComputation$ is a static class that receives the velocity and position messages of the car and passes them to $FrequencyComputation$. It then passes the calculated frequency to $PulseSignalClass$ and sends the generated pulse signal as a new message. Figure \ref{fig:BlockdiagrammFrequencyComputation} shows the block diagram of $FrequencyComputation$.
 
 \begin{figure}[H]
 \centering
@@ -652,7 +653,7 @@ The goal of the test case coverage is to cover every equivalence class and, in a
 
 \section{Unit tests for DriveModel}
 
-$DriveModel$ computes acceleration, velocity, position and ultrasonic distance based on a defined time and brake pedal position. There are two equivalence classes. One equivalence class covers all velocities greater than 0.29 km/h and the other all velocities less or equal 0.29 km/h. As only one time step is simulated while unit testing the position will remain zero if the computed velocity is zero. Defined test cases can be seen in the table below.
+$DriveModel$ computes acceleration (acc), velocity (v), position (p) and ultrasonic distance (ud) based on a defined time and brake pedal position. There are two equivalence classes. One equivalence class covers all velocities greater or equal 0.29 km/h and the other all velocities less than 0.29 km/h. Defined test cases can be seen in the table below. The first two test cases belong to the equivalence class that describe a velocity greater or equal 0.29 km/h, the third test case belongs to the equivalence class that describe a velocity less than 0.29 km/h.
 
 \begin{table}[H]
 \centering
@@ -660,9 +661,10 @@ $DriveModel$ computes acceleration, velocity, position and ultrasonic distance b
 \begin{adjustbox}{width=1\textwidth, center=\textwidth}
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{lllllll}
-\textbf{Brake pedal} & \textbf{Time constant [s]} & \textbf{Acceleration [m/s]} &\textbf{Velocity [km/h]} & \textbf{Position [m]} & \textbf{Ultrasonic distance [m]} \\\hline
+\textbf{Brake pedal} & \textbf{Time constant [s]} & \textbf{Expected acc [m/s]} &\textbf{Expected v [km/h]} & \textbf{Expected p [m]} & \textbf{Expected ud [m]} \\\hline
 p = 0.0 & dTs = 1.0 & acc = -1.5 & v = 4.6 & s $\approx$ 1.278 & u $\approx$ 0.722\\
 p = 0.5 & dTs = 0.1 & acc = -6.5 & v = 7.66 & s $\approx$ 0.213 & u $\approx$ 1.787\\
+p = 1.0 & dTs = 1.0 & acc = -11.5 & v = 0 & s = 0 & u = 2\\
 \label{tab:D10_drivemodel}
 \end{tabular}
 \end{adjustbox}
@@ -782,6 +784,8 @@ The derived test cases are shown below.
 The system test environment in Figure \ref{fig:D10} features an oscilloscope and several textboxes. 
 The oscilloscope shows the velocity, acceleration and position of the car as well as the ultrasonic distance signal and the pulse signal. The textboxes show the value of the signal in the oscilloscope next to them. 
 The checkbox at the right bottom shows whether the car did a full brake within less than 2m.
+
+To execute the experiment, a schedule has to be defined. The used schedule is described in chapter \ref{cha:D7} and can be seen in Figure \ref{fig:D7_schedule}.
 
 With the parameters that have been evaluated in this project, the car stops at 1.905 m.
 

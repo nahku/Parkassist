@@ -53,4 +53,27 @@ static class DriveModelTest{
 		Assert.assertBetween(res_s, 0.21, 0.22);
 		Assert.assertBetween(res_ultrasonic_distance, 1.7, 1.8);
 	}
+	
+	@Test
+	public void p_1(){
+		real res_acc;
+		real res_v;
+		real res_s;
+		real res_ultrasonic_distance;
+		real p = 1.0;
+		real dTs = 1.0;
+		real expected_v = 0.0;
+		
+		driveModelInstance.drive(p, dTs);
+		
+		res_acc = driveModelInstance.acc;
+		res_v = driveModelInstance.v;
+		res_s = driveModelInstance.s;
+		res_ultrasonic_distance = driveModelInstance.ultrasonic_distance;
+		
+		Assert.assertEqual(res_acc, -11.5);
+		Assert.assertEqual(res_v, expected_v);
+		Assert.assertEqual(res_s, 0.0);
+		Assert.assertEqual(res_ultrasonic_distance, 2.0);
+	}
 }
