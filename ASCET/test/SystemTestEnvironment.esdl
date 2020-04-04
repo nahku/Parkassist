@@ -2,7 +2,7 @@ package test;
 import resources.CarMessages;
 
 static class SystemTestEnvironment
-reads CarMessages.v, CarMessages.position, CarMessages.pulse_signal, CarMessages.acceleration {
+reads CarMessages.v, CarMessages.position{
 	boolean position_less_2m;
 	boolean pulse_zero;
 	real acc;
