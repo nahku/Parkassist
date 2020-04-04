@@ -302,7 +302,7 @@
 			/end IF_DATA
 		/end MEASUREMENT
 
-		/begin MEASUREMENT test.SystemTest.position_less_2m
+		/begin MEASUREMENT test.SystemTestEnvironment.position_less_2m
 			/* long identifier    */ ""
 			/* datatype           */ UBYTE
 			/* conversion         */ esdl_ident
@@ -317,7 +317,7 @@
 			/end IF_DATA
 		/end MEASUREMENT
 
-		/begin MEASUREMENT test.SystemTest.pulse_zero
+		/begin MEASUREMENT test.SystemTestEnvironment.pulse_zero
 			/* long identifier    */ ""
 			/* datatype           */ UBYTE
 			/* conversion         */ esdl_ident
@@ -332,7 +332,7 @@
 			/end IF_DATA
 		/end MEASUREMENT
 
-		/begin MEASUREMENT test.SystemTest.acc
+		/begin MEASUREMENT test.SystemTestEnvironment.acc
 			/* long identifier    */ ""
 			/* datatype           */ FLOAT32_IEEE
 			/* conversion         */ esdl_ident
@@ -346,7 +346,7 @@
 			/end IF_DATA
 		/end MEASUREMENT
 
-		/begin MEASUREMENT test.SystemTest.v
+		/begin MEASUREMENT test.SystemTestEnvironment.v
 			/* long identifier    */ ""
 			/* datatype           */ FLOAT32_IEEE
 			/* conversion         */ esdl_ident
@@ -375,7 +375,7 @@
 				car.car
 				car.FrequencyComputation
 				car.ParkAssistController
-				test.SystemTest
+				test.SystemTestEnvironment
 			/end SUB_FUNCTION
 		/end FUNCTION
 		
@@ -458,19 +458,17 @@
 			/end DEF_CHARACTERISTIC
 		/end FUNCTION
 		
-		/begin FUNCTION test.SystemTest
+		/begin FUNCTION test.SystemTestEnvironment
 			""
 			/begin IN_MEASUREMENT
-				resources.CarMessages.acceleration
 				resources.CarMessages.position
-				resources.CarMessages.pulse_signal
 				resources.CarMessages.v
 			/end IN_MEASUREMENT
 			/begin LOC_MEASUREMENT
-				test.SystemTest.acc
-				test.SystemTest.position_less_2m
-				test.SystemTest.pulse_zero
-				test.SystemTest.v
+				test.SystemTestEnvironment.acc
+				test.SystemTestEnvironment.position_less_2m
+				test.SystemTestEnvironment.pulse_zero
+				test.SystemTestEnvironment.v
 			/end LOC_MEASUREMENT
 		/end FUNCTION
 		
@@ -490,7 +488,7 @@
 				resources.CarMessages
 				car.FrequencyComputation
 				car.ParkAssistController
-				test.SystemTest
+				test.SystemTestEnvironment
 			/end SUB_GROUP
 		/end GROUP
 		
@@ -572,13 +570,13 @@
 			/end REF_CHARACTERISTIC
 		/end GROUP
 		
-		/begin GROUP test.SystemTest
+		/begin GROUP test.SystemTestEnvironment
 			""
 			/begin REF_MEASUREMENT
-				test.SystemTest.acc
-				test.SystemTest.position_less_2m
-				test.SystemTest.pulse_zero
-				test.SystemTest.v
+				test.SystemTestEnvironment.acc
+				test.SystemTestEnvironment.position_less_2m
+				test.SystemTestEnvironment.pulse_zero
+				test.SystemTestEnvironment.v
 			/end REF_MEASUREMENT
 		/end GROUP
 		
