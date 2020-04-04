@@ -3,6 +3,7 @@
 \chapter{Introduction}\label{cha:Introduction}
 In this project Matlab version R2019b and ASCET version 7.4 have been used.
 The Matlab and Simulink code is in the Matlab subfolder and the ASCET project is in the ASCET subfolder.
+Simulink settings:
 The report is structured by devoting one chapter to each requirement.
 
 \chapter{D1: Time estimate based on three point estimation}\label{cha:D1}
@@ -308,30 +309,30 @@ Considering Figures REF, REF and REF, it can be seen that the acceleration is ap
 %lösung: moving average filter zum glätten der messwerte
 %dann extrahieren der negativen beschleunigungen
 
-\section{Development of p(t)}
-with no brake:
--model from D2
--stopped after 1.8s, at approx 2.6m
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{images/D3_no_brake.jpg}
-\caption{Simulation without braking}
-\label{fig:D3_IndividualBraking2}
-\end{figure}
+\section{Development of p(t)}\label{sec:D3_dev_pt}
+%with no brake:
+%-model from D2
+%-stopped after 1.8s, at approx 2.6m
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=1\textwidth]{images/D3_no_brake.jpg}
+%\caption{Simulation without braking}
+%\label{fig:D3_IndividualBraking2}
+%\end{figure}
 
-Now goal
--p(t) time dependant
--with acceleration curve similar to extracted above
--start pressing brake increasing from start of brake maneuver and releasing pedal after half of maneuver
+The goal is to find a p(t) with an acceleration curve similar to the extracted above.
+Since the brake pedal position has a linear negative influence on the acceleration, the brake pedal function should press the brake pedal with an approximate parabola that is opened downwards.
+This ensures a smooth braking behaviour with starting braking slowly and also easing of the brake at the end of the manoeuvre, using friction to come to a full stop (like the driving teacher suggested).
 
-To simulate a time dependant brake pressure the before developed Simulink model has been extended with a lookup-table that contains the brake pressure parameters. The integrator that integrates the constant 1 provides the time input to the lookup table.
+To simulate a time dependant brake pressure the before developed Simulink model (see section \ref{sec:D2_model})has been extended with a lookup-table that contains the brake pressure parameters.
+The integrator that integrates the constant 1 provides the time input to the lookup table.
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D3_model_extension.png}
 \caption{Simulation without braking}
 \label{fig:D3_IndividualBraking2}
 \end{figure}
-
+By adjusting the parameters of the lookup-table the following values have been selected to provide smooth human-like braking.
 \begin{table}[H]
 \centering
 \caption{Determined p(t) parameters}
@@ -348,16 +349,19 @@ To simulate a time dependant brake pressure the before developed Simulink model 
 \end{tabular}
 \end{table}
 
--$v_0$ 10 km/h
--Stop at circa 1.92 meters
--leave margin for inaccurate $v_0$, which will be analysed in chapter \ref{cha:D5} todo check
--Acceleration curve similar to human profile
--let go of brake before coming to a stop, let friction do the rest
+Figure \ref{fig:D3_pt} shows the results of the Simulink simulation using the parameters from the table above.
+With 10 km/h as $v_0$ the car comes to a stop at approximately 1.92 meters.
+This leaves a margin for velocity measurement inaccuracies, which will be analysed in chapter \ref{cha:D5} todo check.
+The acceleration curve in the third subplot is similar to a human profile, with the exception of the offset of $-1.5\; m/s^2$.
+This can not be prevented because there is no gas pedal.
+It can also be seen that at the end of the braking procedure at approximately 1.2 s, the brake pedal is released and the friction brings the car to stop.
+
+todo maybe mored
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D3_pt.jpg}
 \caption{Simulation results with p(t)}
-\label{fig:D3_IndividualBraking2}
+\label{fig:D3_pt}
 \end{figure}
 
 \chapter{D4*: Consideration of uneven parking spaces}\label{cha:D4}
@@ -401,17 +405,15 @@ The, highest initial velocity that is possible with R5 is 10.1 km/h.
 So this is used as $v_0$ for the impact evaluation.
 The model from Figure \ref{fig:D3_IndividualBraking2} from before is used for the evaluation, to see if the margin to 2 m is enough with a $v_0$ of 10.1 km/h.\\
 
-As can be seen from the results of the simulation a 
--Figure shows that margin is enough, because stopping distance is 1.96 m.
+As can be seen from the results of the simulation in figure \ref{fig:D5_results} the margin is enough, since the stopping distance is approximately 1.96 m.
+The stopping distance from the correct $v_0$ of 10 km/h (see section \ref{sec:D3_dev_pt}) is 1.92 m. So the velocity difference of 0.1 km/h results in a stopping distance difference of circa 4 centimeters.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D5_result.jpg}
 \caption{Simulation of inaccurate $v_0$}
-\label{fig:D5_restuls}
+\label{fig:D5_results}
 \end{figure}
-
-
 
 Uncertanties in the measured velcoity also influence the computed travelled distance.
 The velocity is needed to compute the travelled distance. The travelled distance is computed as the integral of the velocity. Therefore errors in the velocity accumulate in travelled distance.
@@ -458,7 +460,6 @@ When none of the above mentioned conditions are the case, the subsystem outputs 
 \label{fig:D6_Frequency_Computation}
 \end{figure}
 
-todo output plot
 \section{Pulse signal generation}\label{sec:D6Signal}
 Figure \ref{fig:D6_Pulse_Signal} shows the simulink model of the pulse signal generator.
 This component provides a pulse signal with a variable frequency input.
@@ -776,3 +777,4 @@ a countermeasure for that could be to use multiple ultrasonic sensors
 -no feedback
 -model not realistic
 -no air friction, but relatively low at low speed
+-1.5 friction
