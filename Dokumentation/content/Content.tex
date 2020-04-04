@@ -5,7 +5,14 @@ In this project Matlab version R2019b and ASCET version 7.4 have been used.
 The Matlab and Simulink code is in the Matlab subfolder and the ASCET project is in the ASCET subfolder.
 The report is structured by devoting one chapter to each requirement.
 
-- blockdiagramm, nur test esdl
+In ASCET mainly graphical programming using block diagrams is used due to requirement D7. Even though D8 does not demand graphical programming, for consistency reasons D8 is being graphically modelled as well. Exceptions are the unit tests. The test are programmed in ESDL because some test have a lot of test cases which would lead to a huge block diagram that would likely be unclear. 
+
+Simulink: ode8 most precise runge-kutta solver
+Fixedstep
+
+%Die oberen Diagramme sind mit den Solver-Einstellung FixedStep nach ode4 – RungeKutta mit einer Schrittweite von 0.001s erzeugt worden. Der Solver ode4 wurde ausgewählt, da dieser das beste Verhältnis von Effizienz und ausreichender Genauigkeit bereitstellt und eine kleine Schrittweite für exakte Werte zu Beginn. Für die untere Reihe hingegen wurde ein FixedStep Verfahren mit automatischem Solver und Schrittweite gewählt, die ein instabiles Verhalten durch eine zu groß gewählte Schrittweite zeigt. Als Alternative zu kleinen Schritten ist auch VariableStep, welches besonders sinnvoll für lange Simulationsdauern ist, da sich die Werte nach t > 1.0s nur geringfügig ändern. Der Nachteil dieser Einstellung ist aber eine Ungenauigkeit im vorderen Bereich bei t < 0.3s.
+
+
 
 \chapter{D1: Time estimate based on three point estimation}\label{cha:D1}
 For the three point estimation we use the formuals from the lecture.
@@ -775,22 +782,15 @@ The derived test cases are shown below.
 
 \chapter{D10: Development and implementation of a system test environment for ASCET simulation}\label{cha:D10}
 
-- wait 5 seconds until starting because ascet experiment environment does not display the first seconds \\
-- in first 5 seconds brake = -0.15 to counter c and b, v = 0 \\
-- after five seconds set v to 10 km/h and start experiment
+- checkbox if position is less than 2m \\
+- acceleration follows D3 \\
+- pulse signal periods become smaller \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{images/Blockdiagramm_settings.png}
-\caption{ASCET Blockdiagramm of settings}
-\label{fig:BlockdiagrammSettings}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{images/Blockdiagramm_stopwatch.png}
-\caption{ASCET Blockdiagramm of stopwatch}
-\label{fig:BlockdiagrammStopwatch}
+\includegraphics[width=1\textwidth]{images/ascet_experiment_environment.png}
+\caption{ASCET Experiment Environment}
+\label{fig:D10}
 \end{figure}
 
 
