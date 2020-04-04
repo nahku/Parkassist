@@ -61,7 +61,7 @@
 		        QP_BLOB 2
 		    /end SOURCE
 		    /begin TP_BLOB
-		         /* programm id */ 3758117395
+		         /* programm id */ 3883945750
 		         /* target id   */ 7
 		         /*             */ 0 2 0
 		    /end TP_BLOB
@@ -93,7 +93,7 @@
 		/begin CHARACTERISTIC car.FrequencyComputation.FrequencyComputationClass_instance_3.frequency_lookup
 			/* long identifier    */ ""
 			/* type               */ CURVE
-			/* ecu address        */ 0x434010
+			/* ecu address        */ 0x4341B8
 			/* record layout      */ STANDARD_CURVE_R32R32
 			/* max diff value     */ 0.0
 			/* conversion         */ esdl_ident
@@ -115,7 +115,7 @@
 		/begin CHARACTERISTIC car.ParkAssistController.ParkAssistControllerClass_instance_4.curve_cont_table
 			/* long identifier    */ ""
 			/* type               */ CURVE
-			/* ecu address        */ 0x434040
+			/* ecu address        */ 0x4341E0
 			/* record layout      */ STANDARD_CURVE_R32R32
 			/* max diff value     */ 0.0
 			/* conversion         */ esdl_ident
@@ -142,7 +142,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x43400C
+			ECU_ADDRESS 0x4341B4
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 1 1000 0 1000 0
 			/end IF_DATA
@@ -156,7 +156,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x434004
+			ECU_ADDRESS 0x4341AC
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 1 1000 0 1000 1
 			/end IF_DATA
@@ -170,7 +170,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x434000
+			ECU_ADDRESS 0x4341A8
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 1 1000 0 1000 2
 			/end IF_DATA
@@ -184,7 +184,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x434008
+			ECU_ADDRESS 0x4341B0
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 1 1000 0 1000 3
 			/end IF_DATA
@@ -198,7 +198,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x452040
+			ECU_ADDRESS 0x4520EC
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 2 1001 0
 			/end IF_DATA
@@ -212,7 +212,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x45202C
+			ECU_ADDRESS 0x4520D8
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 3 1001 0
 			/end IF_DATA
@@ -226,7 +226,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x45203C
+			ECU_ADDRESS 0x4520E8
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 3 1001 1
 			/end IF_DATA
@@ -240,7 +240,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x452038
+			ECU_ADDRESS 0x4520E4
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 3 1001 2
 			/end IF_DATA
@@ -254,7 +254,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x452030
+			ECU_ADDRESS 0x4520DC
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 3 1001 3
 			/end IF_DATA
@@ -268,7 +268,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x452034
+			ECU_ADDRESS 0x4520E0
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 3 1001 4
 			/end IF_DATA
@@ -282,7 +282,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x452020
+			ECU_ADDRESS 0x4520CC
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 5 1001 0 1001 0 1001 4 1000 1 1000 0
 			/end IF_DATA
@@ -296,7 +296,7 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ -3.4028234663852886E+38
 			/* upper limit        */ 3.4028234663852886E+38
-			ECU_ADDRESS 0x452024
+			ECU_ADDRESS 0x4520D0
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 5 1000 1
 			/end IF_DATA
@@ -310,10 +310,53 @@
 			/* accuracy           */ 100.0
 			/* lower limit        */ 0
 			/* upper limit        */ 1
-			ECU_ADDRESS 0x452044
+			ECU_ADDRESS 0x4520F8
 			BIT_MASK 0x1
 			/begin IF_DATA E_TARGET
 			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 6 1000 0
+			/end IF_DATA
+		/end MEASUREMENT
+
+		/begin MEASUREMENT test.SystemTest.pulse_zero
+			/* long identifier    */ ""
+			/* datatype           */ UBYTE
+			/* conversion         */ esdl_ident
+			/* resolution         */ 1
+			/* accuracy           */ 100.0
+			/* lower limit        */ 0
+			/* upper limit        */ 1
+			ECU_ADDRESS 0x4520F9
+			BIT_MASK 0x1
+			/begin IF_DATA E_TARGET
+			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 6 1000 1
+			/end IF_DATA
+		/end MEASUREMENT
+
+		/begin MEASUREMENT test.SystemTest.acc
+			/* long identifier    */ ""
+			/* datatype           */ FLOAT32_IEEE
+			/* conversion         */ esdl_ident
+			/* resolution         */ 1
+			/* accuracy           */ 100.0
+			/* lower limit        */ -3.4028234663852886E+38
+			/* upper limit        */ 3.4028234663852886E+38
+			ECU_ADDRESS 0x4520F0
+			/begin IF_DATA E_TARGET
+			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 6 1000 2
+			/end IF_DATA
+		/end MEASUREMENT
+
+		/begin MEASUREMENT test.SystemTest.v
+			/* long identifier    */ ""
+			/* datatype           */ FLOAT32_IEEE
+			/* conversion         */ esdl_ident
+			/* resolution         */ 1
+			/* accuracy           */ 100.0
+			/* lower limit        */ -3.4028234663852886E+38
+			/* upper limit        */ 3.4028234663852886E+38
+			ECU_ADDRESS 0x4520F4
+			/begin IF_DATA E_TARGET
+			    KP_BLOB 0xFFFFFFFF 0xFFFFFFFF 4 1001 0 1001 0 1001 6 1000 3
 			/end IF_DATA
 		/end MEASUREMENT
 
@@ -418,11 +461,16 @@
 		/begin FUNCTION test.SystemTest
 			""
 			/begin IN_MEASUREMENT
+				resources.CarMessages.acceleration
 				resources.CarMessages.position
+				resources.CarMessages.pulse_signal
 				resources.CarMessages.v
 			/end IN_MEASUREMENT
 			/begin LOC_MEASUREMENT
+				test.SystemTest.acc
 				test.SystemTest.position_less_2m
+				test.SystemTest.pulse_zero
+				test.SystemTest.v
 			/end LOC_MEASUREMENT
 		/end FUNCTION
 		
@@ -527,7 +575,10 @@
 		/begin GROUP test.SystemTest
 			""
 			/begin REF_MEASUREMENT
+				test.SystemTest.acc
 				test.SystemTest.position_less_2m
+				test.SystemTest.pulse_zero
+				test.SystemTest.v
 			/end REF_MEASUREMENT
 		/end GROUP
 		

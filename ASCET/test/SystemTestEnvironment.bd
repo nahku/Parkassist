@@ -1,4 +1,4 @@
-classType test.SystemTest
+classType test.SystemTestEnvironment
 blockdiagramSpecification Main {
 	methodBody calc {
 		outPin active {

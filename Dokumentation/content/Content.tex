@@ -576,12 +576,12 @@ The braking pedal position look-up table is shown in Listing \ref{lst:D7_lookup}
 characteristic curve_cont curve_cont_table = {{0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2}, {0.0, 0.043, 0.073, 0.078, 0.073, 0.043, 0.0}};
 \end{lstlisting}
 
-In order to execute the experiment, it is necessary to define the schedule. As can be seen in Figure \ref{fig:D7_schedule}, the experiment is divided in two tasks, one being executed every 2ms and the other task being executed every 10ms. As defined in requirement R4, the ultrasonic distance message is computed every 2ms. Alongside this, the ParkAssistController adjusts the brake pedal position and the pulse signal is computed also every 2ms for a higher precision. The velocity however is generated every 10ms as described in requirement R5.
-
+In order to execute the experiment, it is necessary to define the scheduling. As can be seen in Figure \ref{fig:D7_schedule}, the experiment is divided in two tasks, one being executed every 2ms and the other task being executed every 10ms. As defined in requirement R4, the ultrasonic distance message is computed every 2ms. Alongside this, the ParkAssistController adjusts the brake pedal position and the pulse signal is computed also every 2ms for a higher precision. The velocity however is generated every 10ms as described in requirement R5. Furthermore, the check for the $SystemTestEnvironment$ (see chapter \ref{cha:D10}) is executed every 10ms as this is precise enough for the check because mainly the end result is of interest.
+ 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/pc_app.png}
-\caption{Schedule of ASCET model}
+\caption{Scheduling of ASCET model}
 \label{fig:D7_schedule}
 \end{figure}
 
@@ -601,7 +601,7 @@ The third subplot shows the covered distance of the car, which is clearly under 
 
 The pulse signal that has been implemented in Simulink (see chapter \ref{cha:D6}) is now transferred to ASCET. The requirements remain the same.
 The ASCET model consists of three sub-models described in three block diagrams. Two of the sub-models are regular classes that can be instantiated. This makes the whole model modular and the sub-models are able to unit test. One of the two classes calculates a frequency based on a given velocity and position of the car. The second class generates a pulse signal based on the calculated frequency.
-The third class is a static class that passes the calculated frequency to the pulse signal generating class. The static class is also responsible for receiving the velocity and position messages of the car and pass them to the frequency computation class as well as sending the generated pulse signal as a new message. This can be seen in Figure\ref{fig:BlockdiagrammFrequencyComputation} that shows the block diagram of the static class.
+The third class is a static class that passes the calculated frequency to the pulse signal generating class. The static class is also responsible for receiving the velocity and position messages of the car and pass them to the frequency computation class as well as sending the generated pulse signal as a new message. This can be seen in Figure \ref{fig:BlockdiagrammFrequencyComputation} that shows the block diagram of the static class.
 
 \begin{figure}[H]
 \centering
@@ -638,7 +638,7 @@ While the integrated frequency is smaller or equal 0.5 the pulse signal is set t
 \label{fig:BlockdiagrammPulseSignal}
 \end{figure}
 
-The resulting pulse signal is shown in Figure \ref{fig:BlockdiagrammPulseSignalOutput}. It shows that the period of the pulse signal is getting shorter once the car approaches the target position. The plot also shows that the pulse signal starts once the car is slower than 3.6 km/h (\^= 1m/s) and ends once the car is standing. 
+The resulting pulse signal is shown in Figure \ref{fig:BlockdiagrammPulseSignalOutput}. It shows that the period of the pulse signal is getting shorter once the car approaches the target position. The plot also shows that the pulse signal starts once the car is slower than 3.6 km/h (\^= 1m/s) and ends once the car is standing. The exact stopping position of the car is 1.905 m which is why the pulse signal does not become continuous. 
 
 \begin{figure}[H]
 \centering
@@ -787,9 +787,11 @@ The derived test cases are shown below.
 
 \chapter{D10: Development and implementation of a system test environment for ASCET simulation}\label{cha:D10}
 
-- checkbox if position is less than 2m \\
-- acceleration follows D3 \\
-- pulse signal periods become smaller \\
+The system test environment in Figure \ref{fig:D10} features an oscilloscope and several textboxes. 
+The oscilloscope shows the velocity, acceleration and position of the car as well as the ultrasonic distance signal and the pulse signal. The textboxes show the value of the signal in the oscilloscope next to them. 
+The checkbox at the right bottom shows whether the car did a full brake within less than 2m.
+
+With the parameters that have been evaluated in this project, the car stops at 1.905 m.
 
 \begin{figure}[H]
 \centering
@@ -797,6 +799,16 @@ The derived test cases are shown below.
 \caption{ASCET Experiment Environment}
 \label{fig:D10}
 \end{figure}
+
+For monitoring whether the car stopped within 2 m, a new class is introduced that is shown in Figure \ref{fig:D10_systest}. As can be seen in the block diagram, the class consists of a simple check whether the velocity is zero and the position less than 2 m. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/Blockdiagramm_systemtest.png}
+\caption{ASCET block diagram of $SystemTestEnvironment$}
+\label{fig:D10_systest}
+\end{figure}
+
 
 \chapter{D11*: Plausibility check comparing measured velocities and distances}\label{cha:D11}
 The distance signal from the ultrasonic sensor (in case there is a non-moving object in front of it) and the measured car velocity are two measurements that provide independent measurement of travelled distance.\\

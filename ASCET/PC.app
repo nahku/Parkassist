@@ -3,7 +3,7 @@ application {
 	class car.car
 	class car.FrequencyComputation
 	class car.ParkAssistController
-	class test.SystemTest
+	class test.SystemTestEnvironment
 }
 schedule {
 	startup {
@@ -19,6 +19,6 @@ schedule {
 	task Task0 priority 0 period 10ms delay 0ms {
 		process car.car.drive
 		process car.car.velocity
-		process test.SystemTest.calc
+		process test.SystemTestEnvironment.calc
 	}
 }
