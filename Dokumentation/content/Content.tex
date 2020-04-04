@@ -6,20 +6,14 @@ The Matlab and Simulink code is in the Matlab subfolder and the ASCET project is
 Simulink settings:
 The report is structured by devoting one chapter to each requirement.
 
-In ASCET mainly graphical programming using block diagrams is used due to requirement D7. Even though D8 does not demand graphical programming, for consistency reasons D8 is being graphically modelled as well. Exceptions are the unit tests. The test are programmed in ESDL because some test have a lot of test cases which would lead to a large block diagram that would likely be unclear. 
-
-Simulink: ode8 most precise runge-kutta solver
-Fixedstep
-
-%Die oberen Diagramme sind mit den Solver-Einstellung FixedStep nach ode4 – RungeKutta mit einer Schrittweite von 0.001s erzeugt worden. Der Solver ode4 wurde ausgewählt, da dieser das beste Verhältnis von Effizienz und ausreichender Genauigkeit bereitstellt und eine kleine Schrittweite für exakte Werte zu Beginn. Für die untere Reihe hingegen wurde ein FixedStep Verfahren mit automatischem Solver und Schrittweite gewählt, die ein instabiles Verhalten durch eine zu groß gewählte Schrittweite zeigt. Als Alternative zu kleinen Schritten ist auch VariableStep, welches besonders sinnvoll für lange Simulationsdauern ist, da sich die Werte nach t > 1.0s nur geringfügig ändern. Der Nachteil dieser Einstellung ist aber eine Ungenauigkeit im vorderen Bereich bei t < 0.3s.
-
-
+In ASCET mainly graphical programming using block diagrams is used due to requirement D7. Even though D8 does not demand graphical programming, for consistency reasons D8 is being graphically modelled as well. Exceptions are the unit tests. The test are programmed in ESDL because some test have a lot of test cases which would lead to a large block diagram that would likely be unclear.\\
+For the simulink models the ode8 solver is used, because it is the most precise fixed step solver. As step-width, 0.01s are used to provide efficiency but also the necessary precision.
 
 \chapter{D1: Time estimate based on three point estimation}\label{cha:D1}
 For the three point estimation we use the formuals from the lecture.
 The expected effort is computed using a weighted mean formula:
 \begin{equation}
-	<T> = \frac{optimistic + 4*likely + pessimistic}{6}
+	<T>\; = \frac{optimistic + 4*likely + pessimistic}{6}
 \end{equation}
 
 To compute the standard deviation we use the following equation:
@@ -65,10 +59,10 @@ The estimation of the 95 \% estimate of the total duration is computed as:
 This results in a 95 \% estimate of 40.8 hours.\\
 The total actually needed time is slightly less than the expected value of 39 hours.
 Some tasks, like D3 (human velocity profile extraction) and D6 (pulse signal in Simulink) took significantly longer than expected.
-
--other tasks less time
-
-Nontheless the acutally needed time is well within 95 \% confidence interval. 
+But on the other hand tasks like D8 (pulse signal in ASCET) and D9 (Unit tests) took less time than expected.
+The pulse signal implementation in Simulink took long, because finding a functioning concept on how to create the pulse was challenging, but then the ASCET implementation basically followed the Simulink implementation, which resulted in less time needed than expected.
+The experiences from this estimation will be used, to make future effort estimations more precise.\\
+Nonetheless the actually needed time is well within 95 \% confidence interval. 
 
 
 
@@ -83,7 +77,7 @@ The aim of the feasibility study is to analyse whether it is possible to realise
 with $c = 1.5\; m/s^2$ and $b = 10\; m/s^2$.
 For that, in the next section a Simulink model is created, based on the equations above.
 After that, a test scenario to test the feasibility is described and in section \ref{sec:D2_results} the results of the study are outlined.
-
+Section 
 \section{Simulink model}\label{sec:D2_model}
 Figure \ref{fig:D2_Sim} shows the simulink model representing the differential equations above.
 The parameter $p$ is configured on execution of the simulation in Matlab.
@@ -178,7 +172,7 @@ Since the brake pedal has a linear influence on the acceleration (see model form
 For that, a cars acceleration and in consequence the cars velocity is needed.
 Therefore a mean car velocity has to be extracted from the given four wheel velocities.
 
-Listing \ref{lst:D3Preprocess} shows the Matlab script that reprocesses the data.
+Listing \ref{lst:D3Preprocess} shows the Matlab script that pre-processes the data.
 As a first step, the four wheel velocities are extracted from the measurement data and a mean velocity is calculated with the following equation (lines 2 and 3 in listing \ref{lst:D3Preprocess}):
 \begin{equation}
 	v_{car} = (v_{w1} +v_{w2} + v_{w3} +v_{w4})/4
@@ -209,7 +203,7 @@ Because of the noise it would be harder to analyse the braking behaviour. Theref
 A moving average filter is calculating a mean value of neighbouring elements within a sliding window of a predefined size.
 Applying a moving average filter results in a filtered graph that can bee seen in the lower subplot of figure \ref{fig:D3_MovingAverage}. 
 However, applying a moving average filter distorts the acceleration values because the exact value is replaced by the average of the neighbouring elements. This reduces the difference between the values of neighbouring elements.
-As a result the differentiation of the velocity results in an acceleration that is is in our case approximately 10 times smaller than the non-filtered results.
+As a result the differentiation of the velocity results in an acceleration that is in our case approximately 10 times smaller than the non-filtered results.
 Although the values of the acceleration are smaller the course of the acceleration is not changed.
 Therefore the filtered data is not used to extract exact acceleration values but rather to get an understanding of the acceleration curve during braking.\\
 
@@ -257,7 +251,7 @@ For better visualisation, the breaking sequences that can be seen in figure \ref
 One breaking sequence consists of multiple consequent velocity measurements.
 This means that the breaking sequences can be separated by searching for a gap in the velocity measurements (\ac{NaN} values).
 Therefore, the indices of all velocities that are set not \ac{NaN} are extracted (line 2 in listing \ref{lst:D3Seperat}) and differentiated (line 3 in listing \ref{lst:D3Seperat}).
-Consequently, very differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are consequent (differentiation equals 1).
+Consequently, every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are subsequent (differentiation equals 1).
 Furthermore, short breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line 13 in listing \ref{lst:D3Seperat}).
 Two individual breaking sequences can be seen in figure \ref{fig:D3_IndividualBraking1} and figure \ref{fig:D3_IndividualBraking2}.
 
@@ -334,10 +328,10 @@ Considering figures \ref{fig:D3_IndividualBraking1} and \ref{fig:D3_IndividualBr
 
 The goal is to find a p(t) with an acceleration curve similar to the extracted above.
 Since the brake pedal position has a linear negative influence on the acceleration, the brake pedal function should press the brake pedal with an approximate parabola that is opened downwards.
-This ensures a smooth braking behaviour with starting braking slowly and also easing of the brake at the end of the manoeuvre, using friction to come to a full stop (like the driving teacher suggested).
+This ensures a smooth braking behaviour with slowly starting braking and also easing of the brake at the end of the manoeuvre, using friction to come to a full stop (like the driving teacher suggested).
 
-To simulate a time dependant brake pressure the before developed Simulink model (see section \ref{sec:D2_model})has been extended with a lookup-table that contains the brake pressure parameters.
-The integrator that integrates the constant 1 provides the time input to the lookup table.
+To simulate a time dependant brake pressure the before developed Simulink model (see section \ref{sec:D2_model}) has been extended with a lookup-table that contains the brake pressure parameters.
+The integrator that integrates the constant 1 provides the time input to the lookup table (lower left corner).
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D3_model_extension.png}
@@ -368,7 +362,6 @@ The acceleration curve in the third subplot is similar to a human profile, with 
 This can not be prevented because there is no gas pedal.
 It can also be seen that at the end of the braking procedure at approximately 1.2 s, the brake pedal is released and the friction brings the car to stop.
 
-todo maybe mored
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D3_pt.jpg}
@@ -388,7 +381,7 @@ A positive slope would make stopping time and location shorter.
 This would not lead to a collision, but the car would stop further away from the obstacle.
 That could also be not wanted, since then parking space would be used less efficient.\\
 If the distance from the obstacle should be the same, regardless of positive/negative slope or even parking space, the brake power needs to be varied depending on steepness. With a negative slope it is needed to brake harder in comparison to an even parking space. With a positive slope lesser braking would be necessary.\\
-Depending on $v_0$, with a negative slope, it might not be possible to stop before 2 m of travelled distance.
+Depending on $v_0$, with a negative slope, it might not be possible to stop before 2 m of travelled distance.\\
 Also after the car is stopped it should not start to roll forwards or backwards.
 On a plain surface, the brake can be released, after the car is stopped.
 That might not be the case with an uneven parking space and the car could start rolling.
@@ -398,16 +391,15 @@ Of course the feasibility study (D1) would have to be done again, to determine t
 Also, it does not have to be a solely positive or negative slope.
 It could also be first a positive and then a negative slope (or any other height profile) when approaching the parking spot.
 For each different slope, a different p(t) would be needed to result in the same stopping position.\\
-If the car should be able to stop before 2 m with an unknown slope, a controller with feedback would have to be used instead of p(t), to dynamically adjust the brake pedal position depending on the car behaviour.
+If the car should be able to stop before 2 m with an unknown slope, a controller with feedback would have to be used instead of p(t), to dynamically adjust the brake pedal position depending on car behaviour.
 
 \chapter{D5: Discussion of inaccuracies in velocity measurement}\label{cha:D5}
 \section{Inaccuracy in car velocity}
-
 The velocity information of the car has an inaccuracy of velocity +/- 0.1 km/h.
-Also the minimal velocity is 0.29 km/h which is not realistic, because velocity does not drop from 0.29 km/h to zero in one step.
-The brake pedal function is not dependant on the velocity, therefore inaccuracies in the velocity measurement during the braking procedure do not influence the braking procedure.
+Also the minimal velocity is 0.29 km/h which is not realistic, because velocity does not drop from 0.29 km/h to zero in one step.\\
+The brake pedal function is not dependant on the velocity, therefore inaccuracies in the velocity measurement during the braking procedure do not influence the braking procedure.\\
 This has one exception.
-Considering the velocity measurement inaccuracy, the initial velocity could be in a range of $9.9\; km/h \leq v  \geq 10.1\; km/h$.
+Considering the velocity measurement inaccuracy, the initial velocity could be in a range of $9.9\; km/h \leq v  \leq 10.1\; km/h$.
 This would certainly influence the braking behaviour of the car.
 It would be dangerous if the initial velocity would be higher than expected, because the car would travel further than expected because of that.
 This might cause an accident.
@@ -427,23 +419,19 @@ The stopping distance from the correct $v_0$ of 10 km/h (see section \ref{sec:D3
 \end{figure}
 
 Uncertanties in the measured velcoity also influence the computed travelled distance.
-The velocity is needed to compute the travelled distance. The travelled distance is computed as the integral of the velocity. Therefore errors in the velocity accumulate in travelled distance.
-
--if gaussian distribution overall error could be smaller
+The velocity is needed to compute the travelled distance. The travelled distance is computed as the integral of the velocity. Therefore errors in the velocity accumulate in travelled distance.\\
+However if the error follows a gaussian distribution, the integrated error would be relatively small, because over- and under-estimation would be equally likely.
 
 \section{Inaccuracy in velocity measurement of human velocity profile}
 In the human velocity profile 4 tire velocities are recorded.
 To estimate the car velocity the mean of the 4 wheel velocities has been computed.
-It was assumed, that the car is moving in a straight line and not going around corners.
-
+It was assumed, that the car is moving in a straight line and not going around corners.\\
 Also the minimal velocity in the recorded measurement data is 0.29 km/h.
-Therefore the braking behaviour below this threshold can not be analysed.
-
-
+Therefore the braking behaviour below this threshold can not be analysed.\\
 The inaccuracies in the measured velocity also influence the computed acceleration.
-The acceleration that has been computed by time-discrete differentiation from the measured velocity is only an estimate and not the real acceleration during recording.
-Findings:
--leave safety margin
+The acceleration that has been computed by time-discrete differentiation from the measured velocity is only an estimate and not the real acceleration during recording.\\
+In chapter \ref{cha:D3} (D3) a moving averaging filter has been used to smoothen the data and reduce the measurement noise.
+
 
 \chapter{D6: Implementation of pulse signal in Simulink}\label{cha:D6}
 
@@ -497,7 +485,7 @@ If the output of the integrator is greater that 0.5 a low pulse is output.
 \end{figure}
 
 \section{Integration into car model}\label{sec:D6Frequency}
-Using subsystems for the developed components makes it easy to include into and extend the existing model, which can be seen in figure \ref{fig:D6_Integation}.
+Using subsystems for the developed components makes it easy to include into and extend the existing model, which can be seen in figure \ref{fig:D6_Integation}. We have integrated it into the model from chapter \ref{cha:D2}, because p(t) is not needed for the pulse signal demonstration. Integrating the pulse signal into the model from section \ref{sec:D3_dev_pt} would follow the same procedure.
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D6_integration.png}
@@ -517,8 +505,8 @@ Figure \ref{fig:D6_Result} shows a demonstration of the implemented pulse signal
 
 \chapter{D7: Transfer of Simulink model to ASCET}\label{cha:D7}
 
-This chapter describes how the Simulink model from chapter \ref{cha:D2} is transferred to ASCET. %The model is also extended  to include a time dependent brake pedal function as described in chapter \ref{cha:D3}. 
-Furthermore, as ASCET is time discrete execution slots for threads have to be defined.
+This chapter describes how the Simulink model from section \ref{sec:D3_dev_pt} is transferred to ASCET (and the ultrasonic distance is added).
+Furthermore, as ASCET is time discrete execution slots for threads are defined.
 
 First, messages are defined to describe the needed data interfaces. Listing \ref{lst:D7_Messages} shows the two defined message interfaces. The first interface represents messages regarding the car including its velocity, its acceleration, its position, the ultrasonic distance and the pulse signal. The other interface contains a message that describes the current brake pedal position.
 
@@ -536,7 +524,7 @@ data interface ParkAssistMessages {
 }
 \end{lstlisting}
 
-The car model is built using the static class $Car$ whose block diagram is shown in Figure \ref{fig:BlockdiagrammCar}. The class consists of three thread functions: $drive$, $velocity$ and $ultrasonic$. The $drive$ function reads the brake pedal message and passes it together with a time constant to an instance of the $DriveModel$ class (shown in Figure \ref{fig:BlockdiagrammDrivingModel}). Consequently, the function writes the acceleration message based on the $DriveModel$ classes output. The $velocity$ function writes the v message and the position message. The $ultrasonic$ function writes the ultrasonic\textunderscore distance message. The functionality of the $Car$ class is split in three thread functions because of the given requirements demanding the ultrasonic\textunderscore distance to be available every 2ms and the velocity to be available every 10ms. The implemented functions can be called individually in the specified time intervals.
+The car model is built using the static class $Car$ whose block diagram is shown in Figure \ref{fig:BlockdiagrammCar}. The class consists of three thread functions: $drive$, $velocity$ and $ultrasonic$. The $drive$ function reads the brake pedal message and passes it together with a time constant to an instance of the $DriveModel$ class (shown in Figure \ref{fig:BlockdiagrammDrivingModel}). Consequently, the function writes the acceleration message based on the $DriveModel$ class output. The $velocity$ function writes the v message and the position message. The $ultrasonic$ function writes the ultrasonic\textunderscore distance message. The functionality of the $Car$ class is split in three thread functions because of the given requirements demand the ultrasonic\textunderscore distance to be available every 2ms and the velocity to be available every 10ms. The implemented functions can be called individually in the specified time intervals.
 
 \begin{figure}[H]
 \centering
@@ -545,16 +533,20 @@ The car model is built using the static class $Car$ whose block diagram is shown
 \label{fig:BlockdiagrammCar}
 \end{figure}
 
-The $DrivingModel$ class is responsible for calculating the acceleration, velocity and position of the car as well as the ultrasonic distance. These calculations are based on the input brake pedal position. The block diagram of the class is shown in Figure \ref{fig:BlockdiagrammDrivingModel}. Similar to the Simulink model, the acceleration is calculated by multiplying brake pedal position and braking constant and substracting it from the negative friction constant. The velocity is calculated by integrating the acceleration. Unlike Simulink ASCET does not possess integration blocks, so acceleration, time constant and the factor 3.6 to convert the acceleration from [m/s] to [km/h] are multiplied. The product is then added to the previous velocity. The default velocity is set to 10 km/h due to the requirements. If the velocity is less than 0.29 km/h it is set to zero based on requirement R5. The position is gained by multiplying velocity and time and diving it by 3.6 to get the position in meters and not in kilometres. The product is then also being added to the previous position whose default value is zero. The ultrasonic distance is gained by subtracting target position (2m) and position.
+The $DriveModel$ class is responsible for calculating the acceleration, velocity and position of the car as well as the ultrasonic distance.
+These calculations are based on the input brake pedal position.
+The block diagram of the class is shown in Figure \ref{fig:BlockdiagrammDrivingModel}.
+Similar to the Simulink model, the acceleration is calculated by multiplying brake pedal position and the braking constant and substracting it from the negative friction constant. The velocity is calculated by integrating the acceleration.
+Unlike Simulink ASCET is time-discrete, so acceleration, time constant and the factor 3.6 to convert the acceleration from [m/s] to [km/h] are multiplied to compute the velocity change. The product is then added to the previous velocity. The default velocity is set to 10 km/h due to the requirements (as default value in the v variable). If the velocity is less than 0.29 km/h it is set to zero based on requirement R5. The position is obtained by multiplying velocity and time constant and diving it by 3.6 to get the position in meters and not in kilometres. The product is then also being added to the previous position whose default value is zero. The ultrasonic distance is gained by subtracting target position (2m) and position.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/Blockdiagramm_drivingmodel.png}
-\caption{ASCET block diagram of class $DrivingModel$}
+\caption{ASCET block diagram of class $DriveModel$}
 \label{fig:BlockdiagrammDrivingModel}
 \end{figure}
 
-Besides the car model, the static class $ParkAssistController$ (see Figure \ref{fig:BlockdiagrammParkAssistController}) is implemented for generating the brake pedal position. Based on the elapsed time since starting the experiment, the class uses an instance of the class $ParkAssistControllerClass$ to generate the brake pedal position and writes the brake pedal message afterwards. 
+The static class $ParkAssistController$ (see Figure \ref{fig:BlockdiagrammParkAssistController}) is implemented for generating the brake pedal position. Based on the elapsed time since starting the experiment, the class uses an instance of the class $ParkAssistControllerClass$ to generate the brake pedal position and writes the brake pedal message afterwards. 
 
 \begin{figure}[H]
 \centering
@@ -563,7 +555,7 @@ Besides the car model, the static class $ParkAssistController$ (see Figure \ref{
 \label{fig:BlockdiagrammParkAssistController}
 \end{figure}
 
-The brake pedal position is determined based on a look-up table that represents the brake pedal function described in chapter \ref{cha:D3}. After determining the brake pedal position, the position is returned.  The class $ParkAssistClass$ is implemented as a non static class in order to unit test the class. The block diagram of the class is shown in Figure \ref{fig:BlockdiagrammParkAssistControllerClass}. 
+The brake pedal position is determined based on a look-up table that represents the brake pedal function described in section \ref{sec:D3_dev_pt}. After determining the brake pedal position, the position is returned.  The class $ParkAssistControllerClass$ is implemented as a non static class in order to unit test the class. The block diagram of the class is shown in Figure \ref{fig:BlockdiagrammParkAssistControllerClass}. 
 
 \begin{figure}[H]
 \centering
@@ -572,7 +564,7 @@ The brake pedal position is determined based on a look-up table that represents 
 \label{fig:BlockdiagrammParkAssistControllerClass}
 \end{figure}
 
-The braking pedal position look-up table is shown in Listing \ref{lst:D7_lookup}. 
+The brake pedal position look-up table is shown in Listing \ref{lst:D7_lookup}. 
 
 \begin{lstlisting}[language=Java,basicstyle=\scriptsize, caption= Braking pressure look up table,label= lst:D7_lookup]
 characteristic curve_cont curve_cont_table = {{0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2}, {0.0, 0.043, 0.073, 0.078, 0.073, 0.043, 0.0}};
@@ -588,8 +580,7 @@ In order to execute the experiment, it is necessary to define the scheduling. As
 \end{figure}
 
 The following Figure \ref{fig:D7_result} shows the simulation results.
-The acceleration has the form of a parable as desired.
-Due to the friction and braking constant the velocity is steeper than the curve that can be seen in chapter \ref{cha:D3}. If one would like to have a similar velocity curve it would be necessary to apply gas in order to brake more slowly which is not possible in this model as there is no gas pedal.
+The acceleration that can be seen in the upper subplot has the form of a parable as desired.
 The third subplot shows the covered distance of the car, which is clearly under the 2 m mark. 
 
 \begin{figure}[H]
@@ -601,9 +592,9 @@ The third subplot shows the covered distance of the car, which is clearly under 
 
 \chapter{D8: Implementation of pulse signal in ASCET}\label{cha:D8}
 
-The pulse signal that has been implemented in Simulink (see chapter \ref{cha:D6}) is now transferred to ASCET. The requirements remain the same.
-The ASCET model consists of three sub-models described in three block diagrams. Two of the sub-models are regular classes that can be instantiated. This makes the whole model modular and the sub-models are able to unit test. One of the two classes calculates a frequency based on a given velocity and position of the car. The second class generates a pulse signal based on the calculated frequency.
-The third class is a static class that passes the calculated frequency to the pulse signal generating class. The static class is also responsible for receiving the velocity and position messages of the car and pass them to the frequency computation class as well as sending the generated pulse signal as a new message. This can be seen in Figure \ref{fig:BlockdiagrammFrequencyComputation} that shows the block diagram of the static class.
+The pulse signal that has been implemented in Simulink (see chapter \ref{cha:D6}) is transferred to ASCET in this chapter.
+The ASCET model consists of three sub-models described in three block diagrams. Two of the sub-models are regular classes that can be instantiated. This makes the whole model modular and the sub-models are able to be unit tested. One of the two classes calculates a frequency based on a given velocity and position of the car. The second class generates a pulse signal based on the calculated frequency.
+The third class is a static class that passes the calculated frequency to the pulse signal generating class. The static class is also responsible for receiving the velocity and position messages of the car and pass them to the frequency computation class as well as sending the generated pulse signal as a new message. This can be seen in figure \ref{fig:BlockdiagrammFrequencyComputation} that shows the block diagram of the static class.
 
 \begin{figure}[H]
 \centering
@@ -630,7 +621,7 @@ characteristic curve_cont frequency_lookup = {{1.0, 1.9}, {1.0, 9.0}};
 \label{fig:BlockdiagrammFrequencyComputationClass}
 \end{figure}
 
-After the frequency has been calculated, it is passed to generate the pulse signal. If the frequency equals 10, the desired output is a continuous pulse. This means the pulse is set to 1 (\textbf{1a} in Figure \ref{fig:BlockdiagrammPulseSignal}). If however the frequency equals 0, no pulse is desired resulting in the pulse being set to 0 (\textbf{2a} in Figure \ref{fig:BlockdiagrammPulseSignal}). If $0 \textless frequency \textless 10$, the frequency is integrated to generate the pulse signal. For integration a time component is required. Due to the ability to unit test the component, the time component is passed through a method argument. The frequency is integrated by multiplying frequency and time and adding the result to the previous results (\textbf{2b} in Figure \ref{fig:BlockdiagrammPulseSignal}). In Simulink it is possible to reset the integration block. Due to this not being possible in ASCET, the integrated frequency is reset as soon as the integrated frequency is greater or equal 1 because then one period is over and the new periodic time can be calculated (\textbf{2b} in Figure \ref{fig:BlockdiagrammPulseSignal}).  
+After the frequency has been calculated, it is passed to generate the pulse signal. If the frequency equals 10, the desired output is a continuous pulse. This means the pulse is set to 1 (\textbf{1a} in Figure \ref{fig:BlockdiagrammPulseSignal}). If however the frequency equals 0, no pulse is desired resulting in the pulse being set to 0 (\textbf{2a} in Figure \ref{fig:BlockdiagrammPulseSignal}). If $0 \textless frequency \textless 10$, the frequency is integrated to generate the pulse signal. For integration a time component is required. To be able to unit test the component, the time component is passed through a method argument. The frequency is integrated by multiplying frequency and time and adding the result to the previous results (\textbf{2b} in Figure \ref{fig:BlockdiagrammPulseSignal}). In Simulink it is possible to reset the integration block. Due to this not being possible in ASCET, the integrated frequency is reset as soon as the integrated frequency is greater or equal 1 because then one period is over and the new periodic time can be calculated (\textbf{2b} in Figure \ref{fig:BlockdiagrammPulseSignal}).  
 While the integrated frequency is smaller or equal 0.5 the pulse signal is set to 1 (\textbf{3a} in Figure \ref{fig:BlockdiagrammPulseSignal}). Once the frequency is greater than 0.5 the pulse signal is set to 0 (\textbf{3b} in Figure \ref{fig:BlockdiagrammPulseSignal}). This means the signal is high for one half of a period and low for the other half of a period.
 
 \begin{figure}[H]
@@ -640,7 +631,7 @@ While the integrated frequency is smaller or equal 0.5 the pulse signal is set t
 \label{fig:BlockdiagrammPulseSignal}
 \end{figure}
 
-The resulting pulse signal is shown in Figure \ref{fig:BlockdiagrammPulseSignalOutput}. It shows that the period of the pulse signal is getting shorter once the car approaches the target position. The plot also shows that the pulse signal starts once the car is slower than 3.6 km/h (\^= 1m/s) and ends once the car is standing. The exact stopping position of the car is 1.905 m which is why the pulse signal does not become continuous. 
+The resulting pulse signal is shown in Figure \ref{fig:BlockdiagrammPulseSignalOutput}. It shows that the period of the pulse signal is getting shorter once the car approaches the target position. The plot also shows that the pulse signal starts once the car is slower than 3.6 km/h (\^= 1m/s) and ends once the car is standing. The exact stopping position of the car is 1.905 m which is why the pulse signal becomes continuous for a short time and then gets reset, once the car stops. 
 
 \begin{figure}[H]
 \centering
@@ -658,11 +649,11 @@ That is necessary to make sure that no new bugs are introduced by the wrapper cl
 The unit tests are bundled in a package called $test$ in the ASCET project. The assertLib is imported for the assertions that are used in the unit tests. The unit tests are grouped by component with a static test class for each component. One test case corresponds to one method within the unit test classes.
 
 Test cases are derived by analysing the requirements and finding equivalence classes.
-The goal of the test case coverage is to cover equivalence class and in addition to that select values that might result in errors based on experience.
+The goal of the test case coverage is to cover every equivalence class and, in addition to that, select values that might result in errors based on experience.
 
 \section{Unit tests for DriveModel}
 
-$DriveModel$ computes acceleration, velocity, position and ultrasonic distance based on a defined time and brake pedal position. Generally, there are two equivalence classes. One equivalence class covers all velocities greater than 0.29 km/h and the other all velocities less or equal 0.29 km/h. As only one time step is simulated while unit testing the position will become zero if the velocity is zero. By the time the velocity becomes zero in the system test environment, the position is greater than zero. Due to this inconsistency this equivalence class is not tested. Defined test cases can be seen in the table below.
+$DriveModel$ computes acceleration, velocity, position and ultrasonic distance based on a defined time and brake pedal position. There are two equivalence classes. One equivalence class covers all velocities greater than 0.29 km/h and the other all velocities less or equal 0.29 km/h. As only one time step is simulated while unit testing the position will remain zero if the computed velocity is zero. Defined test cases can be seen in the table below.
 
 \begin{table}[H]
 \centering
@@ -681,7 +672,7 @@ p = 0.5 & dTs = 0.1 & acc = -6.5 & v = 7.66 & s $\approx$ 0.213 & u $\approx$ 1.
 \section{Unit tests ParkAssistControllerTest}
 
 $ParkAssistControllClass$ generates a brake pedal position based on a defined time using a look-up table.
-There are two equivalence classes defined for the $ParkAssistControll$ class that cover the brake pedal position if the time is inside the time span of the look-up table and if the time is greater than the time span of the look-up table.
+There are two equivalence classes defined for the $ParkAssistControllClass$ that cover the brake pedal position if the time is inside the time span of the look-up table and if the time is greater than the time span of the look-up table.
 
 \begin{table}[H]
 \centering
@@ -704,7 +695,7 @@ Based on the equivalence classes three test cases have been derived. Two test ca
 \begin{adjustbox}{width=0.5\textwidth, center=\textwidth}
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{llll}
-\textbf{Test case name} & \textbf{Time [s]} & \textbf{Brake pedal} \\ \hline
+\textbf{Test case name} & \textbf{Time [s]} & \textbf{Expected brake pedal value} \\ \hline
 time\textunderscore 0\textunderscore 0 & 0.0 & 0.0 \\
 time\textunderscore 0\textunderscore 6 & 0.6 & 0.078 \\
 time\textunderscore 2\textunderscore 0 & 2.0 & 0.0 \\                   
@@ -716,7 +707,7 @@ time\textunderscore 2\textunderscore 0 & 2.0 & 0.0 \\
 \section{Unit tests FrequencyComputationTest}\label{sec:unitfrequency}
 
 $FrequencyComputationClass$ generates a frequency based on a defined position and velocity using a look-up table.
-There are three equivalence classes defined for the $FrequencyComputationClass$ class that cover three output scenarios: Zero frequency, variable frequency based on a defined function and Continuous frequency. 
+There are three equivalence classes defined for the $FrequencyComputationClass$ class that cover three output scenarios: zero frequency, variable frequency based on a defined function (computed from look-up table) and continuous frequency. 
 
 \begin{table}[H]
 \centering
@@ -814,16 +805,12 @@ For monitoring whether the car stopped within 2 m, a new class is introduced tha
 
 \chapter{D11*: Plausibility check comparing measured velocities and distances}\label{cha:D11}
 The distance signal from the ultrasonic sensor (in case there is a non-moving object in front of it) and the measured car velocity are two measurements that provide independent measurement of travelled distance.\\
-In the given scenario it is known that a non-moving object is 2 m in front of the car. So the ultrasonic sensor can be used to compute travelled distance by comparing distance measurements.\\
-Integrating the velocity also provides a measurement of the travelled distance. These two measurements provide a redundancy in measuring travelled distance. If these measurements would be significantly different, one of the measurements must be inaccurate. 
-
-The distance signal from the ultrasonic sensor and the measured velocity.
--statistically independent ultrasonic distance and velocity
--if distance to next object for ultrasonic sensor is known
-
+In the given scenario it is known that a non-moving object is 2 m in front of the car. So the ultrasonic sensor can be used to compute travelled distance by comparing consequent distance measurements. E. g. if the distance measurement before was 0.8 m to the object ahead and the next measurement was 0.6 m, the car travelled a distance of 20 cm.\\
+Integrating the velocity also provides a measurement of the travelled distance. These two measurements provide a redundancy in measuring travelled distance. If these measurements would be significantly different, one of the measurements must be inaccurate.\\
+If the object in front of the ultrasonic sensor is moving or if there is no object at all, this procedure can not be used.\\
 \chapter{D13*: Impact of inaccuracies}\label{cha:D13}
 \section{Ultrasonic Sensor}
-Using one ultrasonic sensor has limits when measuring distance to objects when parking.
+Using one ultrasonic sensor has limits when measuring distance to objects while parking.
 Several scenarios can be imagined, in which a distance measurement from one ultrasonic sensor does not provide enough information to securely park without causing an accident.
 The scenario in \ref{fig:D13_USLimitAbove} shows the limits of one ultrasound sensor. One ultrasonic sensor in the middle of the front of the car might not be able to detect the two poles. In this case parking based on the information of the ultrasonic sensor might result in an accident.
 Using multiple ultrasonic distributed over the front of the vehicle might be able to resolve such an issue.
@@ -835,7 +822,7 @@ Using multiple ultrasonic distributed over the front of the vehicle might be abl
 \end{figure}
 With one ultrasonic sensor, also blind spots over and under an ultrasonic sensor can occur.
 Figure \ref{fig:D13_USLimitSide} demonstrates that.
-Depending on the sensor, the sensor frustum might be different, but the concept is the same.
+Depending on the used sensor, the sensor frustum might vary, but the concept remains the same.
 If there is an object above the sensor frustum (for example a gate) it might not be detected by the ultrasonic sensor.
 Then the driver would have to intervene, because he would probably see the object.
 But then the driver would be responsible for safe parking, not the ParkAssist.
@@ -848,21 +835,18 @@ But then the driver would be responsible for safe parking, not the ParkAssist.
 \label{fig:D13_USLimitSide}
 \end{figure}
 
-The inaccuracy of the ultrasonic sensor of +/- 2 cm do not have an influence on the current p(t).
+The inaccuracy of the ultrasonic sensor of +/- 2 cm does not have an influence on the current p(t).
 But if a feedback controller would be used, that relies on the distance information to brake, the inaccuracy would have an influence on the braking procedure.
-The inaccuracy would have to be considered.
+The inaccuracy would have to be considered. Using multiple sensors might be a way to reduce the inaccuracy. Also using a safety margin when parking is reasonable.
 
--velocity measurement
--different wheel velocities
 
+zeit inaccuracies
 \section{Velocity measurement sensor}
 -see chapter \ref{cha:D5}
-\section{Model inaccuracies}
--model not realistic
-\section{Computation inaccuracies}
--rundungsfehler
+
 \chapter{D14*: Reflection}\label{cha:D14}
 -only 2 meter stop considered
+-ultrasonic reichweite
 -no feedback
 
 -no air friction, but relatively low at low speed
@@ -870,3 +854,8 @@ The inaccuracy would have to be considered.
 -sensor inaccuracies normally follow a statistic distribution and do not have discrete borders
 
 -parkassist limits
+
+\section{Model inaccuracies}
+-model not realistic
+\section{Computation inaccuracies}
+-rundungsfehler
