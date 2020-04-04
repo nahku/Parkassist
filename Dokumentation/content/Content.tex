@@ -416,7 +416,6 @@ A simulation is used to evaluate the danger of the initial velocity being higher
 The, highest initial velocity that is possible with R5 is 10.1 km/h.
 So this is used as $v_0$ for the impact evaluation.
 The model from Figure \ref{fig:D3_IndividualBraking2} from before is used for the evaluation, to see if the margin to 2 m is enough with a $v_0$ of 10.1 km/h.\\
-
 As can be seen from the results of the simulation in figure \ref{fig:D5_results} the margin is enough, since the stopping distance is approximately 1.96 m.
 The stopping distance from the correct $v_0$ of 10 km/h (see section \ref{sec:D3_dev_pt}) is 1.92 m. So the velocity difference of 0.1 km/h results in a stopping distance difference of circa 4 centimeters.
 
@@ -433,13 +432,16 @@ The velocity is needed to compute the travelled distance. The travelled distance
 -if gaussian distribution overall error could be smaller
 
 \section{Inaccuracy in velocity measurement of human velocity profile}
+In the human velocity profile 4 tire velocities are recorded.
+To estimate the car velocity the mean of the 4 wheel velocities has been computed.
+It was assumed, that the car is moving in a straight line and not going around corners.
 
--in human velocity profile 4 tire velocities recorded
--mean used to compute car velocity
--because of inaccuracy in velocity computed acceleration also has inaccuracy
--car driving around corner
-validate findings by numbers from simulation
+Also the minimal velocity in the recorded measurement data is 0.29 km/h.
+Therefore the braking behaviour below this threshold can not be analysed.
 
+
+The inaccuracies in the measured velocity also influence the computed acceleration.
+The acceleration that has been computed by time-discrete differentiation from the measured velocity is only an estimate and not the real acceleration during recording.
 Findings:
 -leave safety margin
 
@@ -820,10 +822,10 @@ The distance signal from the ultrasonic sensor and the measured velocity.
 -if distance to next object for ultrasonic sensor is known
 
 \chapter{D13*: Impact of inaccuracies}\label{cha:D13}
-Ultrasonic sensor:
+\section{Ultrasonic Sensor}
 Using one ultrasonic sensor has limits when measuring distance to objects when parking.
 Several scenarios can be imagined, in which a distance measurement from one ultrasonic sensor does not provide enough information to securely park without causing an accident.
-The scenario in \ref{fig:D13_USLimitAbove} shows the limits of a ultrasound sensor. One ultrasonic sensor in the middle of the front of the car might not be able to detect the two poles. In this case parking based on the information of the ultrasonic sensor might result in an accident.
+The scenario in \ref{fig:D13_USLimitAbove} shows the limits of one ultrasound sensor. One ultrasonic sensor in the middle of the front of the car might not be able to detect the two poles. In this case parking based on the information of the ultrasonic sensor might result in an accident.
 Using multiple ultrasonic distributed over the front of the vehicle might be able to resolve such an issue.
 \begin{figure}[H]
 \centering
@@ -831,8 +833,13 @@ Using multiple ultrasonic distributed over the front of the vehicle might be abl
 \caption{Ultrasonic sensor limits}
 \label{fig:D13_USLimitAbove}
 \end{figure}
-With one ultrasonic sensor blind spot over ultrasonic sensor
--can be seen in figure \ref{fig:D13_USLimitSide}
+With one ultrasonic sensor, also blind spots over and under an ultrasonic sensor can occur.
+Figure \ref{fig:D13_USLimitSide} demonstrates that.
+Depending on the sensor, the sensor frustum might be different, but the concept is the same.
+If there is an object above the sensor frustum (for example a gate) it might not be detected by the ultrasonic sensor.
+Then the driver would have to intervene, because he would probably see the object.
+But then the driver would be responsible for safe parking, not the ParkAssist.
+
 
 \begin{figure}[H]
 \centering
@@ -840,18 +847,26 @@ With one ultrasonic sensor blind spot over ultrasonic sensor
 \caption{Ultrasonic sensor limits}
 \label{fig:D13_USLimitSide}
 \end{figure}
-pictures poles, round object.
--ultrasonic senor only sound reflecting materials
-a countermeasure for that could be to use multiple ultrasonic sensors 
--ultrasonic measurement: what if object is round?
--
--also above and below measurement
+
+The inaccuracy of the ultrasonic sensor of +/- 2 cm do not have an influence on the current p(t).
+But if a feedback controller would be used, that relies on the distance information to brake, the inaccuracy would have an influence on the braking procedure.
+The inaccuracy would have to be considered.
 
 -velocity measurement
 -different wheel velocities
+
+\section{Velocity measurement sensor}
+-see chapter \ref{cha:D5}
+\section{Model inaccuracies}
+-model not realistic
+\section{Computation inaccuracies}
+-rundungsfehler
 \chapter{D14*: Reflection}\label{cha:D14}
 -only 2 meter stop considered
 -no feedback
--model not realistic
+
 -no air friction, but relatively low at low speed
 -1.5 friction
+-sensor inaccuracies normally follow a statistic distribution and do not have discrete borders
+
+-parkassist limits
