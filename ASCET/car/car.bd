@@ -45,14 +45,14 @@ blockdiagramSpecification Main {
 	}
 	complexIdentifier driveModel_instance_2 at (431, 211) size (47, 36) {
 		label at (0, 1)
-		methodCall car.driveModel.drive {
+		methodCall car.DriveModel.drive {
 			argumentPin p at (left, 0) connection_27
 			argumentPin dTs at (left, 6) connection_3
 			sequenceCall at (-100, -62) {
 				inPin connection_26
 			}
 		}
-		elementCall (car.driveModel.v) {
+		elementCall (car.DriveModel.v) {
 			returnPin at (right, 0) {
 				connection_15
 			}
@@ -60,7 +60,7 @@ blockdiagramSpecification Main {
 				inPin
 			}
 		}
-		elementCall (car.driveModel.s) {
+		elementCall (car.DriveModel.s) {
 			returnPin at (right, 9) {
 				connection_25
 			}
@@ -68,7 +68,7 @@ blockdiagramSpecification Main {
 				inPin
 			}
 		}
-		elementCall (car.driveModel.acc) {
+		elementCall (car.DriveModel.acc) {
 			returnPin at (right, 20) {
 				connection_19
 			}
@@ -76,7 +76,7 @@ blockdiagramSpecification Main {
 				inPin
 			}
 		}
-		elementCall (car.driveModel.ultrasonic_distance) {
+		elementCall (car.DriveModel.ultrasonic_distance) {
 			returnPin at (right, 29) {
 				connection_23
 			}

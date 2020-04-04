@@ -3,11 +3,13 @@ import resources.ParkAssistMessages;
 import resources.CarMessages;
 import resources.TimeTick;
 
+import car.DriveModel;
+
 static class car
 reads ParkAssistMessages.brake
 writes CarMessages.v, CarMessages.position, CarMessages.acceleration, CarMessages.ultrasonic_distance {
 
-	driveModel driveModel_instance_2;
+	DriveModel driveModel_instance_2;
 
 	@generated("blockdiagram")
 	@thread

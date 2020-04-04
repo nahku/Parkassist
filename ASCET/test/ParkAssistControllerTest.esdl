@@ -3,27 +3,36 @@ package test;
 import assertLib.Assert;
 import car.ParkAssistControllerClass;
 
-
 static class ParkAssistControllerTest{
 	
 	ParkAssistControllerClass parkAssistController;
 	
 	@Test
-	public void distance_0_3(){
+	public void time_0_0(){
 		real res;
-		real ultrasonic_distance = 0.3;
-		real expected_result = 0.02;
+		real time = 0.0;
+		real expected_result = 0.0;
 		
-		res = parkAssistController.getBrake(ultrasonic_distance);
+		res = parkAssistController.getBrake(time);
 		Assert.assertEqual(res, expected_result);
 	}
 	
 	@Test
-	public void distance_1_5(){
+	public void time_0_6(){
 		real res;
-		real ultrasonic_distance = 1.5;
-		real expected_result = 0.1;
-		res = parkAssistController.getBrake(ultrasonic_distance);
+		real time = 0.6;
+		real expected_result = 0.078;
+		res = parkAssistController.getBrake(time);
+		
+		Assert.assertEqual(res, expected_result);
+	}
+	
+	@Test
+	public void time_2_0(){
+		real res;
+		real time = 2.0;
+		real expected_result = 0.0;
+		res = parkAssistController.getBrake(time);
 		
 		Assert.assertEqual(res, expected_result);
 	}

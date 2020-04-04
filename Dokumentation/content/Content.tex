@@ -6,6 +6,15 @@ The Matlab and Simulink code is in the Matlab subfolder and the ASCET project is
 Simulink settings:
 The report is structured by devoting one chapter to each requirement.
 
+In ASCET mainly graphical programming using block diagrams is used due to requirement D7. Even though D8 does not demand graphical programming, for consistency reasons D8 is being graphically modelled as well. Exceptions are the unit tests. The test are programmed in ESDL because some test have a lot of test cases which would lead to a huge block diagram that would likely be unclear. 
+
+Simulink: ode8 most precise runge-kutta solver
+Fixedstep
+
+%Die oberen Diagramme sind mit den Solver-Einstellung FixedStep nach ode4 – RungeKutta mit einer Schrittweite von 0.001s erzeugt worden. Der Solver ode4 wurde ausgewählt, da dieser das beste Verhältnis von Effizienz und ausreichender Genauigkeit bereitstellt und eine kleine Schrittweite für exakte Werte zu Beginn. Für die untere Reihe hingegen wurde ein FixedStep Verfahren mit automatischem Solver und Schrittweite gewählt, die ein instabiles Verhalten durch eine zu groß gewählte Schrittweite zeigt. Als Alternative zu kleinen Schritten ist auch VariableStep, welches besonders sinnvoll für lange Simulationsdauern ist, da sich die Werte nach t > 1.0s nur geringfügig ändern. Der Nachteil dieser Einstellung ist aber eine Ungenauigkeit im vorderen Bereich bei t < 0.3s.
+
+
+
 \chapter{D1: Time estimate based on three point estimation}\label{cha:D1}
 For the three point estimation we use the formuals from the lecture.
 The expected effort is computed using a weighted mean formula:
@@ -164,30 +173,22 @@ velocity_data = importdata('MeasuredVelocities.txt');
 \end{lstlisting}
 
 \section{Data preparation}
-Before analysing the data it is necessary to preprocess it. The aim is to make conclusions on a brake profile.
-Since the brake pressure has a linear influence on the acceleration (model formula) it would be desirable to extract an acceleration curve from the human velocity profile, from which to make deductions on the brake profile.
-For that, a car acceleration and in consequence car velocity is needed.
-Therefore a car velocity has to be extracted from the four wheel velocities.\\
+The aim of the analysis is to make conclusions that lead to a time dependant brake profile.
+Since the brake pedal has a linear influence on the acceleration (see model formula) the goal is to extract an acceleration curve from the human velocity profile, from which to make deductions on the brake profile.
+For that, a cars acceleration and in consequence the cars velocity is needed.
+Therefore a mean car velocity has to be extracted from the given four wheel velocities.
 
-Listing \ref{lst:D3Preprocess} shows the matlab script, that does the preprocessing.
-As a first step, the four wheel velocities are extracted from the measurement data and a mean velocity is calculated (lines 2 and 3) with the following equation:
+Listing \ref{lst:D3Preprocess} shows the Matlab script that reprocesses the data.
+As a first step, the four wheel velocities are extracted from the measurement data and a mean velocity is calculated with the following equation (lines 2 and 3 in listing \ref{lst:D3Preprocess}):
 \begin{equation}
 	v_{car} = (v_{w1} +v_{w2} + v_{w3} +v_{w4})/4
 \end{equation}
 This mean velocity serves as an estimate for the car velocity.
 It is only an estimate, because friction losses, other physical influences and cornering are not considered.
-The mean velocity is converted to [m/s] for further calculations in line 4.
-For analysing the braking behaviour the acceleration can be calculated by differentiating the mean velocity.
-As can be seen in figure \ref{fig:D3_MovingAverage} in the upper subplot the calculated acceleration is noisy because of noise in the measured velocity.
-Due to the noise it would be harder to analyse the braking behaviour. Therefore, we used a moving average filter to smoothen the data (line 8).
-A moving average filter is calculating a mean value of neighbouring elements within a sliding window of a predefined size.
-Applying a moving average filter results into a filtered graph that can bee seen in the lower subplot in figure \ref{fig:D3_MovingAverage}. 
-However, applying a moving average filter distorts the acceleration values because the exact value is replaced by the average of the neighbouring elements. This reduces the difference between the values of neighbouring elements.
-As a result the differentiation of the velocity results in an acceleration that is is in our case approximately 10 times smaller than the non-filtered results.
-Although the values of the acceleration are smaller the relation of the acceleration is not changed.
-Therefore the filtered data is not used to extract exact acceleration values, but to get an understanding of the acceleration curve during braking.\\
+The mean velocity is converted to [m/s] for further calculations in line 4 in listing \ref{lst:D3Preprocess}.
+Before calculating the acceleration, a moving average filter is applied on the mean velocity (line 8 in listing \ref{lst:D3Preprocess}). Further details about the moving average filter are given in the next paragraph.
+The acceleration can be calculated by differentiating the mean velocity (line 11 in listing \ref{lst:D3Preprocess}).
 
-The movering average filter is applied in line 8. The sliding window has a size of 200 neighbouring elements. This means that for each data point the 200 neighbour points sorrounding that point are used in the filtered value computation. The factor 200 is chosen because it is big enough to reduce noise but is also small enough to maintain the general course of the graph. In line 11 and 12 the velocity is differentiated.
 \begin{lstlisting}[language=Matlab,basicstyle=\scriptsize	,caption= Preprocessing measurement data,label= lst:D3Preprocess]
 %compute mean velocity of all 4 wheels
 velocity_per_wheel = velocity_data(:,2:5);
@@ -203,8 +204,17 @@ acceleration = diff(mean_velocity);
 raw_acceleration = diff(raw_mean_velocity);     %for demonstration purposes
 \end{lstlisting}
 
-Figure \ref{fig:D3_MovingAverage} shows the impact of the moving average filter on the car velocity.
-The course of the graph still the same, even though the absolute values are smaller that the unfiltered acceleration because of the before mentioned reasons.
+As can be seen in the upper subplot of figure \ref{fig:D3_MovingAverage} the calculated acceleration is noisy due to noise in the measured velocity.
+Because of the noise it would be harder to analyse the braking behaviour. Therefore we used a moving average filter to smoothen the data.
+A moving average filter is calculating a mean value of neighbouring elements within a sliding window of a predefined size.
+Applying a moving average filter results in a filtered graph that can bee seen in the lower subplot of figure \ref{fig:D3_MovingAverage}. 
+However, applying a moving average filter distorts the acceleration values because the exact value is replaced by the average of the neighbouring elements. This reduces the difference between the values of neighbouring elements.
+As a result the differentiation of the velocity results in an acceleration that is is in our case approximately 10 times smaller than the non-filtered results.
+Although the values of the acceleration are smaller the course of the acceleration is not changed.
+Therefore the filtered data is not used to extract exact acceleration values but rather to get an understanding of the acceleration curve during braking.\\
+
+%Figure \ref{fig:D3_MovingAverage} shows the impact of the moving average filter on the car velocity.
+%The course of the graph still the same, even though the absolute values are smaller that the unfiltered acceleration because of the before mentioned reasons.
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D3_moving_average.jpg}
@@ -212,7 +222,7 @@ The course of the graph still the same, even though the absolute values are smal
 \label{fig:D3_MovingAverage}
 \end{figure}
 
-Figure \ref{fig:D3_Fig_Overview} shows the smoothed extracted mean velocity of the car as well as the corresponding acceleration of the car over time.
+Figure \ref{fig:D3_Fig_Overview} shows the mean velocity of the car as well as the corresponding smoothened acceleration of the car over time.
 
 \begin{figure}[H]
 \centering
@@ -223,7 +233,7 @@ Figure \ref{fig:D3_Fig_Overview} shows the smoothed extracted mean velocity of t
 
 
 \section{Extracting negative acceleration}
-As the goal is to analyse the braking behaviour only the negative acceleration is relevant and is thus being extracted from the overall acceleration (line 5). Also, all velocities that are based on a positive acceleration are not considered anymore (line 6). We decided to set those values to \ac{NaN} because this way we are still able to plot the velocity and the acceleration over time without cut-outs. The result can be seen in plot REF. todo create plot
+As the goal is to analyse the braking behaviour, only negative acceleration is relevant and is thus being extracted from the overall acceleration (line 5 in listing \ref{lst:D3Extract}). Also, all velocities that are based on a positive acceleration are not considered anymore (line 6 in listing \ref{lst:D3Extract}). We decided to set those values to \ac{NaN} because this way we are still able to plot the velocity and the acceleration over time without cut-outs. The result can be seen in figure \ref{fig:D3_IndividualBraking}. 
 
 \begin{lstlisting}[language=Matlab,basicstyle=\scriptsize	,caption= Extracting negative acceleration,label= lst:D3Extract]
 %search for negative acceleration and set positive acceleration to NaN
@@ -234,15 +244,22 @@ neg_acceleration(neg_acceleration>0) = nan;
 decreasing_velocity(isnan(neg_acceleration)) = nan;
 \end{lstlisting}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/D3_individual_braking.jpg}
+\caption{Braking manoeuvres in human velocity profile}
+\label{fig:D3_IndividualBraking}
+\end{figure}
+
 
 \section{Separating breaking sequences}
-For improved visualisation the individual breaking sequences that can be seen in plot \ref{fig:D3_IndividualBraking} are stored separately.
-One breaking sequence consists of multiple consequent velocities.
-This means that the breaking sequences can be separated by searching for a gap in the velocities.
-Therefore, the indices of all velocities that are set not \ac{NaN} are extracted (line 2) and differentiated (line 3).
-Considered the differentiation, every differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are consequent (differentiation equals 1).
-Furthermore, small breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line 13).
-Two individual breaking sequences can be seen in plot \ref{fig:D3_IndividualBraking1} and plot \ref{fig:D3_IndividualBraking2}.
+For better visualisation, the breaking sequences that can be seen in figure \ref{fig:D3_IndividualBraking} will be stored separately.
+One breaking sequence consists of multiple consequent velocity measurements.
+This means that the breaking sequences can be separated by searching for a gap in the velocity measurements (\ac{NaN} values).
+Therefore, the indices of all velocities that are set not \ac{NaN} are extracted (line 2 in listing \ref{lst:D3Seperat}) and differentiated (line 3 in listing \ref{lst:D3Seperat}).
+Consequently, very differentiation that is greater than 1 marks a gap between velocities because indices of one braking sequence are consequent (differentiation equals 1).
+Furthermore, short breaking sequences are not considered because they are most likely not relevant for recognizing a breaking pattern (line 13 in listing \ref{lst:D3Seperat}).
+Two individual breaking sequences can be seen in figure \ref{fig:D3_IndividualBraking1} and figure \ref{fig:D3_IndividualBraking2}.
 
 \begin{lstlisting}[language=Matlab,basicstyle=\scriptsize	,caption= Separating breaking sequences,label= lst:D3Seperat]
 %find individual breaking sequences
@@ -274,29 +291,24 @@ for i=1:length(diff_notNaN_velocity)
 end
 \end{lstlisting}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{images/D3_individual_braking.jpg}
-\caption{Human velocity profile extracted individual braking manoeuvres}
-\label{fig:D3_IndividualBraking}
-\end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D3_example1.jpg}
-\caption{Human velocity profile extracted braking manoeuvre 1}
+\caption{Individual braking manoeuvre 1 extracted from the human velocity profile}
 \label{fig:D3_IndividualBraking1}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{images/D3_example2.jpg}
-\caption{Human velocity profile extracted braking manoeuvre 2}
+\caption{Individual braking manoeuvre 2 extracted from the human velocity profile}
 \label{fig:D3_IndividualBraking2}
 \end{figure}
 
 \section{Results}
-Considering Figures REF, REF and REF, it can be seen that the acceleration is approximately in the shape of a parable with the minimal turning point at XX. For further implementation of the ParkAssist, we will start the breaking process with an acceleration and increase it until we reach approximately REF and will then decrease it.
+Considering figures \ref{fig:D3_IndividualBraking1} and \ref{fig:D3_IndividualBraking2}, it can be seen that the acceleration is approximately in the shape of a downward facing parable. This results in the velocity decreasing slowly in the beginning, then decreasing more severly and flattening in the end.   
+%For further implementation of the ParkAssist, we will start the breaking process with an acceleration and increase it until we reach approximately REF and will then decrease it.
 
 %entschieden Durchschnitt der vier Radgeschwindigkeiten zu nehmen (vllt. vor nachteile)
 %und so auf die Geschwindigkeit des Autos näherungsweise zu bestimmen
@@ -503,7 +515,8 @@ Figure \ref{fig:D6_Result} shows a demonstration of the implemented pulse signal
 
 \chapter{D7: Transfer of Simulink model to ASCET}\label{cha:D7}
 
-This chapter describes how the Simulink model from chapter \ref{cha:D2} is transferred to ASCET. The model is also extended  to include a time dependent brake pedal function as described in chapter \ref{cha:D3}. Furthermore, as ASCET is time discrete execution slots for threads have to be defined.
+This chapter describes how the Simulink model from chapter \ref{cha:D2} is transferred to ASCET. %The model is also extended  to include a time dependent brake pedal function as described in chapter \ref{cha:D3}. 
+Furthermore, as ASCET is time discrete execution slots for threads have to be defined.
 
 First, messages are defined to describe the needed data interfaces. Listing \ref{lst:D7_Messages} shows the two defined message interfaces. The first interface represents messages regarding the car including its velocity, its acceleration, its position, the ultrasonic distance and the pulse signal. The other interface contains a message that describes the current brake pedal position.
 
@@ -627,24 +640,81 @@ While the integrated frequency is smaller or equal 0.5 the pulse signal is set t
 
 The resulting pulse signal is shown in Figure \ref{fig:BlockdiagrammPulseSignalOutput}. It shows that the period of the pulse signal is getting shorter once the car approaches the target position. The plot also shows that the pulse signal starts once the car is slower than 3.6 km/h (\^= 1m/s) and ends once the car is standing. 
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/ascet_pulsesignal.png}
+\caption{Output pulse signal}
+\label{fig:BlockdiagrammPulseSignalOutput}
+\end{figure}
 
 \chapter{D9: Implementation of unit tests for ASCET model parts}\label{cha:D9}
 This section covers the unit tests of all components of the ASCET model.
-The components were designed in a modular way to allow easy unit testing.
+The components are designed in a modular way to allow easy unit testing.
 Also wrapper classes, passing messages into the components, are used to make it possible to unit test the components.
-This is the only functionality the wrapper classes include.
+This is the only functionality the wrapper classes have.
 That is necessary to make sure that no new bugs are introduced by the wrapper classes, because they can not be unit tested.\\
-The unit tests are bundled in a package called $test$ in the ASCET project. The assertLib is imported for the assertions that are used in the unit tests. The unit tests are grouped by component with a static test class for each component. One test case corresponds to one method within the unit test classes.\\
+The unit tests are bundled in a package called $test$ in the ASCET project. The assertLib is imported for the assertions that are used in the unit tests. The unit tests are grouped by component with a static test class for each component. One test case corresponds to one method within the unit test classes.
 
 Test cases are derived by analysing the requirements and finding equivalence classes.
-The goal of the test case coverage is to cover equivalence class and in addition to that select values that might result in errors based on experience.s
+The goal of the test case coverage is to cover equivalence class and in addition to that select values that might result in errors based on experience.
 
-- pulse signal, drive model not possible to unit test because of time component
-- Messages erklären\\
+\section{Unit tests for DriveModel}
 
-\section{Unit tests for ParkAssistControl}
+$DriveModel$ computes acceleration, velocity, position and ultrasonic distance based on a defined time and brake pedal position. Generally, there are two equivalence classes. One equivalence class covers all velocities greater than 0.29 km/h and the other all velocities less or equal 0.29 km/h. As only one time step is simulated while unit testing the position will become zero if the velocity is zero. By the time the velocity becomes zero in the system test environment, the position is greater than zero. Due to this inconsistency this equivalence class is not tested. Defined test cases can be seen in the table below.
 
-\section{Unit tests for pulse signal frequency generation}
+\begin{table}[H]
+\centering
+\caption{Test cases for unit testing driveModel}
+\begin{adjustbox}{width=1\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{lllllll}
+\textbf{Brake pedal} & \textbf{Time constant [s]} & \textbf{Acceleration [m/s]} &\textbf{Velocity [km/h]} & \textbf{Position [m]} & \textbf{Ultrasonic distance [m]} \\\hline
+p = 0.0 & dTs = 1.0 & acc = -1.5 & v = 4.6 & s $\approx$ 1.278 & u $\approx$ 0.722\\
+p = 0.5 & dTs = 0.1 & acc = -6.5 & v = 7.66 & s $\approx$ 0.213 & u $\approx$ 1.787\\
+\label{tab:D10_drivemodel}
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\section{Unit tests ParkAssistControllerTest}
+
+$ParkAssistControllClass$ generates a brake pedal position based on a defined time using a look-up table.
+There are two equivalence classes defined for the $ParkAssistControll$ class that cover the brake pedal position if the time is inside the time span of the look-up table and if the time is greater than the time span of the look-up table.
+
+\begin{table}[H]
+\centering
+\caption{Equivalence classes for unit testing ParkAssistControll}
+\begin{adjustbox}{width=0.5\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{lllllll}
+\textbf{Time [s]} & \textbf{Output p(t)} \\\hline
+$0 \leq t \leq 1.2$ &$ 0 \leq p(t) \leq 0.078$ \\
+t > 1.2 & p(t) = 0\\
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Based on the equivalence classes three test cases have been derived. Two test cases correspond to the first equivalence class and the third test case corresponds to the second equivalence class. 
+
+\begin{table}[H]
+\centering
+\caption{Unit test test cases pulse signal frequency generation}
+\begin{adjustbox}{width=0.5\textwidth, center=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{llll}
+\textbf{Test case name} & \textbf{Time [s]} & \textbf{Brake pedal} \\ \hline
+time\textunderscore 0\textunderscore 0 & 0.0 & 0.0 \\
+time\textunderscore 0\textunderscore 6 & 0.6 & 0.078 \\
+time\textunderscore 2\textunderscore 0 & 2.0 & 0.0 \\                   
+\end{tabular}
+\end{adjustbox}
+\label{tbl:D9_FrequencyGenerationTestCases}
+\end{table}
+
+\section{Unit tests FrequencyComputationTest}\label{sec:unitfrequency}
+
+$FrequencyComputationClass$ generates a frequency based on a defined position and velocity using a look-up table.
+There are three equivalence classes defined for the $FrequencyComputationClass$ class that cover three output scenarios: Zero frequency, variable frequency based on a defined function and Continuous frequency. 
 
 \begin{table}[H]
 \centering
@@ -681,7 +751,10 @@ frequencyMid                          & 1.0                         & 1.5       
 \label{tbl:D9_FrequencyGenerationTestCases}
 \end{table}
 
-\section{Unit tests for pulse signal}
+\section{Unit tests PulseSignalClass}
+
+$PulseSignalClass$ generates a pulse signal based on a defined frequency.
+There are three equivalence classes defined for the $PulseSignalClass$ class that refer to the equivalence classes in section \ref{sec:unitfrequency}. 
 The table below shows the equivalence classes for the pulse signal.
 \begin{table}[H]
 \centering
@@ -697,7 +770,7 @@ irrelevant & V = 0m/s oder V > 1m/s & Zero\\
 \end{adjustbox}
 \end{table}
 
--test cases
+The derived test cases are shown below.
 
 \begin{table}[H]
 \centering
@@ -706,31 +779,23 @@ irrelevant & V = 0m/s oder V > 1m/s & Zero\\
 \begin{tabular}{lll}
 \textbf{Frequency} & \textbf{dts} & \textbf{Expected result} \\\hline
 0         & 1   & 0               \\
+1         & 0.1   & 1               \\
+1         & 0.6   & 0               \\
 10        & 1   & 1              
 \end{tabular}
 \end{table}
 
-
-- Alternating pulse signal not possible to test because dependant of time 
-
 \chapter{D10: Development and implementation of a system test environment for ASCET simulation}\label{cha:D10}
 
-- wait 5 seconds until starting because ascet experiment environment does not display the first seconds \\
-- in first 5 seconds brake = -0.15 to counter c and b, v = 0 \\
-- after five seconds set v to 10 km/h and start experiment
+- checkbox if position is less than 2m \\
+- acceleration follows D3 \\
+- pulse signal periods become smaller \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{images/Blockdiagramm_settings.png}
-\caption{ASCET Blockdiagramm of settings}
-\label{fig:BlockdiagrammSettings}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{images/Blockdiagramm_stopwatch.png}
-\caption{ASCET Blockdiagramm of stopwatch}
-\label{fig:BlockdiagrammStopwatch}
+\includegraphics[width=1\textwidth]{images/ascet_experiment_environment.png}
+\caption{ASCET Experiment Environment}
+\label{fig:D10}
 \end{figure}
 
 \chapter{D11*: Plausibility check comparing measured velocities and distances}\label{cha:D11}
