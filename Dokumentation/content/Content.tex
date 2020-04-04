@@ -810,6 +810,7 @@ For monitoring whether the car stopped within 2 m, a new class is introduced tha
 The distance signal from the ultrasonic sensor (in case there is a non-moving object in front of it) and the measured car velocity are two measurements that provide independent measurement of travelled distance.\\
 In the given scenario it is known that a non-moving object is 2 m in front of the car. So the ultrasonic sensor can be used to compute travelled distance by comparing consequent distance measurements. E. g. if the distance measurement before was 0.8 m to the object ahead and the next measurement was 0.6 m, the car travelled a distance of 20 cm.\\
 Integrating the velocity also provides a measurement of the travelled distance. These two measurements provide a redundancy in measuring travelled distance. If these measurements would be significantly different, one of the measurements must be inaccurate.\\
+Because of inaccuracies in the measurements the two signal are likely to never be exactly the same, so an allowed difference between the signals needs to be defined.
 If the object in front of the ultrasonic sensor is moving or if there is no object at all, this procedure can not be used.\\
 \chapter{D13*: Impact of inaccuracies}\label{cha:D13}
 \section{Ultrasonic Sensor}
@@ -842,10 +843,25 @@ The inaccuracy of the ultrasonic sensor of +/- 2 cm does not have an influence o
 But if a feedback controller would be used, that relies on the distance information to brake, the inaccuracy would have an influence on the braking procedure.
 The inaccuracy would have to be considered. Using multiple sensors might be a way to reduce the inaccuracy. Also using a safety margin when parking is reasonable.
 
-
-zeit inaccuracies
 \section{Velocity measurement sensor}
--see chapter \ref{cha:D5}
+
+Inaccuracies of the velocity measurement have already been analysed in chapter \ref{cha:D5}.
+
+\section{Impact of execution timing}
+
+This section analyses the impact of the given period times. The vehicle velocity is available every 10 ms and the ultrasonic distance is available every 2 ms.
+As discussed in chapter \ref{cha:D5} the brake pedal function is not dependent on the velocity and neither of the ultrasonic distance. This means that the actual "physical" stopping position is not dependant of the given period times. However, if the velocity was available every 2 ms the velocity curve would look slightly smoother due to more available measurement points. This can be seen in figure \ref{fig:D13_V_2ms}.
+Even though the "physical" stopping position remains the same, if the velocity is available every 2 ms the computed stopping position is 1.918 m. If the velocity is avaible every 10 ms the computed stopping position is 1.905 m. 
+These stopping positions differ because the computed position is dependent on the velocity. If the velocity is available every 10 ms, the position is more inaccurate. As can be seen in the Simulink model in figure \ref{fig:D3_pt} the computed stopping position in Simulink, using the ode8 differential equation solver, is 1.92 m. The computed stopping position, if the velocity is available every 2 ms, is thus closer to the "physical" stopping position, which makes sense because the position is computed in smaller steps.
+
+Considering only the different execution times and neglecting other inaccuracies, the ultrasonic sensor signal that is available every 2 ms is more accurate than the position based on the velocity that is available every 10 ms. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/V_2ms.png}
+\caption{Simulation results with velocity available every 2 ms}
+\label{fig:D13_V_2ms}
+\end{figure}
 
 \chapter{D14*: Reflection}\label{cha:D14}
 -only 2 meter stop considered
