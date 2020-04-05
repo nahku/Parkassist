@@ -784,7 +784,12 @@ The system test environment in Figure \ref{fig:D10} features an oscilloscope and
 The oscilloscope shows the velocity, acceleration and position of the car as well as the ultrasonic distance signal and the pulse signal. The textboxes show the value of the signal in the oscilloscope next to them. 
 The checkbox at the right bottom shows whether the car did a full brake within less than 2m.
 
-With the parameters that have been evaluated in this project, the car stops at 1.905 m.
+With the parameters that have been evaluated in the previous chapters, the car stops at 1.905 m.
+
+The following Figure \ref{fig:D10} shows the simulation results. The upper channel of the oscilloscope shows the velocity that becomes zero once it is below 0.29 km/h after approximately 1.4 s (R5).
+The channel below the velocity shows the brake pedal function p(t) that follows a smooth human like behaviour (R2). The middle channel shows the acceleration that is influenced by p(t). The channel below the acceleration shows the position of the car in turquoise and the ultrasonic distance in blue. The ultrasonic distance is implemented based on R4.
+The third subplot shows the covered distance of the car, which is clearly under the 2 m mark (R1). 
+The bottom channel shows the pulse signal. The period of the pulse signal is getting shorter once the car approaches the target position. The plot also shows that the pulse signal starts once the car is slower than 3.6 km/h (\^= 1m/s) and ends once the car is standing. The exact stopping position of the car is 1.905 m which is why the pulse signal becomes continuous for a short time and then gets reset, once the car stops (R3). 
 
 \begin{figure}[H]
 \centering
