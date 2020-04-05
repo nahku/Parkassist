@@ -864,38 +864,14 @@ Considering only the different execution times and neglecting other inaccuracies
 This chapter consists of a reflection on the project and a description which observations have been made concerning the planning, the modeling, the requirements, the prescribed functions, our solution, the testing and the selected graphical approach.
 
 \begin{itemize}
-\item The Planning was very helpful and it is interesting to compare the expected complexity and the actual complexity of the tasks. Overall, we are satisfied with our estimation of the complexity. The only thing we underestimated was the generation of the pulse signal.
+\item The Planning was very helpful and it is interesting to compare the expected complexity and the actual complexity of the tasks. Overall, we are satisfied with our estimation of the complexity. The only thing we underestimated significantly was the generation of the pulse signal.
 \item The model is not completely realistic. There is 
-no possibility to accelerate and a drop from 0.29 km/h to 0 km/h is also unrealistic. The model could also be extended to include moving objects so that it would be necessary to include the ultrasonic distance in p(t).
+no possibility to accelerate and a drop from 0.29 km/h to 0 km/h is also unrealistic. The model could also be extended to include objects at variable distances so that it would be necessary to include the ultrasonic distance in the controller.
 \item Requirements D5 and D13 overlap and it was difficult for us to separate them. Moreover, we were not sure if in requirement D3 the brake pedal function should already be determined or if only an idea for the function should be described.
-\item The prescribed functions/values made the implementation easier. It would have been more complicated if for example stops from various velocities or within various distances would have been considered. The friction and braking constant are comparatively high so that without accelerating it was not possible to get a smooth velocity drop.
+\item The prescribed functions/values made the implementation easier. It would have been more complicated if for example stops from various initial velocities or within various distances would have had to be considered. The friction and braking constant are comparatively high so that without accelerating it was not possible to get an entirely smooth velocity drop.
 \item The developed brake pedal function in our solution is only dependant on the time, therefore external conditions are not recognised.
-If, for example a person would step in front of the car, the car would run over that person, even though the ultrasonic sensor might recognise the person. To prevent that the distance from the ultrasonic sensor would have to be included in the ParkAssist controller. In the future, it would be better to implement a controller for the applied braking pressure instead of a regulation.
-\item Unit tests were easy to implement and very helpful. This way, failures that have been made along the way could be detected quickly.  
+If, for example a person would step in front of the car, the car would run over that person, even though the ultrasonic sensor might recognise the person. To prevent that the distance from the ultrasonic sensor would have to be included in the ParkAssist controller. In the future, it would be better to implement a controller with feedback for the applied braking pressure.
+\item Unit tests were easy to implement and very helpful. This way, bug that have been included along the development could be detected quickly.  
 \item Graphical modeling worked out well for us. The only disadvantage that we experienced was that if-clauses can be complex to implement graphically, in particular if there are various if-clauses in series. Having many if-clauses may also lead to an unclear block diagram. 
 \end{itemize}
 
-%-unterschied simulink matlab
-%-ultrasonic reichweite
-%-no feedback
-%
-%-no air friction, but relatively low at low speed
-%-1.5 friction
-%-sensor inaccuracies normally follow a statistic distribution and do not have discrete borders
-%
-%-parkassist limits
-%
-%\section{Model inaccuracies}
-%The model is not completely realistic. There is 
-%-no possibility to accelerate
-%-drop from 0.29 km/h
-%\section{Computation inaccuracies}
-%-rundungsfehler
-%
-%\section{ParkAssist limitations}
-%-no steering
-%-only 2 meter stop considered
-%The developed controller is only dependant on the time, therefore external conditions are not recognised.
-%If, for example a person would step in front of the car, the car would run over that person, even though the ultrasonic sensor might recognise the person. To prevent that the distance from the ultrasonic sensor would have to be included in the ParkAssist controller.
-%
-%-no feedback control
