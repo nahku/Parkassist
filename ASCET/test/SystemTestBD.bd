@@ -1,0 +1,76 @@
+classType test.SystemTestBD
+blockdiagramSpecification Main {
+	methodBody calc {
+		outPin active {
+			connection_3, connection_4, connection_6, connection_8, connection_10
+		}
+	}
+	complexIdentifier SystemTest_instance_3 at (331, 181) size (65, 27) {
+		label at (0, 1)
+		methodCall test.SystemTest.systemTestStatemachineTrigger {
+			methodVoidPin at (top, 16) sequenceCall at (-14, -68) {
+				inPin connection_3
+			}
+		}
+		elementCall (test.SystemTest.v) {
+			argumentPin at (left, 4) connection_7
+			sequenceCall at (-10, -74) {
+				inPin connection_6
+			}
+		}
+		elementCall (test.SystemTest.pulseSignal) {
+			argumentPin at (left, 12) connection_5
+			sequenceCall at (10, -54) {
+				inPin connection_4
+			}
+		}
+		elementCall (test.SystemTest.position) {
+			argumentPin at (left, 22) connection_9
+			sequenceCall at (10, -54) {
+				inPin connection_8
+			}
+		}
+		elementCall (test.SystemTest.systemTest) {
+			returnPin at (right, 0) {
+				connection_11
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	simpleIdentifier resources.CarMessages.pulse_signal at (61, 305) {
+		label at (0, -1)
+		outPin {
+			connection_5
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.CarMessages.v at (61, 225) {
+		label at (0, -1)
+		outPin {
+			connection_7
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.CarMessages.position at (61, 405) {
+		label at (0, -1)
+		outPin {
+			connection_9
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.StateHandlerMessages.systemTest at (1041, 185) {
+		label at (0, -1)
+		inPin connection_11
+		sequenceCall {
+			inPin connection_10
+		}
+	}
+}
